@@ -5,6 +5,11 @@ All notable changes to this skill pack are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.3.0] — 2026-06-28
+
+### Added
+- `game-design-fundamentals` (knowledge) — the spine skill the rest of the pack cross-links to. From deep research: interesting decisions (Sid Meier), flow & difficulty curves (Csikszentmihalyi/Schell), motivation via Self-Determination Theory (competence/autonomy/relatedness), feedback & agency, and choice architecture. Each principle carries exemplars, citations, named failure modes, the procedural/headless implication, and machine-checkable "test-for" criteria written to be enforced as automated invariants in a generation loop. This lights up the forward cross-links the other skills already pointed at.
+
 ## [0.2.0] — 2026-06-28
 
 ### Changed

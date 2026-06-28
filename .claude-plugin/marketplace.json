@@ -6,14 +6,14 @@
   },
   "metadata": {
     "description": "The game-design process for Claude — knowledge + workflow skills for designing games, tuned for headless, procedural, AI-authored development.",
-    "version": "0.2.0"
+    "version": "0.3.0"
   },
   "plugins": [
     {
       "name": "gamedev-skills",
       "source": "./plugins/gamedev-skills",
       "description": "The game-design process for Claude: knowledge skills (cited design disciplines) plus process skills (concept planning, world layout, procgen generate-and-critique, design review) that a headless agent runs end to end. Engine-agnostic; tuned for procedural games. Stops at design/spec — no gameplay code.",
-      "version": "0.2.0",
+      "version": "0.3.0",
       "category": "game-development",
       "keywords": ["gamedev", "game-design", "procedural-generation", "open-world", "systems-design", "headless", "godot"]
     }

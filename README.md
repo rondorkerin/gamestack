@@ -46,6 +46,7 @@ Knowledge skills are the reference. Process skills are the gstack-style commands
 ### Knowledge
 | Skill | What it covers | Status |
 |-------|----------------|--------|
+| [`game-design-fundamentals`](plugins/gamedev-skills/skills/game-design-fundamentals) | The spine the rest of the pack builds on: interesting decisions (Meier), flow & difficulty curves, motivation (Self-Determination Theory), feedback & agency, and choice architecture — with machine-checkable tests for a generation loop. | 🟢 v0.1 |
 | [`open-world-design`](plugins/gamedev-skills/skills/open-world-design) | World structure (the triangle rule, gravity, interconnection, biomes, verticality), diegetic navigation, signal color, exploration pull, and spatial pacing. | 🟢 v0.2 |
 | [`procedural-generation`](plugins/gamedev-skills/skills/procedural-generation) | Beating the "10,000 bowls of oatmeal" problem: perceptual uniqueness, the handcrafted-anchor + constrained-fill hybrid, voice-consistent corpora, multiplicative systems, intentionality. | 🟢 v0.1 |
 
@@ -132,8 +133,7 @@ skills/<skill-name>/
 ## Roadmap
 
 Knowledge (from incoming research):
-- ✅ Open-world design · ✅ Procedural generation
-- ⬜ Game-design fundamentals (interesting decisions, flow, difficulty, rewards) — the spine other skills cross-link to
+- ✅ Game-design fundamentals · ✅ Open-world design · ✅ Procedural generation
 - ⬜ Combat & game feel (juice, telegraphing, encounter design)
 - ⬜ RPG systems (progression, economy, loot/itemization)
 - ⬜ Systemic / emergent design (immersive sim, multiplicative systems)

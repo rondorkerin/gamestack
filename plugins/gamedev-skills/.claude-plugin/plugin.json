@@ -1,6 +1,6 @@
 {
   "name": "gamedev-skills",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "The game-design process for Claude — like gstack for software, but for designing games. Two layers: knowledge skills (cited design disciplines) and process skills (workflow verbs a headless agent runs to take a game from concept to generated, self-reviewed content). Engine-agnostic, tuned for procedural/AI-authored games. Stops at the design/spec level — no gameplay code.",
   "author": {
     "name": "Arcos Labs",
