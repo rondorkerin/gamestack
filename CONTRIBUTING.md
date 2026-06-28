@@ -1,6 +1,6 @@
-# Contributing to gamedev-skills
+# Contributing to gamestack
 
-Thanks for helping build the most useful game-design knowledge pack for Claude. Whether you're adding a brand-new skill, deepening an existing one with research, or fixing a wrong claim — it's all welcome.
+Thanks for helping build the most useful game-development skill pack for Claude. Whether you're adding a brand-new skill, deepening an existing one with research, or fixing a wrong claim — it's all welcome.
 
 ## Ground rules
 
@@ -20,7 +20,7 @@ Process skills should **draw on** knowledge skills (cite them by name) rather th
 
 ## Anatomy of a skill
 
-Each skill lives at `plugins/gamedev-skills/skills/<skill-name>/` and contains:
+Each skill lives at `plugins/gamestack/skills/<skill-name>/` and contains:
 
 | File | Purpose | Loaded |
 |------|---------|--------|
@@ -68,7 +68,7 @@ Install the pack locally and confirm Claude picks up your skill:
 
 ```
 /plugin marketplace add /absolute/path/to/this/repo
-/plugin install gamedev-skills
+/plugin install gamestack
 ```
 
 Then ask Claude a question that should trigger your skill and confirm it loads.

@@ -1,0 +1,12 @@
+{
+  "name": "gamestack",
+  "version": "0.4.0",
+  "description": "The engine-agnostic foundation of the gamestack framework — the design/discipline brain. Knowledge skills (cited disciplines: game-design fundamentals, open-world, procgen, combat & game feel) and process skills (the headless concept→generate→self-review pipeline). Pairs with the curated engine packs in the gamestack marketplace (Godot, Unity, Unreal): design here, implement there.",
+  "author": {
+    "name": "Arcos Labs",
+    "email": "nb@arcoslabs.co"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/rondorkerin/gamestack",
+  "keywords": ["gamedev", "game-design", "godot", "unity", "unreal", "threejs", "procedural-generation", "open-world", "performance", "systems-design"]
+}

@@ -1,21 +1,43 @@
 {
-  "name": "gamedev-skills",
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "gamestack",
   "owner": {
     "name": "Arcos Labs",
     "email": "nb@arcoslabs.co"
   },
   "metadata": {
-    "description": "The game-design process for Claude — knowledge + workflow skills for designing games, tuned for headless, procedural, AI-authored development.",
-    "version": "0.3.0"
+    "description": "An agentic framework for building games on any platform. A first-party design/production brain plus curated, engine-specific skill packs (Godot, Unity, Unreal) so one agent can take a game from concept to shipped code regardless of engine.",
+    "version": "0.4.0"
   },
   "plugins": [
     {
-      "name": "gamedev-skills",
-      "source": "./plugins/gamedev-skills",
-      "description": "The game-design process for Claude: knowledge skills (cited design disciplines) plus process skills (concept planning, world layout, procgen generate-and-critique, design review) that a headless agent runs end to end. Engine-agnostic; tuned for procedural games. Stops at design/spec — no gameplay code.",
-      "version": "0.3.0",
+      "name": "gamestack",
+      "source": "./plugins/gamestack",
+      "description": "First-party foundation (engine-agnostic): the design/discipline brain — game-design fundamentals, open-world design, procedural generation, combat & game feel, and the headless generate-and-review process. Pairs with the engine packs below: design here, implement there.",
+      "version": "0.4.0",
       "category": "game-development",
-      "keywords": ["gamedev", "game-design", "procedural-generation", "open-world", "systems-design", "headless", "godot"]
+      "keywords": ["gamedev", "game-design", "procedural-generation", "open-world", "combat", "systems-design", "headless"]
+    },
+    {
+      "name": "godot",
+      "source": { "source": "github", "repo": "jame581/GodotPrompter", "ref": "master" },
+      "description": "Godot 4.x engine skills (third-party, MIT, by jame581 — GodotPrompter): GDScript patterns, systems (ability/inventory/dialogue/event-bus), optimization, testing, export pipeline. The Godot implementation hands for gamestack's design brain.",
+      "category": "game-development",
+      "keywords": ["godot", "gdscript", "gdextension", "engine"]
+    },
+    {
+      "name": "unreal",
+      "source": { "source": "github", "repo": "quodsoler/unreal-engine-skills", "ref": "main" },
+      "description": "Unreal Engine C++ skills (third-party, MIT, by quodsoler): 27 skills across gameplay framework, rendering, networking/replication, animation, Niagara, world streaming. The Unreal implementation hands for gamestack's design brain.",
+      "category": "game-development",
+      "keywords": ["unreal", "ue5", "cpp", "engine"]
+    },
+    {
+      "name": "unity-jahro",
+      "source": { "source": "github", "repo": "jahro-console/unity-agent-skills", "ref": "main" },
+      "description": "Unity AI-assisted debugging skills (third-party, MIT, by jahro-console): structured logging, runtime commands, variable watching via the Jahro console. NOTE: scoped to debugging, not general Unity authoring — a fuller Unity pack is on the gamestack roadmap.",
+      "category": "game-development",
+      "keywords": ["unity", "csharp", "debugging", "engine"]
     }
   ]
 }

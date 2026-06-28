@@ -1,104 +1,144 @@
-# 🎮 gamedev-skills
+# 🎮 gamestack
 
-**The game-design *process* for [Claude](https://claude.com/claude-code) — like gstack is for software engineering, but for designing games.**
+**An agentic framework for building games on any platform — for [Claude](https://claude.com/claude-code). Like gstack is for software, but for games.**
 
-Most "game design" resources are static reading. This is a working pipeline. Install it and Claude gains both the **knowledge** of game design (cited, discipline by discipline) and the **process** to apply it — a set of workflow skills that take a game from a one-line concept to a designed, generated, self-reviewed world.
+gamestack is two things working together:
 
-It's built for how Claude actually ships games today: **headless, engine-agnostic (we use Godot), and procedural.** A headless agent can't hand-place ten thousand objects, but it *can* author systems, generate content from rules, and critique its own output against hard quality bars. So the pack leans into procedural / AI-authored design and gives the agent the review passes that keep generated content from collapsing into sameness.
+- **A design brain** — first-party, engine-agnostic skills that give Claude the *knowledge* of game design (cited, discipline by discipline) and the *process* to apply it: concept → world → content → self-review.
+- **Engine hands** — curated, best-in-class community skill packs for each engine (Godot, Unreal, Unity), referenced directly from one marketplace so Claude can turn a design into real engine code.
 
-It stops at the **design and spec level** — world bibles, system specs, content, quality gates. It does not write your gameplay code. That handoff is deliberate.
+You design once, then hand off to whichever engine you're shipping in. The design layer doesn't overlap the engine packs — it's the layer they're missing.
+
+```
+                        gamestack  (one marketplace)
+                              │
+        ┌─────────────────────┼──────────────────┬──────────────────┐
+   gamestack                godot               unreal           unity-jahro
+ (first-party brain)       (jame581)          (quodsoler)       (jahro-console)
+ design · procgen ── implements ──▶  GDSCRIPT · C++ · per-engine code
+ combat · process
+```
+
+We don't reinvent engine work others do well — we **slot it in** and add the design/discipline layer on top, plus the router that binds them.
 
 ---
 
-## Two kinds of skill
+## How it fits together
+
+| Layer | What it is | Who builds it |
+|-------|------------|---------------|
+| 🧠 **Design brain** (first-party) | Cited design disciplines + the headless generate-and-review pipeline. Engine-agnostic. | This repo |
+| 🎮 **Engine hands** (curated) | Per-engine implementation skills (code patterns, systems, optimization), referenced from the marketplace by their authors. | Community, MIT-licensed |
+| 🔀 **The router** | `engine-router` — detects the target engine and routes: design → brain, implementation → the right engine pack. | This repo |
+
+---
+
+## The two first-party skill kinds
 
 | Layer | What it is | Example |
 |-------|------------|---------|
 | 🧠 **Knowledge** | A cited design discipline as a guide + do/don't checklist. The "what good looks like." | `open-world-design`, `procedural-generation` |
-| ⚙️ **Process** | A workflow verb the agent *runs* — generate, review, plan, analyze. Draws on the knowledge skills. | `procgen-review`, `game-design-process` |
-
-Knowledge skills are the reference. Process skills are the gstack-style commands that *do the work* and cite the reference as they go.
+| ⚙️ **Process** | A workflow verb the agent *runs* — generate, review, route, plan. Draws on the knowledge skills. | `procgen-review`, `game-design-process`, `engine-router` |
 
 ---
 
 ## The pipeline
 
 ```
-  CONCEPT ──▶ WORLD & SYSTEMS ──▶ CONTENT ──▶ REVIEW & GATE ──▶ PLAYTEST & ITERATE
-  pillars,    structure, nav,      procgen +   oatmeal / fanfic   benchmarks that
-  core loop,  progression,         handcrafted  / sameness /       change the plan
-  signature   economy, combat,     anchors,     anti-pattern
-  mechanics   systemic rules       lore         gates
+  CONCEPT ──▶ WORLD & SYSTEMS ──▶ CONTENT ──▶ REVIEW & GATE ──▶ HANDOFF ──▶ ENGINE CODE
+  pillars,    structure, nav,      procgen +   oatmeal/fanfic/    engine-     godot / unreal /
+  core loop,  progression,         handcrafted  sameness/anti-     router      unity pack
+  signature   economy, combat,     anchors,     pattern gates      picks the   implements
+  mechanics   systemic rules       lore                            engine      the spec
+  └──────────────── design brain (first-party) ───────────────┘ └──── engine hands ────┘
 ```
 
-`game-design-process` is the orchestrator that walks this pipeline and pulls the right skills at each phase. Start there, or invoke any skill directly.
+`game-design-process` orchestrates the design half and pulls the right skill at each phase. `engine-router` runs the handoff to engine code. Start at either, or invoke any skill directly.
 
 ---
 
-## Skills
+## First-party skills (the design brain)
 
 ### Process
 | Skill | What it does | Status |
 |-------|--------------|--------|
-| [`game-design-process`](plugins/gamedev-skills/skills/game-design-process) | The orchestrator. Walks concept → world → content → review → iterate and names which skill to use at each phase. The entry point for "I'm designing a game." | 🟢 v0.1 |
-| [`procgen-review`](plugins/gamedev-skills/skills/procgen-review) | The self-review pass for generated content. Runs the oatmeal test, the fanfic/retell test, a cross-instance sameness scan, and the intentionality + anti-pattern gates. Built to run in a headless generation loop. | 🟢 v0.1 |
+| [`game-design-process`](plugins/gamestack/skills/game-design-process) | The orchestrator. Walks concept → world → content → review → iterate and names which skill to use at each phase. The entry point for "I'm designing a game." | 🟢 v0.1 |
+| [`engine-router`](plugins/gamestack/skills/engine-router) | The platform router. Takes a ready design and routes implementation to the right engine pack (Godot/Unreal/Unity), keeping design logic and engine code cleanly separated. | 🟢 v0.1 |
+| [`procgen-review`](plugins/gamestack/skills/procgen-review) | The self-review pass for generated content. Runs the oatmeal test, the fanfic/retell test, a cross-instance sameness scan, and the intentionality + anti-pattern gates. Built to run in a headless generation loop. | 🟢 v0.1 |
 
 ### Knowledge
 | Skill | What it covers | Status |
 |-------|----------------|--------|
-| [`game-design-fundamentals`](plugins/gamedev-skills/skills/game-design-fundamentals) | The spine the rest of the pack builds on: interesting decisions (Meier), flow & difficulty curves, motivation (Self-Determination Theory), feedback & agency, and choice architecture — with machine-checkable tests for a generation loop. | 🟢 v0.1 |
-| [`open-world-design`](plugins/gamedev-skills/skills/open-world-design) | World structure (the triangle rule, gravity, interconnection, biomes, verticality), diegetic navigation, signal color, exploration pull, and spatial pacing. | 🟢 v0.2 |
-| [`procedural-generation`](plugins/gamedev-skills/skills/procedural-generation) | Beating the "10,000 bowls of oatmeal" problem: perceptual uniqueness, the handcrafted-anchor + constrained-fill hybrid, voice-consistent corpora, multiplicative systems, intentionality. | 🟢 v0.1 |
+| [`game-design-fundamentals`](plugins/gamestack/skills/game-design-fundamentals) | The spine the rest of the pack builds on: interesting decisions (Meier), flow & difficulty curves, motivation (Self-Determination Theory), feedback & agency, and choice architecture — with machine-checkable tests for a generation loop. | 🟢 v0.1 |
+| [`open-world-design`](plugins/gamestack/skills/open-world-design) | World structure (the triangle rule, gravity, interconnection, biomes, verticality), diegetic navigation, signal color, exploration pull, and spatial pacing. | 🟢 v0.2 |
+| [`procedural-generation`](plugins/gamestack/skills/procedural-generation) | Beating the "10,000 bowls of oatmeal" problem: perceptual uniqueness, the handcrafted-anchor + constrained-fill hybrid, voice-consistent corpora, multiplicative systems, intentionality. | 🟢 v0.1 |
+| [`combat-design`](plugins/gamestack/skills/combat-design) | Combat & game feel: juice tuned to the Medium–High band (the inverted-U), hit-stop & the impact bundle, telegraphing as fairness, danger-cue vocabularies, enemy silhouettes & role-based rosters, readable multi-enemy chaos (aggression tokens), and the Souls-like commitment/stamina/checkpoint loop. | 🟢 v0.1 |
+| [`rpg-systems`](plugins/gamestack/skills/rpg-systems) | The RPG number-systems triad: progression (price advancement, zone level-bands not world-scaling), economy (faucets/sinks, desirable sinks, anti-hoarding under scarcity, currency-as-material), and loot (rarity baseline, build-defining affixes over stat-sticks, procedural breadth vs. hand-authored identity, the finite-legendary manifest). | 🟢 v0.1 |
+| [`systemic-emergent-design`](plugins/gamestack/skills/systemic-emergent-design) | Authoring affordances not solutions: the immersive-sim substrate (universal rules, intention & perceivable consequence), emergence from few deep interacting systems, multiplicative vs. additive design (the chemistry engine), the "good GM" analogy, and making procgen cohere instead of becoming oatmeal. | 🟢 v0.1 |
 
-More are scaffolded on the [roadmap](#roadmap) and land as research is folded in.
+---
+
+## Engine packs (the hands)
+
+Curated from the community and referenced directly in the gamestack marketplace — install the one(s) for your engine. All MIT-licensed; credit to their authors.
+
+| Pack | Engine | Covers | Source | Status |
+|------|--------|--------|--------|--------|
+| `godot` | Godot 4.x | GDScript patterns, systems (ability/inventory/dialogue/event-bus), optimization, testing, export pipeline | [jame581/GodotPrompter](https://github.com/jame581/GodotPrompter) ⭐334 | 🟢 strong |
+| `unreal` | Unreal Engine | 27 C++ skills: gameplay framework, rendering, networking/replication, animation, Niagara, world streaming | [quodsoler/unreal-engine-skills](https://github.com/quodsoler/unreal-engine-skills) ⭐243 | 🟢 strong |
+| `unity-jahro` | Unity | AI-assisted debugging: structured logging, runtime commands, variable watching (Jahro console) | [jahro-console/unity-agent-skills](https://github.com/jahro-console/unity-agent-skills) | 🟡 debug-only |
+| Unity (general) | Unity | General C# authoring | — | ⬜ roadmap |
+| Three.js / web | Three.js | Web/WebGL game implementation | — | ⬜ roadmap |
 
 ---
 
 ## Install
 
-### Plugin marketplace (recommended)
+### Marketplace (recommended)
 
-In Claude Code, run:
-
-```
-/plugin marketplace add rondorkerin/gamedev-skills
-/plugin install gamedev-skills
-```
-
-Then confirm it loaded:
+In Claude Code, add the marketplace once:
 
 ```
-/plugin
+/plugin marketplace add rondorkerin/gamestack
 ```
 
-You should see **gamedev-skills** enabled, and asking Claude a design question (e.g. *"walk me through designing a procedural open-world RPG"*) should pull in `game-design-process`. Pull new skills as they ship with:
+Then install the design brain plus your engine pack(s):
 
 ```
-/plugin marketplace update gamedev-skills
+/plugin install gamestack          # the design brain (always)
+/plugin install godot@gamestack    # + your engine
+/plugin install unreal@gamestack
+/plugin install unity-jahro@gamestack
+```
+
+Confirm with `/plugin`. Asking Claude a design question (e.g. *"walk me through designing a procedural open-world RPG in Godot"*) should pull in `game-design-process`, and `engine-router` handles the handoff to the Godot pack. Pull updates with:
+
+```
+/plugin marketplace update gamestack
 ```
 
 ### Manual (single skill, no plugin)
 
-Skills are plain folders — clone and copy the ones you want:
+First-party skills are plain folders — clone and copy the ones you want:
 
 ```bash
-git clone https://github.com/rondorkerin/gamedev-skills.git
-cp -r gamedev-skills/plugins/gamedev-skills/skills/open-world-design ~/.claude/skills/   # all projects
-# or into <your-project>/.claude/skills/                                                  # one project only
+git clone https://github.com/rondorkerin/gamestack.git
+cp -r gamestack/plugins/gamestack/skills/open-world-design ~/.claude/skills/   # all projects
+# or into <your-project>/.claude/skills/                                        # one project only
 ```
 
 Claude auto-discovers skills in those directories on the next session — verify with `/skills`.
 
 ### Headless / Agent SDK
 
-The skills work under `claude -p` and the Agent SDK. With the plugin installed (or the skills copied into `~/.claude/skills/`), point a headless run at the pipeline:
+The skills work under `claude -p` and the Agent SDK. With the plugins installed, point a headless run at the pipeline:
 
 ```bash
 claude -p "Use the game-design-process skill to design a procedural open-world RPG in Godot. \
-Run procgen-review on all generated content before committing it."
+Run procgen-review on all generated content, then use engine-router to implement it with the godot pack."
 ```
 
-`game-design-process` sequences concept → world → content → review → iterate, and `procgen-review` gates generated content automatically — no human in the loop.
+`game-design-process` sequences concept → world → content → review, `procgen-review` gates generated content, and `engine-router` hands the spec to the engine pack — no human in the loop.
 
 ---
 
@@ -106,11 +146,13 @@ Run procgen-review on all generated content before committing it."
 
 Just describe what you're doing:
 
-> "I'm starting a procedural open-world RPG in Godot. Walk me through the design."  → `game-design-process`
+> "I'm starting a procedural open-world RPG in Godot. Walk me through it." → `game-design-process`
 
-> "Lay out the macro-map for the first region."  → `open-world-design`
+> "Lay out the macro-map for the first region." → `open-world-design`
 
-> "I generated 50 dungeons — check them for sameness before I commit them."  → `procgen-review`
+> "I generated 50 dungeons — check them for sameness before I commit them." → `procgen-review`
+
+> "The design's done — now build it in Unreal." → `engine-router` → `unreal` pack
 
 Or invoke a skill directly with `/<skill-name>`.
 
@@ -132,28 +174,32 @@ skills/<skill-name>/
 
 ## Roadmap
 
-Knowledge (from incoming research):
-- ✅ Game-design fundamentals · ✅ Open-world design · ✅ Procedural generation
-- ⬜ Combat & game feel (juice, telegraphing, encounter design)
-- ⬜ RPG systems (progression, economy, loot/itemization)
-- ⬜ Systemic / emergent design (immersive sim, multiplicative systems)
-- ⬜ Permadeath & lethality (single-save, meta-progression)
-- ⬜ Worldbuilding & lore (iceberg, environmental storytelling, mythmaking)
-- ⬜ Narrative & quest design (reactivity, the "no fetch quest" rule, factions)
-- ⬜ Art direction & readability · ⬜ Pacing & game feel
-- ⬜ AI-authored content coherence (corpus + constraints + lore bible)
+**Engine coverage** (curate strong community packs, or build first-party):
+- ✅ Godot · ✅ Unreal · 🟡 Unity (debug-only — needs a general authoring pack) · ⬜ Three.js / web
 
-Process:
-- ✅ Game-design process (orchestrator) · ✅ Procgen review
+**Design brain — knowledge:**
+- ✅ Game-design fundamentals · ✅ Open-world design · ✅ Procedural generation · ✅ Combat & game feel
+- ✅ RPG systems (progression, economy, loot/itemization)
+- ✅ Systemic / emergent design (immersive sim, multiplicative systems)
+- ⬜ Permadeath & lethality · ⬜ Worldbuilding & lore · ⬜ Narrative & quest design
+- ⬜ Art direction & readability · ⬜ Pacing & game feel · ⬜ AI-authored content coherence
+
+**Design brain — process:**
+- ✅ Game-design process (orchestrator) · ✅ Engine router · ✅ Procgen review
 - ⬜ Concept & pillars planning · ⬜ World-layout pass · ⬜ Quest quality gate
-- ⬜ Lore-coherence audit · ⬜ Design review (against the anti-pattern catalog) · ⬜ Playtest analysis
+- ⬜ Lore-coherence audit · ⬜ Design review · ⬜ Playtest analysis
+
+**Production & tooling:**
+- ⬜ Performance optimization (engine-agnostic principles + per-engine hooks)
+- ⬜ Asset pipelines via MCP (e.g. Meshy / 3D generation, texture pipelines)
+- ⬜ Algorithms (pathfinding, spatial partitioning, noise) · ⬜ Production & project management
 
 ---
 
 ## Contributing
 
-Research, citations, and production lessons all welcome — see **[CONTRIBUTING.md](CONTRIBUTING.md)** for the skill template and conventions. The pack's knowledge skills are grown from deep-research docs; reusable prompts for generating them live in **[docs/research-prompts.md](docs/research-prompts.md)**.
+Research, citations, production lessons, and **engine packs to slot in** are all welcome — see **[CONTRIBUTING.md](CONTRIBUTING.md)** for the skill template and conventions. The design brain's knowledge skills are grown from deep-research docs; reusable prompts live in **[docs/research-prompts.md](docs/research-prompts.md)**.
 
 ## License
 
-[MIT](LICENSE) © Arcos Labs. Use it, fork it, ship games with it.
+[MIT](LICENSE) © Arcos Labs. Engine packs are MIT-licensed by their respective authors. Use it, fork it, ship games with it.

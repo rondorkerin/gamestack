@@ -3,7 +3,7 @@
 Copy this structure to start a new skill. See `CONTRIBUTING.md` for conventions.
 
 ```
-plugins/gamedev-skills/skills/<your-skill-name>/
+plugins/gamestack/skills/<your-skill-name>/
 ├── SKILL.md
 ├── GUIDE.md
 └── CHECKLIST.md
