@@ -76,6 +76,8 @@ We don't reinvent engine work others do well — we **slot it in** and add the d
 | [`rpg-systems`](plugins/gamestack/skills/rpg-systems) | The RPG number-systems triad: progression (price advancement, zone level-bands not world-scaling), economy (faucets/sinks, desirable sinks, anti-hoarding under scarcity, currency-as-material), and loot (rarity baseline, build-defining affixes over stat-sticks, procedural breadth vs. hand-authored identity, the finite-legendary manifest). | 🟢 v0.1 |
 | [`systemic-emergent-design`](plugins/gamestack/skills/systemic-emergent-design) | Authoring affordances not solutions: the immersive-sim substrate (universal rules, intention & perceivable consequence), emergence from few deep interacting systems, multiplicative vs. additive design (the chemistry engine), the "good GM" analogy, and making procgen cohere instead of becoming oatmeal. | 🟢 v0.1 |
 | [`narrative-and-quest-design`](plugins/gamestack/skills/narrative-and-quest-design) | Quests, reactivity, and factions: the facts-database reactivity substrate (Witcher 3), planner-over-world-state procedural quests, blurring flavor vs. consequence, the no-fetch-quest doctrine, radiant-as-supplement, and faction allegiance dilemmas. | 🟡 v0.1 ⚠️ |
+| [`worldbuilding-and-lore`](plugins/gamestack/skills/worldbuilding-and-lore) | The world bible and lore *delivery*: the iceberg principle (build the whole, ship ~10% as frozen typed canon), environmental & item-description storytelling (Jenkins's four modes), an enumerable "alien but coherent" identity that resists generation drift, deep history as faction-proxy pantheons, and ludonarrative harmony (every mechanic answers a lore question). | 🟢 v0.1 |
+| [`permadeath-and-lethality`](plugins/gamestack/skills/permadeath-and-lethality) | High-lethality / permadeath / single-save: the fairness & readability backbone (death is always the player's fault), mitigations that cut failure cost without removing stakes (short runs, opt-in stacking assist, deterministic anti-save-scum), meta-progression & diegetic death (Hades), and the flagged-novel problem of single-save permadeath in a long-form open world. | 🟢 v0.1 |
 | [`art-direction-and-readability`](plugins/gamestack/skills/art-direction-and-readability) | Design-level visual communication: readability as an engineerable objective, silhouette-first validation, value/contrast eye-direction, reserved signal colors, fidelity-fights-readability, the named style bible, and per-asset read contracts for generators. | 🟢 v0.1 |
 | [`ai-authored-content-coherence`](plugins/gamestack/skills/ai-authored-content-coherence) | The crux skill: keeping AI-authored content coherent at scale — the oatmeal problem, single voice via curated corpus, generate-then-rationalize causation, recurring thematic domains, a machine-readable never-violate lore bible, and the self-review pass. | 🟡 v0.1 ⚠️ |
 
@@ -201,8 +203,8 @@ Each process skill opens by injecting `PREAMBLE.md` + `ETHOS.md`, which loads th
 - ✅ Game-design fundamentals · ✅ Open-world design · ✅ Procedural generation · ✅ Combat & game feel
 - ✅ RPG systems (progression, economy, loot/itemization)
 - ✅ Systemic / emergent design (immersive sim, multiplicative systems)
-- ⬜ Permadeath & lethality · ⬜ Worldbuilding & lore · ⬜ Narrative & quest design
-- ⬜ Art direction & readability · ⬜ Pacing & game feel · ⬜ AI-authored content coherence
+- ✅ Permadeath & lethality · ✅ Worldbuilding & lore · ✅ Narrative & quest design
+- ✅ Art direction & readability · ✅ AI-authored content coherence · ⬜ Pacing & game feel
 
 **Design brain — process:**
 - ✅ Game-design process (orchestrator) · ✅ Engine router · ✅ Procgen review
