@@ -75,6 +75,11 @@ We don't reinvent engine work others do well — we **slot it in** and add the d
 | [`combat-design`](plugins/gamestack/skills/combat-design) | Combat & game feel: juice tuned to the Medium–High band (the inverted-U), hit-stop & the impact bundle, telegraphing as fairness, danger-cue vocabularies, enemy silhouettes & role-based rosters, readable multi-enemy chaos (aggression tokens), and the Souls-like commitment/stamina/checkpoint loop. | 🟢 v0.1 |
 | [`rpg-systems`](plugins/gamestack/skills/rpg-systems) | The RPG number-systems triad: progression (price advancement, zone level-bands not world-scaling), economy (faucets/sinks, desirable sinks, anti-hoarding under scarcity, currency-as-material), and loot (rarity baseline, build-defining affixes over stat-sticks, procedural breadth vs. hand-authored identity, the finite-legendary manifest). | 🟢 v0.1 |
 | [`systemic-emergent-design`](plugins/gamestack/skills/systemic-emergent-design) | Authoring affordances not solutions: the immersive-sim substrate (universal rules, intention & perceivable consequence), emergence from few deep interacting systems, multiplicative vs. additive design (the chemistry engine), the "good GM" analogy, and making procgen cohere instead of becoming oatmeal. | 🟢 v0.1 |
+| [`narrative-and-quest-design`](plugins/gamestack/skills/narrative-and-quest-design) | Quests, reactivity, and factions: the facts-database reactivity substrate (Witcher 3), planner-over-world-state procedural quests, blurring flavor vs. consequence, the no-fetch-quest doctrine, radiant-as-supplement, and faction allegiance dilemmas. | 🟡 v0.1 ⚠️ |
+| [`art-direction-and-readability`](plugins/gamestack/skills/art-direction-and-readability) | Design-level visual communication: readability as an engineerable objective, silhouette-first validation, value/contrast eye-direction, reserved signal colors, fidelity-fights-readability, the named style bible, and per-asset read contracts for generators. | 🟢 v0.1 |
+| [`ai-authored-content-coherence`](plugins/gamestack/skills/ai-authored-content-coherence) | The crux skill: keeping AI-authored content coherent at scale — the oatmeal problem, single voice via curated corpus, generate-then-rationalize causation, recurring thematic domains, a machine-readable never-violate lore bible, and the self-review pass. | 🟡 v0.1 ⚠️ |
+
+> ⚠️ These skills were built from a deep-research pass whose adversarial-verification phase was cut short by a session limit. `art-direction-and-readability` is verification-confirmed at its core (TF2 primary sources); `narrative-and-quest-design` and `ai-authored-content-coherence` carry a mix of verified and **sourced-but-unverified** rules, tagged inline (✅/⚠️/❌). Re-run a clean verification pass before treating the ⚠️ rules as settled.
 
 ---
 
@@ -169,6 +174,21 @@ skills/<skill-name>/
 ```
 
 `SKILL.md` is always cheap; everything else loads on demand. See [`docs/SKILL_TEMPLATE.md`](docs/SKILL_TEMPLATE.md).
+
+### Framework internals
+
+The process skills share a spine (modeled on gstack's shape):
+
+```
+plugins/gamestack/
+├── ETHOS.md            # the builder ethos, injected into every process skill
+├── shared/
+│   ├── PREAMBLE.md     # injected at load time via !`cat ${CLAUDE_PLUGIN_ROOT}/...`
+│   └── GATE.md         # the headless generate→review→repair loop contract
+└── overlays/           # per-engine spec→pack-skill mapping (godot/unreal/unity/threejs)
+```
+
+Each process skill opens by injecting `PREAMBLE.md` + `ETHOS.md`, which loads the **design bible** — `<your-project>/.gamestack/bible/` — the persistent, cross-session record of your pillars, world, systems, lore, constraints, and decisions. It is also the engine-independent contract `engine-router` hands to the engine pack. Design once; the bible remembers; implement per engine.
 
 ---
 

@@ -128,7 +128,7 @@ Make movement pay off, at two scales:
 
 A constant mega-landmark anchors the whole map. *Elden Ring*'s **Erdtree** dominates the view from nearly everywhere — players "gravitate toward the big bright glowing tree" consciously or not, so it signals importance *and* orients. FromSoftware deliberately oversizes land formations to "dictate exploration and provide a constant sense of grandeur." Alien silhouettes (BotW's Sheikah architecture) draw the eye by standing out from natural forms.
 
-Prioritize **readability over fidelity** (Team Fortress 2 abandoned realism because it "made it impossible to read the battlefield"; BotW's painterly style was chosen to guide attention — "an intentional contraction of reality"). Readability first, personality second, fidelity never. *(Full treatment in the planned `art-direction` skill.)*
+Prioritize **readability over fidelity** (Team Fortress 2 abandoned realism because it "made it impossible to read the battlefield"; BotW's painterly style was chosen to guide attention — "an intentional contraction of reality"). Readability first, personality second, fidelity never. *(Full treatment in `art-direction-and-readability`.)*
 
 **Test:** is there a constant visible mega-landmark for orientation? Do important objects have distinct silhouettes? Does lighting direct the eye to focal points?
 

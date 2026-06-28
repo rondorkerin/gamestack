@@ -5,7 +5,15 @@ description: Run this to review a batch of procedurally- or AI-generated game co
 
 # Procgen Review
 
-The quality gate for generated content. Generation is cheap and confident; **sameness is invisible from inside a single sample.** This skill is the review pass that catches it — designed to run automatically in a headless generate-review-repair loop.
+## Preamble (auto-loaded)
+
+!`cat "${CLAUDE_PLUGIN_ROOT}/shared/PREAMBLE.md"; echo; cat "${CLAUDE_PLUGIN_ROOT}/ETHOS.md"`
+
+> FALLBACK: if the line above rendered literally or empty (`disableSkillShellExecution`),
+> Read `${CLAUDE_PLUGIN_ROOT}/shared/PREAMBLE.md` and `${CLAUDE_PLUGIN_ROOT}/ETHOS.md` now
+> and **follow PREAMBLE.md as instructions**, then continue.
+
+The quality gate for generated content. Generation is cheap and confident; **sameness is invisible from inside a single sample.** This skill is the review pass that catches it — designed to run automatically in a headless generate-review-repair loop (see `${CLAUDE_PLUGIN_ROOT}/shared/GATE.md` for the loop harness).
 
 ## When to use this
 
@@ -22,6 +30,8 @@ The quality gate for generated content. Generation is cheap and confident; **sam
 ## What it produces
 
 A structured verdict per `REVIEW.md`'s format: each artifact gets PASS / SOFT-FAIL / HARD-FAIL across five gates, with specific, actionable fixes routed to the phase that owns them (per `game-design-process` Phase 5).
+
+**Headless contract (for the GATE.md loop):** emit the machine-readable verdict as the **final fenced ```json block** of your output, shape `{ "pass": bool, "score": number, "failures": [{ "gate", "detail" }] }`. `pass` is false if any artifact HARD-FAILs. The harness extracts the last fenced json block — nothing else needs to be parseable.
 
 ## The procedure
 

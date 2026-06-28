@@ -5,7 +5,17 @@ description: The platform router for the gamestack framework. Use when a game's 
 
 # Engine Router
 
-gamestack splits a game into two jobs: the **design brain** (engine-agnostic, first-party) and the **engine hands** (per-platform, the curated engine packs). This skill is the dispatcher between them — it keeps design decisions in one place and sends implementation to whichever engine pack owns the target platform.
+## Preamble (auto-loaded)
+
+!`cat "${CLAUDE_PLUGIN_ROOT}/shared/PREAMBLE.md"; echo; cat "${CLAUDE_PLUGIN_ROOT}/ETHOS.md"`
+
+> FALLBACK: if the line above rendered literally or empty (`disableSkillShellExecution`),
+> Read `${CLAUDE_PLUGIN_ROOT}/shared/PREAMBLE.md` and `${CLAUDE_PLUGIN_ROOT}/ETHOS.md` now
+> and **follow PREAMBLE.md as instructions**, then continue.
+
+gamestack splits a game into two jobs: the **design brain** (engine-agnostic, first-party) and the **engine hands** (per-platform, the curated engine packs). This skill is the design→engine handoff — it consumes the finished design bible and sends implementation to whichever engine pack owns the target platform. It does **not** sequence design phases (that is `game-design-process`); it only routes a ready design to code.
+
+The preamble has already detected the engine and loaded `${CLAUDE_PLUGIN_ROOT}/overlays/<engine>.md` — that overlay holds the spec→pack-skill mapping for this target. Use it as the translation table below.
 
 ## When to use this
 
@@ -36,12 +46,16 @@ gamestack splits a game into two jobs: the **design brain** (engine-agnostic, fi
 
 ## The handoff procedure
 
-1. **Confirm the engine.** If unset, ask (or read it from the project: a `project.godot`, `*.uproject`, `Assets/` + `ProjectSettings/`, or `package.json` with `three`). Don't guess silently.
-2. **Confirm the spec exists.** Implementation consumes the design pipeline's output. If there's no spec yet, route *back* to `game-design-process` first — don't improvise design inside engine code.
-3. **Install / confirm the engine pack** for the target (table above). If the platform is a roadmap gap, say so explicitly and fall back to the foundation specs plus general engine knowledge — never silently pretend a pack exists.
-4. **Translate, don't redesign.** Map each spec element to the engine pack's matching skill (e.g. an ability system spec → the engine pack's ability/component skills). Design intent is fixed; only the implementation is engine-specific.
-5. **Keep the loop closed.** Bugs in *feel* or *balance* go back to the foundation skill that owns them; bugs in *implementation* stay in the engine pack.
+1. **Confirm the engine.** The preamble already detected it and loaded the overlay; if it had to ask, the answer is now in `./.gamestack/bible/engine`. Don't guess silently.
+2. **Confirm the bible/spec exists.** Implementation consumes the design bible (`./.gamestack/bible/`). If it's empty or missing, route *back* to `game-design-process` first — don't improvise design inside engine code.
+3. **Install / confirm the engine pack** for the target (per the loaded overlay). If the platform is a roadmap gap (Unity-general, Three.js), say so explicitly and fall back to the bible specs plus general engine knowledge — never silently pretend a pack exists.
+4. **Translate, don't redesign.** Use the overlay's spec→pack-skill mapping: each `systems.md` / `world.md` entry maps to a named engine-pack skill. Design intent is fixed; only the implementation is engine-specific.
+5. **Keep the loop closed.** Bugs in *feel* or *balance* go back to the foundation skill that owns them (and update the bible); bugs in *implementation* stay in the engine pack.
 
 ## The one rule
 
 > **The spec is engine-independent; the code is engine-specific. This skill is the only place the two meet.** Cross-contaminate them and you'll be redoing design work in every engine you port to.
+
+## Output
+
+End with a completion status per the preamble protocol: **DONE** (engine confirmed, pack installed, spec→skill mapping handed off) / **DONE_WITH_CONCERNS** (e.g. a roadmap-gap engine) / **BLOCKED** / **NEEDS_CONTEXT** (e.g. empty bible — route back to `game-design-process`).

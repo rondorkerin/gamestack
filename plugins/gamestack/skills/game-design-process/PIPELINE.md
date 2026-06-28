@@ -52,7 +52,7 @@ Rule: **every system should interact with at least two others.** Author affordan
 
 **Goal:** fill the world — mostly procedurally, always anchored.
 
-1. **Lore bible + constraint set** → `worldbuilding-and-lore`, `ai-authored-content`
+1. **Lore bible + constraint set** → `worldbuilding-and-lore`, `ai-authored-content-coherence`
    - Build deep, reveal little (the iceberg). Encode canon as a machine-readable constraint set with a "never violate" list.
    - Define the world's *voice* and seed a generation corpus so all generated text shares one identity.
 2. **Hand-author the static backbone** → finite legendary items (each named, with a lore hook and a build-defining effect), named landmarks, the mythic spine, key quests.

@@ -5,6 +5,35 @@ All notable changes to this skill pack are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.0] — 2026-06-28
+
+### Added
+- **Architected the framework like gstack (workflow-spine phase).** From a `/plan-ceo-review` pass (SELECTIVE EXPANSION) that survived two rounds of adversarial spec review (4/10 → 8/10). Copies gstack's *shape*, not its plumbing:
+  - `ETHOS.md` — the gamestack builder ethos (systems over content, no 10,000 bowls of oatmeal, hand-author the spine, gate before commit, design is engine-independent, interesting decisions, steal the fun, designer sovereignty). Loaded into every process skill.
+  - `shared/PREAMBLE.md` — a shared preamble injected at the top of each process skill via the docs-verified `` !`cat ${CLAUDE_PLUGIN_ROOT}/...` `` load-time mechanism (single source, no build step — this is cheaper than gstack's `SKILL.md.tmpl` generator, which gamestack therefore does not need). It loads the design bible, detects the engine + overlay, states the completeness principle, and declares the completion-status protocol. Falls back to a Read instruction when `disableSkillShellExecution` is set.
+  - **The design bible** (`<project>/.gamestack/bible/`: `pillars/world/systems/lore/constraints.md`, `corpus/`, `engine`, `decisions.md`) — gamestack's persistent cross-session memory and the engine-handoff contract. The gbrain analog.
+  - `shared/GATE.md` — the headless generate→review→repair loop contract: `procgen-review` emits its verdict as the final fenced ```json block; an external `claude -p` harness (bounded retries) interprets pass/fail. Exit code belongs to the harness, not the skill.
+  - Per-engine overlays `overlays/{godot,unity,unreal,threejs}.md` — gstack's model-overlay pattern applied to engines; each maps design specs to the engine pack's skills (Unity-general and Three.js flagged as gaps).
+
+### Changed
+- `game-design-process` is now the **first-touch router + orchestrator + bible owner** (collapsing what had drifted toward three overlapping dispatchers into two: this skill sequences design; `engine-router` does the engine handoff only).
+- `procgen-review` gained the machine-readable verdict contract for the GATE loop.
+- `engine-router` now consumes the bible and the loaded overlay, and reports completion status.
+- The plan that produced this lives at `~/.gstack/projects/rondorkerin-gamestack/ceo-plans/`. Deferred to a later phase: a `bin/` runtime (config/telemetry/learnings), a versioned upgrade flow, structured `decisions.jsonl`, and a `playtest-review` verb. Cancelled: a doc-generation toolchain (the `!cat` injection removes the need).
+
+## [0.5.0] — 2026-06-28
+
+### Added
+- `narrative-and-quest-design` (knowledge) — quests, reactivity, and factions, from deep research (topic 7). Verified core: the **facts-database** reactivity substrate (Witcher 3 / REDkit — every branch a Condition over a single canonical fact store), **planner-over-world-state** procedural quests (CONAN, arXiv:1808.06217), and deliberately **blurring flavor vs. consequence** (Tomaszkiewicz). Sourced-but-unverified doctrines (tagged ⚠️): the no-fetch-quest rule, radiant-as-supplement-not-substitute (Skyrim), and faction allegiance dilemmas (New Vegas / Morrowind). Includes a `❌ do-not-encode` section for a refuted absolute ("quests never fail on player choice", refuted 0-3). Cross-links `game-design-fundamentals`, `open-world-design`, `procgen-review`.
+- `art-direction-and-readability` (knowledge) — design-level visual communication, from deep research (topic 8). **Six findings verified 3-0** against Valve's TF2 primary sources (GDC 2008 *Stylization With a Purpose*; NPAR 2007 *Illustrative Rendering*): readability as a first-class engineerable objective, silhouette-first validation gate, value/contrast as eye-direction, reserve color for the single most urgent decision, photoreal detail fights readability, and a named style bible as convergence target. Signal-color case studies (BotW, Mirror's Edge, Naughty Dog / "yellow paint") are sourced-but-unverified (⚠️). Converts each rule into a per-asset **read contract** + silhouette-uniqueness gate for generators.
+- `ai-authored-content-coherence` (knowledge) — the crux skill for headless / AI-authored games, from deep research (topic 9). Covers the oatmeal problem (Compton), two quality bars (differentiation vs. uniqueness), single voice via a curated corpus (Caves of Qud), generate-then-rationalize causation, recurring thematic **domains** that turn events into arcs, apophenia by design, a machine-readable **never-violate** lore bible with time-bounded atomic facts, static-backbone + procedural-tissue, the explicit **self-review pass** (= `procgen-review`), and finite-rarity ("Bach faucet" → Valenfeld's finite legendaries). **Heavily flagged:** this topic's verification phase largely failed (session limit) and synthesis partly failed, so nearly all rules are sourced-but-unverified (⚠️) — strong, well-cited hypotheses to validate, not settled law.
+
+### Changed
+- Normalized cross-references: `ai-authored-content` → `ai-authored-content-coherence` in `procedural-generation`, `game-design-process` (SKILL.md + PIPELINE.md); `open-world-design` GUIDE now links the live `art-direction-and-readability` skill instead of "the planned art-direction skill". The `narrative-and-quest-design` forward-links from `combat-design`, `systemic-emergent-design`, `game-design-fundamentals`, and `open-world-design` now resolve.
+
+### Note
+- These three skills were generated by the `deep-research` workflow over `docs/research-prompts.md` topics 7–9. The runs hit an account session limit during the adversarial-verification phase, so verification is incomplete for topics 7 and 9 (topic 8's core verified cleanly). Verification status is tagged inline in each GUIDE/CHECKLIST (✅ verified / ⚠️ sourced-unverified / ❌ refuted). A clean re-verification pass is the recommended follow-up.
+
 ## [0.4.0] — 2026-06-28
 
 ### Changed

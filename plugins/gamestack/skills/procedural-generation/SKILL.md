@@ -18,7 +18,7 @@ How to make generators whose output is *perceptually* rich, not just mathematica
 
 This is the *how to generate* knowledge skill. Its companion is **`procgen-review`** — the process skill that *gates* generated output against these principles (oatmeal test, fanfic test, sameness scan). Generate with this; review with that.
 
-Related: `open-world-design` (generating space), `worldbuilding-and-lore` + `ai-authored-content` (generating lore coherently), `systemic-emergent-design` (multiplicative systems).
+Related: `open-world-design` (generating space), `worldbuilding-and-lore` + `ai-authored-content-coherence` (generating lore coherently), `systemic-emergent-design` (multiplicative systems).
 
 ## How the pieces fit
 
