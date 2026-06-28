@@ -1,6 +1,6 @@
 # 🎮 gamedev-skills
 
-**The game-design *process* for [Claude](https://claude.com/claude-code) — like [gstack](https://github.com/) is for software engineering, but for designing games.**
+**The game-design *process* for [Claude](https://claude.com/claude-code) — like gstack is for software engineering, but for designing games.**
 
 Most "game design" resources are static reading. This is a working pipeline. Install it and Claude gains both the **knowledge** of game design (cited, discipline by discipline) and the **process** to apply it — a set of workflow skills that take a game from a one-line concept to a designed, generated, self-reviewed world.
 
@@ -57,23 +57,47 @@ More are scaffolded on the [roadmap](#roadmap) and land as research is folded in
 
 ### Plugin marketplace (recommended)
 
+In Claude Code, run:
+
 ```
-/plugin marketplace add arcoslabs/gamedev-skills
+/plugin marketplace add rondorkerin/gamedev-skills
 /plugin install gamedev-skills
 ```
 
-`/plugin marketplace update gamedev-skills` pulls new skills as they ship. (Replace `arcoslabs/gamedev-skills` with the real `owner/repo` once pushed.)
+Then confirm it loaded:
 
-### Manual (single skill)
-
-```bash
-cp -r plugins/gamedev-skills/skills/open-world-design ~/.claude/skills/      # all projects
-# or .../<project>/.claude/skills/                                            # one project
+```
+/plugin
 ```
 
-### Headless
+You should see **gamedev-skills** enabled, and asking Claude a design question (e.g. *"walk me through designing a procedural open-world RPG"*) should pull in `game-design-process`. Pull new skills as they ship with:
 
-These skills are designed to work under `claude -p` / the Agent SDK. Point a headless run at `game-design-process` and it will sequence the pipeline, generating and self-reviewing content without a human in the loop.
+```
+/plugin marketplace update gamedev-skills
+```
+
+### Manual (single skill, no plugin)
+
+Skills are plain folders — clone and copy the ones you want:
+
+```bash
+git clone https://github.com/rondorkerin/gamedev-skills.git
+cp -r gamedev-skills/plugins/gamedev-skills/skills/open-world-design ~/.claude/skills/   # all projects
+# or into <your-project>/.claude/skills/                                                  # one project only
+```
+
+Claude auto-discovers skills in those directories on the next session — verify with `/skills`.
+
+### Headless / Agent SDK
+
+The skills work under `claude -p` and the Agent SDK. With the plugin installed (or the skills copied into `~/.claude/skills/`), point a headless run at the pipeline:
+
+```bash
+claude -p "Use the game-design-process skill to design a procedural open-world RPG in Godot. \
+Run procgen-review on all generated content before committing it."
+```
+
+`game-design-process` sequences concept → world → content → review → iterate, and `procgen-review` gates generated content automatically — no human in the loop.
 
 ---
 
@@ -128,7 +152,7 @@ Process:
 
 ## Contributing
 
-Research, citations, and production lessons all welcome — see **[CONTRIBUTING.md](CONTRIBUTING.md)** for the skill template and conventions.
+Research, citations, and production lessons all welcome — see **[CONTRIBUTING.md](CONTRIBUTING.md)** for the skill template and conventions. The pack's knowledge skills are grown from deep-research docs; reusable prompts for generating them live in **[docs/research-prompts.md](docs/research-prompts.md)**.
 
 ## License
 
