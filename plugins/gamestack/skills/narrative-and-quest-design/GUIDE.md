@@ -4,12 +4,12 @@ Quests that react, factions that force choices, and a reactivity substrate that 
 
 > **The central law:** every branch, consequence, and faction state reduces to a **testable condition over named facts** in one canonical store. Build that substrate first; layer doctrine on top.
 
-> **Verification status (read this).** This guide came from a deep-research pass whose verification phase was truncated by a session limit. Each rule is tagged:
-> - ✅ **Verified** — survived 3-of-3 adversarial verification against a primary source.
-> - ⚠️ **Sourced, unverified** — a real source was fetched, but verification didn't complete; a strong default to re-check, not settled fact.
+> **Verification status (read this).** This guide's verification pass is now complete: a clean adversarial round re-checked every rule against primary sources. Each rule is tagged:
+> - ✅ **Verified** — confirmed against a primary source in adversarial verification.
+> - ⚠️ **Sourced, unverified** — a real source was fetched, but verification didn't complete.
 > - ❌ **Refuted / do-not-encode** — actively failed verification.
 >
-> The reactivity architecture (§1–2) is ✅. The quest-quality and faction doctrines (§3–5) are ⚠️. §6 lists ❌ claims.
+> §1–5 are now ✅ (the quest-quality and faction doctrines, §4–5, were promoted from ⚠️ after re-verification, with quote and attribution fixes applied). §6 lists ❌ claims that remain do-not-encode.
 
 ---
 
@@ -41,7 +41,7 @@ Quests that react, factions that force choices, and a reactivity substrate that 
 
 **Rule:** Deliberately **blur the line between cosmetic ("flavor") choices and consequential ones**, so players can't tell which decisions carry weight — and therefore weigh all of them.
 
-**Exemplar:** *The Witcher 3.* Quest Director Mateusz Tomaszkiewicz: "make the distinction between the two as blurred as possible… people tend to pay more attention to all of the choices because people don't know which ones are the important ones and which ones are the cosmetic ones." (Source: Game Developer, "From The Witcher 3 to Cyberpunk: the evolution of CD Projekt's quest design.")
+**Exemplar:** *The Witcher 3.* Quest Director Mateusz Tomaszkiewicz: "make the distinction between the two as blurred as possible. … If you do it like this **in our observation**, people tend to pay more attention to all of the choices because people don't know which ones are the important ones and which ones are the cosmetic ones." (Source: Game Developer, "From The Witcher 3 to Cyberpunk: the evolution of CD Projekt's quest design." Note: a designer *observation*, not a measured universal.)
 
 **Test for:** the fact store records a broad set of choices including seemingly minor ones, and quests occasionally pay off minor facts — so there's no learnable "tell" that only big choices set facts.
 
@@ -49,16 +49,16 @@ Quests that react, factions that force choices, and a reactivity substrate that 
 
 ---
 
-## 4. The "no fetch quest" doctrine ⚠️
+## 4. The "no fetch quest" doctrine ✅
 
-> Sourced but unverified — these are CDPR/Witcher-design claims whose verification didn't complete. Strong defaults; re-verify before encoding as hard rules.
+> Verified against primary sources. The supporting quotes below are confirmed and correctly attributed; the four-part {twist/choice/character/consequence} taxonomy is this skill's synthesis of the anti-filler principle, not a single verbatim CDPR quote.
 
-**Rule (as stated by the sources):** Every quest should earn its place with a **twist, a choice, a character, or a consequence** — even a monster hunt has a beginning, middle, and end rather than being an arbitrary task. Several supporting claims from the same body:
-- A good quest is measured by whether **the player feels they impacted** the characters/events/world, not whether they completed a task. (press-start interview, Tomaszkiewicz)
-- **Empathy** — making players *feel* rather than reason about event logic — is the "secret sauce." (Game Rant, Pawel Sasko)
-- Construction order: **"play, show, then tell"** — deliver content through interaction first, cutscene/dialogue last. (Game Rant, Sasko)
-- Don't add a quest merely to make another quest make sense; content should arise from ideas that feel natural, not connective padding. (Stevivor, Tomaszkiewicz)
-- The disputed caveat: even CDPR shipped some padded/fetch-like quests, and critics note a repeatable "Witcher template" (talk to giver → follow Witcher-senses trail → fight → return). Treat the doctrine as an aspiration with known failure cases, not a guarantee.
+**Rule:** Every quest should earn its place with a **twist, a choice, a character, or a consequence** — even a monster hunt has a beginning, middle, and end rather than being an arbitrary task. Supporting claims, each verified to its source:
+- A good quest is measured by whether **the player feels they impacted** the characters/events/world, not whether they completed a task: "we designed the quests in a way that you feel… that you somehow impact those characters, and events and the world in general." (press-start interview, Tomaszkiewicz — ✅)
+- **Empathy** — making players *feel* rather than reason about event logic — is "almost like a secret sauce for making really good quests." (Game Rant, Paweł Sasko — ✅)
+- Construction order: **"play, show, then tell, always in that order"** — interaction first, visual storytelling second, dialogue exposition last. (Game Rant, Sasko — ✅)
+- Don't add a quest merely to make another quest make sense; content should arise from ideas that feel natural, not connective padding. (Stevivor, Tomaszkiewicz — ✅)
+- The disputed caveat: CDPR itself admits shipping some padded/fetch-like quests ("those fetch quests were there because we stuck with ideas we shouldn't have" — Tomaszkiewicz, a *primary* admission); the repeatable "Witcher template" critique (talk to giver → follow Witcher-senses trail → fight → return) is **secondary critic/forum opinion**, and CDPR's own retrospective rejects the formulaic framing — so treat the doctrine as an aspiration with a genuinely disputed failure case, not a guarantee.
 
 **Test for:** each quest can name at least one of {twist, meaningful choice, memorable character, lasting consequence}; quests with none are flagged as filler.
 
@@ -68,18 +68,18 @@ Quests that react, factions that force choices, and a reactivity substrate that 
 
 ---
 
-## 5. Procedural quests as supplement; factions that force choices ⚠️
+## 5. Procedural quests as supplement; factions that force choices ✅
 
-> Sourced but unverified.
+> Verified against primary sources. One attribution fix applied below: the geography/hold filtering is sourced to UESP, and only the NPC-type + voice-type details to the Nesmith postmortem.
 
 **Radiant / procedural quests are a supplement, not a substitute.**
-- *Skyrim*'s Radiant system is a **template generator that randomizes a constrained subset** (location, enemy, reward) from pre-authored pools — "near-infinite quantity at a fraction of the authoring cost," but it "cannot produce large or interesting quests." (uesp "Skyrim:Radiant.")
-- It respects local lore/geography by **filtering targets to a location's occupants or its hold (region)**, and restricts quest-giving to **appropriate NPC types** (e.g. innkeepers) with per-voice-type dialogue. (gamesbeat, Nesmith postmortem.)
-- Bethesda **deliberately kept Radiant out of the main quest** — generation for side content, hand-authoring for the critical path. (gamesbeat.)
+- *Skyrim*'s Radiant system is a **template generator that randomizes a constrained subset** (location, enemy, reward) from pre-authored pools — it "cannot create large, complicated, or particularly interesting quests, but it can create a near infinite number of quests with a fraction of the time and effort" of a traditional one. (uesp "Skyrim:Radiant.")
+- It respects local lore/geography by **filtering targets to a location's occupants or its hold (region)** (uesp "Skyrim:Radiant"), and restricts quest-giving to **appropriate NPC types** (e.g. innkeepers) with per-voice-type dialogue (gamesbeat, Nesmith postmortem).
+- Bethesda **deliberately kept Radiant out of the main quest** — generation for side content, hand-authoring for the critical path. Nesmith on applying it to the main quest: "Sounds great, would play horribly." (gamesbeat, Nesmith postmortem.)
 
 **Faction design: members are not monolithic.**
-- *Fallout: New Vegas* (Josh Sawyer): factions feel real because their **members disagree and challenge each other** — a faction "contains multitudes." A monolithic faction (every member believes the same thing) is bad design for two reasons: it's unrealistic, and it **oversimplifies the player's decision**. (pcgamer, Sawyer.)
-- Pair with the topic's design lore (carried by the brief, not separately verified): factions should have **competing goals and exclusive membership**, so allegiance is a real dilemma (*New Vegas*, *Morrowind* Great Houses — uesp "Morrowind:Factions").
+- *Fallout: New Vegas* (Josh Sawyer): factions feel real because their **members disagree and challenge each other** — "you have to wrestle with the fact that it contains multitudes." A monolithic faction is bad design for two reasons Sawyer names directly: "nobody's like that," and it "paints too simple of a picture for the player and their decision making." (pcgamer, Sawyer, reporting the Examined Game podcast.)
+- Factions should have **competing goals and exclusive membership**, so allegiance is a real dilemma. *Morrowind*'s Great Houses make this literal: joining one means "exclusive loyalty to a single house and forsaking ambitions with all other houses." (*New Vegas*; uesp "Morrowind:Factions" — verified, so the earlier "carried by the brief" hedge is dropped.)
 
 **Test for:** every generated/placed radiant quest grounds in local occupants and region; the main/critical path is hand-authored; at least one faction pair has mutually exclusive membership and at least one internal dissenter voiced.
 
@@ -101,8 +101,8 @@ General lesson for a literal agent: the source *lore* is full of absolutes ("nev
 1. **Facts store first** (✅). One canonical key/value store; every branch a condition over it.
 2. **Branch discipline** (✅). Every fact written is read; every fact read has a default. Audit orphans.
 3. **Planner over the same store** (✅), gated by `procgen-review` (because quality isn't guaranteed).
-4. **Quest-quality gate** (⚠️). Apply the {twist/choice/character/consequence} test; flag filler.
-5. **Factions last** (⚠️). Exclusive membership + internal dissent; re-research before hard rules.
+4. **Quest-quality gate** (✅). Apply the {twist/choice/character/consequence} test; flag filler.
+5. **Factions last** (✅). Exclusive membership + internal dissent.
 
 **Thresholds that change the plan:** (a) a fact read by >1 quest *must* have a defined initial value or branching is nondeterministic; (b) if generated quests can't reference local geography/NPCs, fall back to hand-authoring for that region; (c) if blurring flavor/consequence (§3) creates more than a handful of unhonored facts, add a dangling-consequence audit before increasing choice density.
 
@@ -124,4 +124,4 @@ General lesson for a literal agent: the source *lore* is full of absolutes ("nev
 
 ---
 
-*§1–3 are verification-confirmed; §4–5 are sourced but await re-verification; §6 lists refuted claims. Open questions worth a fresh research pass: the actual evidence base for the no-fetch doctrine and its disputed template caveat; how Radiant constrained quests to lore/geography; verifiable New Vegas / Morrowind faction mechanics; primary evidence for the BG3 "yes-and" philosophy and the Flamethrower Principle. See CONTRIBUTING.md.*
+*§1–5 are verification-confirmed against primary sources; §6 lists refuted claims that remain do-not-encode. Open questions worth a future pass: primary evidence for the BG3 "yes-and" philosophy and the Flamethrower Principle (not yet sourced). See CONTRIBUTING.md.*

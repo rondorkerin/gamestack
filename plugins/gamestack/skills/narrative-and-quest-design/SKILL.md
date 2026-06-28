@@ -27,13 +27,13 @@ This skill owns **quests, reactivity, and factions**. Adjacent concerns live in 
 
 ## How the pieces fit
 
-- **`GUIDE.md`** — the *why*, with exemplars and citations. **§1–2 (the facts-database reactivity substrate) are verification-confirmed.** The headline design doctrines (no-fetch-quest, radiant-as-supplement, faction dilemmas) are **sourced but unverified** — see the verification banner.
+- **`GUIDE.md`** — the *why*, with exemplars and citations. **§1–5 are verification-confirmed against primary sources** — the headline design doctrines (no-fetch-quest, radiant-as-supplement, faction dilemmas) were re-verified in a clean adversarial pass and promoted from ⚠️, with quote and attribution fixes applied. See the verification banner for the one ❌ refuted claim.
 - **`CHECKLIST.md`** — the *what to do*: Do/Don't plus "Test for" criteria for a quest, a generator, or a faction set.
 
 ## The one idea to anchor on
 
 > **Reactivity reduces to a testable condition over named facts.** Every branch, consequence, and faction state should be a boolean check against a single canonical fact store — that is the literal mechanism The Witcher 3 shipped, and it is what lets a headless agent author *and* generate quests over one world-state representation.
 
-⚠️ **Verification note:** Built from a deep-research pass whose verification phase was cut short by a session limit. The reactivity-architecture core (GUIDE §1–2) is confirmed 3-0; the quest-quality and faction doctrines (§3–5) are sourced-but-unverified. One claim was actively **refuted** — see §6, "Do not encode."
+✅ **Verification note:** A clean adversarial verification pass re-checked every rule against primary sources. GUIDE §1–5 are confirmed; §3, §4, §5 carried quote/attribution corrections (noted inline). One claim was actively **refuted** — see §6, "Do not encode."
 
 Start with `GUIDE.md`, then apply `CHECKLIST.md`.

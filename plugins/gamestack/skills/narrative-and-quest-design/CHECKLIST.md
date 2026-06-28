@@ -48,7 +48,7 @@ Actionable **Do / Don't** plus **Test-for** criteria for quests, reactivity, and
 
 ---
 
-## Quest quality (no-fetch doctrine) ⚠️
+## Quest quality (no-fetch doctrine) ✅
 
 **Do**
 - [ ] Give every quest at least one of **{twist, meaningful choice, memorable character, lasting consequence}**.
@@ -63,7 +63,7 @@ Actionable **Do / Don't** plus **Test-for** criteria for quests, reactivity, and
 
 ---
 
-## Radiant / supplement quests ⚠️
+## Radiant / supplement quests ✅
 
 **Do**
 - [ ] Treat generated quests as a **supplement** for side content.
@@ -77,7 +77,7 @@ Actionable **Do / Don't** plus **Test-for** criteria for quests, reactivity, and
 
 ---
 
-## Factions ⚠️
+## Factions ✅
 
 **Do**
 - [ ] Give factions **competing goals** and at least one pair with **exclusive membership**.
