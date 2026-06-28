@@ -25,13 +25,13 @@ This skill owns **coherence of generated content** (mostly non-visual). Adjacent
 
 ## How the pieces fit
 
-- **`GUIDE.md`** — the *why*, with exemplars and citations. **Heavily flagged:** this topic's verification phase largely failed (session limit), so nearly all rules are **sourced but unverified**. The sources themselves are strong (Compton; Grinblat & Bucklew / Caves of Qud; LLM-consistency papers).
+- **`GUIDE.md`** — the *why*, with exemplars and citations. **Now verification-confirmed:** a clean adversarial pass re-checked every rule against primary sources (Compton; Grinblat & Bucklew / Caves of Qud; LLM-consistency papers), with three inline corrections. The remaining caveat is empirical — coherence at full open-world scale is unsolved.
 - **`CHECKLIST.md`** — the *what to do*: Do/Don't plus "Test for" criteria for a generator, a corpus, and a self-review pass.
 
 ## The one idea to anchor on
 
 > **Mathematical uniqueness is not perceived variety.** A generator can emit endless mathematically-distinct artifacts that players still read as one undifferentiated mass (the "10,000 bowls of oatmeal"). Coherence-at-scale is won by a shared voice + a never-violate fact bible + recurring thematic domains + an explicit self-review pass — *and even then, coherence at full open-world scale is unsolved. De-risk with the oatmeal/fanfic tests from day one.*
 
-⚠️ **Verification note:** Built from a deep-research pass whose verification phase was cut short by a session limit; the synthesis step also partly failed. Almost every rule here is **sourced but unverified** — strong, well-cited defaults that should be re-verified, not treated as confirmed. See the banner in `GUIDE.md`.
+✅ **Verification note:** Re-verified in a clean adversarial pass — every rule is now confirmed against its primary source, with three inline corrections (the oatmeal quote, the Qud corpus framing, the §7 coherence mechanism). What remains is the empirical caveat, not a citational one: coherence at full open-world scale is unsolved. See the banner in `GUIDE.md`.
 
 Start with `GUIDE.md`, then apply `CHECKLIST.md`.

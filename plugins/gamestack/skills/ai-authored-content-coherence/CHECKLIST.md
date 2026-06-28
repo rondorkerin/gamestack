@@ -2,7 +2,7 @@
 
 Actionable **Do / Don't** plus **Test-for** criteria for keeping generated content coherent at scale. Run against a generator, a corpus, and a self-review pass. See `GUIDE.md` for reasoning and sources.
 
-> ⚠️ **Almost everything here is sourced-but-unverified** (this topic's verification phase failed on a session limit). Strong, well-cited defaults — validate in your own pipeline before treating as law.
+> ✅ **Re-verified against primary sources** (a clean adversarial pass; the §1 oatmeal quote, the §3 Qud corpus framing, and the §7 coherence mechanism carried inline corrections). Still validate in your own pipeline at your scale — coherence at full open-world scale is empirically unsolved, and a confirmed source is not a guarantee it transfers to your game.
 
 ---
 
