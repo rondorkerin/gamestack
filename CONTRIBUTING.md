@@ -9,6 +9,15 @@ Thanks for helping build the most useful game-design knowledge pack for Claude. 
 - **Show both sides.** Game design is full of trade-offs. A guide that only lists "best practices" without their failure modes is incomplete. The checklist's do/don't split exists for this reason.
 - **No fluff.** These get loaded into a context window. Tight, dense, scannable beats long and padded.
 
+## Two kinds of skill
+
+The pack has two layers. Know which one you're writing:
+
+- **Knowledge skills** — a cited design discipline. `SKILL.md` + `GUIDE.md` (the "why") + `CHECKLIST.md` (do/don't + "test-for" criteria). Example: `open-world-design`, `procedural-generation`.
+- **Process skills** — a workflow verb an agent *runs*. `SKILL.md` + one or more procedure files (e.g. `PIPELINE.md`, `REVIEW.md`) written as runnable steps with inputs, outputs, and gates. Built to work headless. Example: `game-design-process`, `procgen-review`.
+
+Process skills should **draw on** knowledge skills (cite them by name) rather than restate them, and should produce a concrete artifact (a spec, a verdict, a structured plan). They stop at the design/spec level — never gameplay code.
+
 ## Anatomy of a skill
 
 Each skill lives at `plugins/gamedev-skills/skills/<skill-name>/` and contains:
@@ -16,10 +25,11 @@ Each skill lives at `plugins/gamedev-skills/skills/<skill-name>/` and contains:
 | File | Purpose | Loaded |
 |------|---------|--------|
 | `SKILL.md` | Entry point. YAML frontmatter (`name`, `description`) + a short overview of when to use the skill and how the files relate. | Always (cheap — keep it short) |
-| `GUIDE.md` | The reasoning: principles, theory, examples, trade-offs. | On demand |
-| `CHECKLIST.md` | Actionable items split into **Do** / **Don't**, grouped by topic. | On demand |
+| `GUIDE.md` | (Knowledge) The reasoning: principles, theory, examples, trade-offs, citations. | On demand |
+| `CHECKLIST.md` | (Knowledge) Actionable items split into **Do** / **Don't** with **Test-for** criteria, grouped by topic. | On demand |
+| `*.md` procedure | (Process) The runnable steps: inputs, gates, output format, loop integration. | On demand |
 
-You can add more reference files (e.g. `EXAMPLES.md`, `case-studies/`) and link them from `SKILL.md`.
+You can add more reference files (e.g. `EXAMPLES.md`, `case-studies/`) and link them from `SKILL.md`. Cross-link related skills liberally so the agent can hop between them.
 
 ### SKILL.md frontmatter
 

@@ -1,28 +1,35 @@
 ---
 name: open-world-design
-description: Use when designing, reviewing, or critiquing an open-world game — world layout and topology, points-of-interest density and pacing, navigation/wayfinding, the explore→reward loop, traversal and movement, and systemic/emergent design. Also use to diagnose a world that feels empty, bloated, or like "icon vomit". Triggers on "open world", "world map", "points of interest", "make the world feel alive", "open-world checklist", "icon vomit", "map clutter".
+description: Use when designing, generating, or reviewing the spatial side of an open world — macro-layout and terrain, landmarks and sightlines, biome identity, verticality, navigation/wayfinding, signal color, exploration pull, and spatial pacing (the wonder→fear gradient, tension/release). Also use to diagnose a world that feels empty, samey, or like marker-following "icon vomit". Triggers on "open world", "world map", "world layout", "wayfinding", "triangle rule", "make the world feel alive", "points of interest", "icon vomit", "fast travel".
 ---
 
 # Open-World Design
 
-Knowledge for building open worlds that players *want* to explore — worlds that feel alive and rewarding rather than empty, padded, or cluttered.
+How to build open worlds that **pull** players through the world itself — landmarks, sightlines, and terrain that create curiosity — rather than **pushing** them down a dotted line to a waypoint.
 
 ## When to use this
 
-- Designing a new open world or a region within one
-- Reviewing a world map / POI layout and asking "is this good?"
-- Diagnosing why a world feels empty, grindy, or overwhelming
-- Deciding how much content, how much space, and how to pace discovery
+- Laying out a region or macro-map (terrain, landmarks, biomes, routes)
+- Designing or auditing navigation and wayfinding
+- Diagnosing a world that feels empty, samey, or like a checklist
+- Tuning the emotional pacing of exploration
+
+## Scope
+
+This skill owns the **spatial** discipline. Adjacent concerns live in sibling skills, cross-linked from the guide:
+- *What* fills the space and how to generate it → `procedural-generation`, `procgen-review`
+- Quests in that space → `narrative-and-quest-design`
+- Progression/gating math → `rpg-systems`
+- Lore the space carries → `worldbuilding-and-lore`
+- General reward/flow theory → `game-design-fundamentals`
 
 ## How the pieces fit
 
-- **`GUIDE.md`** — the *why*. The core tension of open-world design (space vs. density), the explore→reward loop, navigation and landmarking, systemic design, traversal, and the common failure modes. Read this to reason about a design.
-- **`CHECKLIST.md`** — the *what to do*. Actionable **Do / Don't** items grouped by topic. Use this to review a design or drive decisions.
+- **`GUIDE.md`** — the *why*, with exemplars and citations: terrain as a communication system, gravity & flow, interconnection, biome identity, verticality, diegetic navigation, signal color, exploration pull, spatial pacing.
+- **`CHECKLIST.md`** — the *what to do*: Do/Don't items plus the **"test for"** criteria you can run against a map or a generated region.
 
 ## The one idea to anchor on
 
-> **Space is not content.** A bigger map is not a better game. Every square kilometer you add is a promise to the player that there's something worth the walk — and a debt you have to pay in content, or the world feels empty. Density and the quality of the *reward for curiosity* matter more than size.
+> **Make every patch of the map either visibly promising or quietly hiding something worth finding.** A great open world guides through the world, not the HUD. If the player is watching a minimap arrow instead of the horizon, the world has become an obstacle between them and a waypoint — and you've lost.
 
-Start with `GUIDE.md` to understand the trade-offs, then apply `CHECKLIST.md`.
-
-> **Status:** v0.1 — established-principles baseline. Being expanded with deeper research and case studies. See the repo's CONTRIBUTING.md to add to it.
+Start with `GUIDE.md`, then apply `CHECKLIST.md`.

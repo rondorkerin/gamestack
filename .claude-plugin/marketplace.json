@@ -5,17 +5,17 @@
     "email": "nb@arcoslabs.co"
   },
   "metadata": {
-    "description": "An open-source, comprehensive skill pack for game development with Claude — design techniques, systems, and production craft.",
-    "version": "0.1.0"
+    "description": "The game-design process for Claude — knowledge + workflow skills for designing games, tuned for headless, procedural, AI-authored development.",
+    "version": "0.2.0"
   },
   "plugins": [
     {
       "name": "gamedev-skills",
       "source": "./plugins/gamedev-skills",
-      "description": "Comprehensive game development skills for Claude: open-world design (more coming). Each skill ships a practical guide plus an actionable do/don't checklist.",
-      "version": "0.1.0",
+      "description": "The game-design process for Claude: knowledge skills (cited design disciplines) plus process skills (concept planning, world layout, procgen generate-and-critique, design review) that a headless agent runs end to end. Engine-agnostic; tuned for procedural games. Stops at design/spec — no gameplay code.",
+      "version": "0.2.0",
       "category": "game-development",
-      "keywords": ["gamedev", "game-design", "open-world", "level-design", "systems-design"]
+      "keywords": ["gamedev", "game-design", "procedural-generation", "open-world", "systems-design", "headless", "godot"]
     }
   ]
 }

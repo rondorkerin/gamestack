@@ -1,113 +1,152 @@
 # Open-World Design — Checklist
 
-Actionable **Do / Don't** items for designing or reviewing an open world. See `GUIDE.md` for the reasoning behind each. Use this to review a map, a region, or a whole game.
-
-> **v0.1 baseline** — being expanded with research and case studies.
+Actionable **Do / Don't** plus **Test-for** criteria for the spatial side of an open world. Run these against a map, a region, or generated terrain. See `GUIDE.md` for the reasoning and sources.
 
 ---
 
-## Scale & density
+## Terrain & layout
 
 **Do**
-- [ ] Define a **target time-to-interesting** (how long can a player travel before something grabs them?) and size the world to it.
-- [ ] Derive map size from your **content budget**, not from an ambition number.
-- [ ] Build in deliberate **quiet stretches** so the busy moments land harder.
+- [ ] Build terrain from triangles at **three distinct scales**: large (landmarks), medium (occluders), small (texture).
+- [ ] Place a point of interest at the **tip** of large triangles — the eye goes there.
+- [ ] Use medium occluders so the player **can't see everything at once**; create the climb-over-or-around choice.
 
 **Don't**
-- [ ] Don't chase a map-size number for marketing and pad to fill it.
-- [ ] Don't assume more space = more game. Empty space is a cost, not a feature.
+- [ ] Don't ship flat, uniform, or fully-visible terrain (no occlusion = no surprise).
+- [ ] Don't leave a "muddy middle" of shapes that are neither clearly landmark nor texture.
+
+**Test for** — Does every region have ≥1 large landmark visible from afar? Are the three scales clearly distinct?
 
 ---
 
-## The explore → reward loop
+## Flow & gravity
 
 **Do**
-- [ ] Make **curiosity reliably rewarded** — every detour should feel justified.
-- [ ] **Vary the reward type**: loot, lore, a shortcut, a mechanic unlock, a vista, a quest hook.
-- [ ] Keep the player unable to predict *which kind* of reward is coming.
+- [ ] Lower main paths (valleys, canyons) below surrounding terrain so players **flow into them**.
+- [ ] **Curve** the critical path so the next landmark reveals as the player rounds a bend.
+- [ ] **Lure under-visited areas** — add attractions where traffic is low.
 
 **Don't**
-- [ ] Don't give the **same reward** for every discovery (e.g. every tower = map reveal).
-- [ ] Don't make rewards **purely numeric** with no felt meaning.
-- [ ] Don't let **travel be dead time** between rewards.
+- [ ] Don't create a single golden path everyone funnels down.
+- [ ] Don't reveal a region's entire contents at once.
+
+**Test for** — Are there multiple viable routes between any two POIs? Do roads/valleys sit lower as natural channels?
 
 ---
 
-## Navigation & wayfinding
+## Interconnection
 
 **Do**
-- [ ] **Lead the eye with landmarks** — tall, distinctive silhouettes that create intention.
-- [ ] Compose views so each high point reveals **2–4 enticing destinations**.
-- [ ] Prefer **diegetic cues** (roads, smoke, trails, guiding wind) over UI arrows.
-- [ ] Give each region a **recognizable identity** (silhouette, palette, biome, architecture).
+- [ ] Make shortcuts **real traversable geometry** that loops back to hubs and shortens future travel.
+- [ ] Loop layouts back on themselves rather than dead-ending.
 
 **Don't**
-- [ ] Don't make players navigate by **staring at the minimap** instead of the world.
-- [ ] Don't let regions blur into a **samey** sameness with no sense of place.
+- [ ] Don't join "levels" only by loading tunnels or fast travel.
+- [ ] Don't fake shortcuts as visual tricks.
+
+**Test for** — Does unlocking a shortcut open a genuine path? Do region layouts loop?
 
 ---
 
-## Points of interest
+## Biome identity
 
 **Do**
-- [ ] Tune **POI density** to your time-to-interesting; leave breathing room.
-- [ ] **Rotate POI types** (combat, puzzle, environmental story, vista, NPC hook, secret).
-- [ ] Make each POI **read at three distances**: silhouette → hook → payoff.
-- [ ] Prefer **discovery through play** over pre-marking everything on the map.
+- [ ] Give each biome a unique **dominant color, signature flora/architecture, and silhouette**.
+- [ ] Put **transitions** between contrasting biomes.
 
 **Don't**
-- [ ] Don't commit **icon vomit** — blanketing the map with markers turns exploration into list-clearing.
-- [ ] Don't **copy-paste** the same POI type across the world.
+- [ ] Don't make regions interchangeable.
+- [ ] Don't abut wildly different biomes with no gradient.
+
+**Test for** — Could a player identify their region from one screenshot with no HUD?
 
 ---
 
-## Traversal & movement
+## Verticality
 
 **Do**
-- [ ] Make **moving intrinsically fun** — game feel of traversal comes first.
-- [ ] Use **verticality** to multiply content per square meter and create landmarks.
-- [ ] **Earn** shortcuts and fast travel through exploration; gate or cost them.
-- [ ] Treat **friction as a deliberate lever** (e.g. weighty travel for atmosphere).
+- [ ] Use the Z-axis for **meaningful gameplay**, with layers that **contrast emotionally** (safe/dangerous, bright/dark).
+- [ ] Let a known layer act as a **navigation key** to an unknown one (TotK Depths ↔ surface).
 
 **Don't**
-- [ ] Don't make traversal a **glorified loading screen**.
-- [ ] Don't enable **frictionless fast travel from the start** — it hollows out the world.
+- [ ] Don't add purely decorative height.
+- [ ] Don't build an underground with no relationship to the surface.
+
+**Test for** — Does vertical space carry gameplay, not just climbing? Do layers contrast?
 
 ---
 
-## Systemic & emergent design
+## Navigation & friction
 
 **Do**
-- [ ] Define a **small set of consistent, interacting rules** players can experiment with.
-- [ ] Make the world **reactive** (schedules, weather, wildlife, factions) so it feels alive without the player.
-- [ ] Favor **emergence** (systems that multiply) over enumerating one-off scripted events.
+- [ ] Let players reach objectives via **in-world cues** (landmarks, NPC directions, environmental signals).
+- [ ] Keep any HUD guidance **optional and non-intrusive** (a soft golden-trail at most).
+- [ ] Make fast travel **diegetic** and gated (in-world transport, token cost).
+- [ ] Treat every friction removal as a **deliberate tradeoff**, calibrated to audience.
 
 **Don't**
-- [ ] Don't rely solely on **finite scripted content** that's consumed once and gone.
-- [ ] Don't build systems players can't **combine** — isolated mechanics don't generate stories.
+- [ ] Don't use a floating arrow / dotted line that makes players watch the minimap.
+- [ ] Don't enable instant fast-travel-from-anywhere that hollows the world.
+- [ ] Don't make directions so vague they send players in circles.
+
+**Test for** — Can the player navigate by the world alone? Does fast travel have an in-world justification?
 
 ---
 
-## Quest & content structure
+## Signal color
 
 **Do**
-- [ ] Provide a **spine** (critical path) for direction, with side content for freedom.
-- [ ] Make side content **authored and characterful** — worth doing on its own merits.
-- [ ] Support **player-authored goals** and flexible ordering.
+- [ ] Reserve **one color exclusively** for interactive/important objects.
+- [ ] Ensure it **contrasts in every biome** (or add an on-demand reveal pulse).
 
 **Don't**
-- [ ] Don't ship **filler/radiant quests** whose only purpose is inflating playtime.
-- [ ] Don't measure success by **hours of content** — padding erodes goodwill.
+- [ ] Don't let the signal color blend into any biome (the TotK-shrine mistake).
+- [ ] Don't overuse it elsewhere — that dilutes its meaning.
+
+**Test for** — Is there one reserved interactable color, and does it pop in every region?
 
 ---
 
-## Playtest gut-check
+## Exploration pull & reward cadence
 
 **Do**
-- [ ] Drop a **fresh player** in and watch: do they explore **unprompted**?
-- [ ] Confirm **curiosity is rewarded** within your target time-to-interesting.
-- [ ] Hunt for **dead time** and either cut the space or add a reason to be there.
-- [ ] Check that the player can build a **mental map** without leaning on UI.
+- [ ] From any standing position, show **≥1 intriguing thing** that invites movement toward it.
+- [ ] Maintain a steady cadence of **micro-discoveries** (roughly every few minutes of exploration).
+- [ ] Keep macro-rewards **finite and meaningful**.
 
 **Don't**
-- [ ] Don't ship a region you haven't watched a newcomer traverse blind.
+- [ ] Don't build activities that exist only to deliver a reward (collect-100-X).
+- [ ] Don't create empty vistas with nothing to pull toward.
+
+**Test for (the key one)** — For each exploration activity: **would players still do it if the reward were removed?** Aim for yes.
+
+---
+
+## Spatial pacing
+
+**Do**
+- [ ] Vary emotional tone across the world (safe→dangerous, familiar→alien); build a **wonder→fear gradient**.
+- [ ] After high-tension stretches, provide a **release valve** (safe hub, shortcut, downtime).
+- [ ] Pair fear/disorientation with **enough orientation** that danger feels earned.
+
+**Don't**
+- [ ] Don't keep a uniform emotional tone everywhere.
+- [ ] Don't run wall-to-wall combat, or so much downtime the world feels empty.
+- [ ] Don't disorient so totally that boundaries read as unfair.
+
+**Test for** — Does tone vary across regions? Is there tension/release rhythm?
+
+---
+
+## Visual orientation
+
+**Do**
+- [ ] Provide a constant, visible **mega-landmark** (Erdtree-equivalent) for orientation.
+- [ ] Give important objects **distinct silhouettes**; use lighting to mark focal points.
+- [ ] Prioritize **readability over fidelity**.
+
+**Don't**
+- [ ] Don't use uniform lighting with no focal hierarchy.
+- [ ] Don't let important objects share silhouettes with background clutter.
+
+**Test for** — Is there a constant mega-landmark? Are key objects readable by silhouette alone?
