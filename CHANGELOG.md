@@ -5,6 +5,14 @@ All notable changes to this skill pack are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.7.0] — 2026-06-28
+
+### Changed
+- **Completed the adversarial verification pass on `narrative-and-quest-design` and `ai-authored-content-coherence`** — the two skills (topics 7/9) whose verification was previously cut short by a session limit. A clean per-claim round re-checked every ⚠️ rule against primary sources; all are now ✅. Corrections applied inline:
+  - `narrative-and-quest-design`: §4 (no-fetch doctrine) and §5 (Radiant + factions) promoted ⚠️→✅. §3's Tomaszkiewicz "blur flavor vs. consequence" quote was de-spliced (the hedge "in our observation" restored); §5's Radiant attribution split correctly between UESP (hold/geography filtering) and the Nesmith/GamesBeat postmortem (NPC-type + voice), with Nesmith's "Sounds great, would play horribly" added; the *Morrowind* Great Houses exclusive-membership claim lost its "carried by the brief, not separately verified" hedge (UESP confirms it). §6's two ❌ refuted claims remain do-not-encode.
+  - `ai-authored-content-coherence`: all ten sections promoted ⚠️→✅. Three substantive corrections — the §1 Compton oatmeal quote fixed to verbatim ("10,000 bowls of **plain** oatmeal…"); the §3 *Caves of Qud* "~40,000 words" reframed (it is the game's *pre-existing* handwritten corpus, not one authored for the history generator, and the grammar is not itself 40k words); and the §7 coherence mechanism corrected (per-sultan state carried sequentially across events, **not** a "period-by-period context pool"). Real paper titles added for the three academic citations (FACTTRACK / arXiv:2407.16347; *Lost in Stories* / arXiv:2603.05890; Karth & Compton, "Conceptual Art Made Real," FDG'23). The honest caveat now scopes the remaining risk as empirical (coherence at full open-world scale is unsolved), not citational.
+- README Knowledge table: both skills move from 🟡 v0.1 ⚠️ to 🟢 v0.2; the verification footnote is rewritten to reflect the completed pass.
+
 ## [0.6.0] — 2026-06-28
 
 ### Added
