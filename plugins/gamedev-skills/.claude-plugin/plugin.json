@@ -1,0 +1,12 @@
+{
+  "name": "gamedev-skills",
+  "version": "0.1.0",
+  "description": "Comprehensive game development skills for Claude. Each skill pairs a practical guide with an actionable do/don't checklist. Currently ships open-world design; growing into a full game-design knowledge pack.",
+  "author": {
+    "name": "Arcos Labs",
+    "email": "nb@arcoslabs.co"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/arcoslabs/gamedev-skills",
+  "keywords": ["gamedev", "game-design", "open-world", "level-design", "systems-design"]
+}

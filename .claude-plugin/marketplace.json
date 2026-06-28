@@ -1,0 +1,21 @@
+{
+  "name": "gamedev-skills",
+  "owner": {
+    "name": "Arcos Labs",
+    "email": "nb@arcoslabs.co"
+  },
+  "metadata": {
+    "description": "An open-source, comprehensive skill pack for game development with Claude — design techniques, systems, and production craft.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "gamedev-skills",
+      "source": "./plugins/gamedev-skills",
+      "description": "Comprehensive game development skills for Claude: open-world design (more coming). Each skill ships a practical guide plus an actionable do/don't checklist.",
+      "version": "0.1.0",
+      "category": "game-development",
+      "keywords": ["gamedev", "game-design", "open-world", "level-design", "systems-design"]
+    }
+  ]
+}
