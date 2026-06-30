@@ -66,6 +66,8 @@ Rule: **every system should interact with at least two others.** Author affordan
 
 - **Exit gate:** backbone hand-authored; generators produce content that respects the constraint set, local logic, and reward-fit. **Do not advance unreviewed content** — go to Phase 4.
 
+> Within this phase, each system (a biome, a dungeon, a balance pass, a lore arc) is brought up to fidelity with its target by running `iteration-loop`: Reference → Diff → Prioritize → Generate/Implement → Verify, repeated per system. `procgen-review` (Phase 4) gates *variety*; `iteration-loop` is the mechanism for *fidelity* — run both, they check different axes.
+
 ---
 
 ## Phase 4 · Review & gate
@@ -88,6 +90,8 @@ Run `design-review` on the design itself against the same anti-pattern catalog.
 ## Phase 5 · Playtest & iterate
 
 **Goal:** let observed behavior rewrite the plan.
+
+This is `iteration-loop`'s playtesting channel run at whole-game scale: human playtesters for feel/fun judgment, and — where the project exposes a playtester API (logs + screenshots, ideally input injection) — an AI playtester that self-verifies every cycle without a human in the seat. See `iteration-loop/LOOP.md` §4 for the two-channel detail.
 
 Watch for these signals and route each to the phase that owns it:
 

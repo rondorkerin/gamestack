@@ -53,7 +53,11 @@ of genre) and from `procedural-generation` (content/narrative coherence, not mes
 `systemic-emergent-design`.
 
 **Process** (tier-spanning, lives in core) — `game-design-process`, `engine-router`,
-`procgen-review`.
+`procgen-review`, `iteration-loop`. `procgen-review` gates content *variety* (is each instance
+distinct); `iteration-loop` is the generic Reference→Diff→Prioritize→Generate→Verify procedure
+that closes the gap between an implementation and its intended target (concept art, a balance
+curve, lore canon) across visual, systemic, and narrative modalities — an independent axis from
+variety, not a replacement for it.
 
 ### Technical craft is design-spec, not implementation
 
@@ -87,6 +91,7 @@ gamestack-core        always installed — the universal + technical craft brain
   ├─ game-design-process  (genre-aware orchestrator)
   ├─ engine-router
   ├─ procgen-review
+  ├─ iteration-loop  (reference→diff→prioritize→generate→verify, any modality)
   ├─ ETHOS.md · shared/PREAMBLE.md · shared/GATE.md · overlays/
   └─ the design bible contract (.gamestack/bible/)
 

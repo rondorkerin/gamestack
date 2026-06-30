@@ -47,4 +47,4 @@ Read **`REVIEW.md`** for the full step-by-step. The five gates, in order:
 
 > **Nothing generated ships unreviewed.** A HARD-FAIL on any gate blocks the commit and returns the artifact to the generator with the specific fix. This is the non-negotiable backstop of headless procedural authoring.
 
-Grounded in `procedural-generation` (the principles being tested) and `open-world-design` (the spatial anti-patterns). Start at `REVIEW.md`.
+Grounded in `procedural-generation` (the principles being tested) and `open-world-design` (the spatial anti-patterns). For the sibling check on *fidelity to a target* (concept art, a balance curve, lore canon) rather than *variety*, see `iteration-loop` — run both; they gate independent axes. Start at `REVIEW.md`.

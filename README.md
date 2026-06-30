@@ -65,6 +65,7 @@ We don't reinvent engine work others do well — we **slot it in** and add the d
 | [`game-design-process`](plugins/gamestack/skills/game-design-process) | The orchestrator. Walks concept → world → content → review → iterate and names which skill to use at each phase. The entry point for "I'm designing a game." | 🟢 v0.1 |
 | [`engine-router`](plugins/gamestack/skills/engine-router) | The platform router. Takes a ready design and routes implementation to the right engine pack (Godot/Unreal/Unity), keeping design logic and engine code cleanly separated. | 🟢 v0.1 |
 | [`procgen-review`](plugins/gamestack/skills/procgen-review) | The self-review pass for generated content. Runs the oatmeal test, the fanfic/retell test, a cross-instance sameness scan, and the intentionality + anti-pattern gates. Built to run in a headless generation loop. | 🟢 v0.1 |
+| [`iteration-loop`](plugins/gamestack/skills/iteration-loop) | The generic Reference → Diff → Prioritize → Generate/Implement → Verify loop that brings any system — visual, systemic, or narrative — up to fidelity with its intended target, in any engine. Covers the preview-harness pattern, animation contact-sheet capture, the human + AI playtester channels (the latter via a "playtester API"), and the external-asset-request escalation. Gates *fidelity*; `procgen-review` gates *variety* — independent axes. | 🟢 v0.1 |
 
 ### Knowledge
 
@@ -243,9 +244,9 @@ Each process skill opens by injecting `PREAMBLE.md` + `ETHOS.md`, which loads th
 > Architecture & packaging (core / genre / technique multi-pack split, genre-aware orchestrator): see [`docs/architecture.md`](docs/architecture.md). Research prompts for the open rounds: [`docs/research-prompts.md`](docs/research-prompts.md).
 
 **Design brain — process:**
-- ✅ Game-design process (orchestrator) · ✅ Engine router · ✅ Procgen review
+- ✅ Game-design process (orchestrator) · ✅ Engine router · ✅ Procgen review · ✅ Iteration loop (covers playtest analysis, human + AI playtester)
 - ⬜ Concept & pillars planning · ⬜ World-layout pass · ⬜ Quest quality gate
-- ⬜ Lore-coherence audit · ⬜ Design review · ⬜ Playtest analysis
+- ⬜ Lore-coherence audit · ⬜ Design review
 
 **Production & tooling:**
 - ⬜ Performance optimization (engine-agnostic principles + per-engine hooks)

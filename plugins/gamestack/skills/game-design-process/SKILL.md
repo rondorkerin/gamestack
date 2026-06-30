@@ -58,9 +58,9 @@ Read **`PIPELINE.md`** for the full phase-by-phase process with entry/exit gates
 |-------|------|--------------------------|-----------------------------------|
 | **1 · Concept** | Fantasy, 3–5 pillars, core loop, signature mechanics. Prove each is an "interesting decision." Then **classify the genre**. | `game-design-fundamentals` | — |
 | **2 · Build the genre's core** | The genre's primary systems & spaces; how it feels, teaches, paces, and balances. | `game-feel-and-juice`, `level-design`, `difficulty-and-balancing`, `onboarding-and-teaching`, `pacing-and-the-player-journey`, `ui-ux-and-feedback` | open-world RPG → `open-world-design`, `rpg-systems`, `combat-design`, `systemic-emergent-design`; real-time 3D/2D → `3d-graphics-and-rendering`, `shaders-and-vfx`, `animation-systems` |
-| **3 · Content** | Lore bible + constraint set; generate content from handcrafted anchors + constrained fill. | `art-direction-and-readability` | `procedural-generation`, `worldbuilding-and-lore`, `narrative-and-quest-design`, `ai-authored-content-coherence`; generated geometry → `procedural-geometry` |
+| **3 · Content** | Lore bible + constraint set; generate content from handcrafted anchors + constrained fill. Each system brought to fidelity via `iteration-loop`. | `art-direction-and-readability` | `procedural-generation`, `worldbuilding-and-lore`, `narrative-and-quest-design`, `ai-authored-content-coherence`; generated geometry → `procedural-geometry`; per-system fidelity loop → `iteration-loop` |
 | **4 · Review & gate** | Run the quality bars: oatmeal, fanfic/retell, cross-instance sameness, intentionality, anti-patterns. | — | `procgen-review`, `design-review` |
-| **5 · Playtest & iterate** | Watch the benchmarks; feed failures back to the phase that owns them. | — | `procgen-review` (loop), playtest analysis |
+| **5 · Playtest & iterate** | Watch the benchmarks (human + AI playtester); feed failures back to the phase that owns them. | — | `iteration-loop` (playtesting channel), `procgen-review` (loop) |
 
 > Skills marked above that don't exist yet (e.g. some genre lenses, `design-review`, playtest analysis) are on the roadmap — use the matching section of an existing skill / `PIPELINE.md` in the meantime, and apply the universal spine regardless of genre.
 

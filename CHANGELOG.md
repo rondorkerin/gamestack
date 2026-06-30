@@ -5,6 +5,23 @@ All notable changes to this skill pack are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.9.0] — 2026-06-30
+
+### Added — `iteration-loop`: a generic, multimodal fidelity loop
+
+- **New process skill `iteration-loop`**: the generic **Reference → Diff → Prioritize → Generate/Implement → Verify** loop that brings any system up to fidelity with its intended target, in any engine. One loop shape, instantiated per modality — visual (terrain/biome/dungeon/town/castle/character/spell-fx, against concept art), systemic (balance/economy/difficulty, against a stated target curve, via `difficulty-and-balancing`'s simulation method), and narrative (lore/quests, against the canon's never-violate fact set, via `worldbuilding-and-lore` / `ai-authored-content-coherence`). Gates *fidelity to a target*, an independent axis from `procgen-review`'s *variety across instances* — run both.
+- **The preview-harness pattern** (`LOOP.md` §2): any visual system needs a rig that boots in isolation and captures deterministically on command, so Diff has something stable to compare.
+- **The animation contact-sheet requirement** (`LOOP.md` §3): a single screenshot can't show motion. Animated subjects get a multi-frame strip (start/loop-mid/end, or first/mid/last for one-shots) captured as one flipbook-style image, turning "can't eyeball animation" into "read a 3-panel strip."
+- **Two playtester channels** (`LOOP.md` §4): human playtesters for genuine fun/feel judgment, and an **AI playtester** that self-verifies every cycle via a "playtester API" — programmatic access to its own logs, game state, and screenshot output (plus input injection where available). Escalate to a human when the read is ambiguous or the question is inherently subjective, not just because human playtesting is slower to arrange.
+- **External request escalation** (`LOOP.md` §5): when generation is the wrong tool for an asset/content gap (a hand-authored hero asset, a licensed line, a pixel-matched reference), log a structured request to a human-curated backlog instead of forcing a worse generated result.
+- This fills the `playtest analysis` roadmap gap from earlier rounds, and supersedes it — `iteration-loop` covers more than analysis: the full loop that closes the gap, with both inspection and playtesting as its two verification channels.
+
+### Changed
+
+- `game-design-process` Phase 3 (Content) now runs `iteration-loop` per-system as content is built; Phase 5 (Playtest & iterate) is the same loop's playtesting channel run at whole-game scale.
+- `procgen-review` cross-references `iteration-loop` as the fidelity-axis sibling to its variety-axis gate.
+- `docs/architecture.md` Process tier list and packaging diagram updated; README process table and roadmap updated. `plugin.json` + `marketplace.json` bumped to 0.9.0.
+
 ## [0.8.0] — 2026-06-30
 
 ### Added — the technical-craft tier (rendering, shading, motion, generated geometry)
