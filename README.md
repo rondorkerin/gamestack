@@ -2,9 +2,22 @@
 
 **An agentic framework for building games on any platform — for [Claude](https://claude.com/claude-code). Like gstack is for software, but for games.**
 
+### What this actually is (read this first if you came from a link)
+
+This is a **skill pack for an AI coding agent** — cited game-design knowledge plus reusable
+engineering patterns, written as Markdown that Claude Code loads on demand. It is **not** a
+game, not a game engine, and not a single codebase you clone and `godot --editor` into — there's
+no `.tscn` file in this repo. If you're looking for the actual input/verb/seam architecture and
+headless test-bench pattern referenced elsewhere (e.g. a Reddit post about building a Godot RPG
+from the terminal), the concrete, runnable-code version of that lives in
+**[`docs/headless-architecture.md`](docs/headless-architecture.md)** — a worked Godot example,
+with the input→verb→seam pattern, the bench pattern, deterministic headless time
+(`--fixed-fps`), a playtest API, and a GitHub Actions example. Everything else in this README
+is the design-knowledge half: what an agent should *know* before and while it builds.
+
 gamestack is two things working together:
 
-- **A design brain** — first-party, engine-agnostic skills that give Claude the *knowledge* of game design (cited, discipline by discipline) and the *process* to apply it: concept → world → content → self-review.
+- **A design brain** — first-party, engine-agnostic skills that give Claude the *knowledge* of game design (cited, discipline by discipline) and the *process* to apply it: concept → world → content → self-review → iterate.
 - **Engine hands** — curated, best-in-class community skill packs for each engine (Godot, Unreal, Unity), referenced directly from one marketplace so Claude can turn a design into real engine code.
 
 You design once, then hand off to whichever engine you're shipping in. The design layer doesn't overlap the engine packs — it's the layer they're missing.
@@ -54,6 +67,19 @@ We don't reinvent engine work others do well — we **slot it in** and add the d
 ```
 
 `game-design-process` orchestrates the design half and pulls the right skill at each phase. `engine-router` runs the handoff to engine code. Start at either, or invoke any skill directly.
+
+---
+
+## Headless, testable architecture (input → verb → seam)
+
+The other half of how this actually gets *built* — not just designed — once content exists: every system needs to be checkable without a human walking to it in a running game, and every input needs to drive the game through one auditable path.
+
+- **Input never performs logic.** A keyboard read, a gamepad read, and an automated test all translate to the same verb call on a seam (a single object that owns the action). Keyboard and gamepad can't drift apart; a headless test exercises the *real* code path.
+- **Every system that's worth iterating on gets a preview harness ("bench")** — boots that one slice headless, takes parameters from the CLI, captures deterministically, quits. `godot --headless --path . res://tools/benches/DungeonBench.tscn -- --shots --seed=1234` and you get the same PNGs every time — golden-image testing for procgen, no editor required.
+- **Headless time isn't wall-clock time by default** — Godot's `--fixed-fps N` flag forces every frame's `delta` to exactly `1/N` regardless of real elapsed time, making physics/animation/movement fully deterministic and machine-speed-independent.
+- **A playtest API is just verbs composed into a session** (`boot()`, `goto()`, `fight_nearest()`, `loot_nearby()`, `rest()`) — an integration test, or an AI agent, can play the real game headless and read the result back from logs and screenshots.
+
+This is the concrete form of `iteration-loop`'s **preview-harness pattern** and **AI-playtester** concept (the skill describes it engine-agnostically; the pattern itself is good testing hygiene regardless of whether an AI ever touches it). Full worked example with real GDScript, the determinism flag, and a GitHub Actions setup: **[`docs/headless-architecture.md`](docs/headless-architecture.md)**.
 
 ---
 

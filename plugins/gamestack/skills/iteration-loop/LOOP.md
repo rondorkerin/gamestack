@@ -29,6 +29,8 @@ Every visual system needs a way to be **booted in isolation and captured on dema
 
 If a system has no preview harness yet, building a minimal one is the first loop cycle for that system — Diff can't run against a moving target you can't freeze and screenshot.
 
+For a concrete, runnable version of this pattern in Godot — the input→verb→seam architecture that makes it testable, a worked `DungeonBench` example, deterministic headless time (`--fixed-fps`), and a GitHub Actions setup — see `docs/headless-architecture.md`.
+
 ---
 
 ## 3. Animations can't be eyeballed from one frame — capture a contact sheet
@@ -63,6 +65,8 @@ An agent that plays or drives the game (or a single scene) and **self-verifies**
 What this buys: an AI playtester can run every loop cycle (cheap, deterministic, no scheduling a human), closing the Verify step for objective signals (does the player ever reach this room, does this enemy's telegraph register before the hit lands, does the framerate hold in this scene). **Escalate to a human playtester when the read is ambiguous or the question is inherently subjective** ("is this fun," "does this twist land") — not just because human playtesting is slower to arrange. An AI playtester with no log/screenshot access is just a script; the playtester API is what makes it a playtester rather than a fuzzer.
 
 If a project has no playtester API yet, exposing one (structured logs + on-demand screenshot capture, minimally) is worth building before leaning on AI playtesting — without it, every AI-driven cycle reduces to inspection (§1), not play.
+
+A worked example of a minimal playtest API (`boot()`, `goto()`, `fight_nearest()`, `loot_nearby()`, `rest()`) built directly on the input→verb→seam pattern is in `docs/headless-architecture.md` §4.
 
 ---
 

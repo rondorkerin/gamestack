@@ -5,6 +5,18 @@ All notable changes to this skill pack are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.10.1] — 2026-06-30
+
+### Added — `docs/headless-architecture.md`: a concrete worked example
+
+- New doc giving the input→verb→seam architecture, the test-bench pattern, deterministic headless time (Godot's `--fixed-fps`), a playtest API, and a GitHub Actions CI example as real, runnable GDScript — the concrete instantiation of `iteration-loop`'s preview-harness (`LOOP.md` §2) and AI-playtester (`LOOP.md` §4) patterns, which were previously documented only at the engine-agnostic principle level.
+- Prompted by public feedback that linking this repo from a post about a specific testable-architecture pattern was confusing, since the repo is a skill pack (design knowledge for an AI agent) and had no concrete reference implementation of that pattern anywhere in it. Addressed directly rather than just clarified away.
+
+### Changed
+
+- README gains a prominent "What this actually is" callout up top (this is a skill pack for an AI coding agent, not a game/engine/codebase) and a condensed "Headless, testable architecture" section pointing to the new doc.
+- `iteration-loop/LOOP.md` §2 and §4 cross-reference the new doc as their concrete worked example.
+
 ## [0.10.0] — 2026-06-30
 
 ### Added — pair with BMad Game Dev Studio (BMGD)
