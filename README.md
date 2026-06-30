@@ -82,6 +82,14 @@ Knowledge skills are organized into three **tiers** (see [`docs/architecture.md`
 | [`pacing-and-the-player-journey`](plugins/gamestack/skills/pacing-and-the-player-journey) | Macro pacing as a complement to game feel: the fractal interest curve (encounter→level→session→playthrough), challenge/rest rhythm, novelty cadence, the nested engagement loops + retention-ethics line, and a spec-level **pacing director** for generated content. | 🟢 v0.1 |
 | [`art-direction-and-readability`](plugins/gamestack/skills/art-direction-and-readability) | Design-level visual communication: readability as an engineerable objective, silhouette-first validation, value/contrast eye-direction, reserved signal colors, fidelity-fights-readability, the named style bible, and per-asset read contracts for generators. | 🟢 v0.1 |
 
+**🛠️ Technical craft** — applies to every real-time 3D (or 2D-with-lighting) game, regardless of genre. Engine-agnostic design-spec level (principles, citations, "Test for:" criteria — no engine code); topic breadth inspired by [GodotPrompter](https://github.com/jame581/GodotPrompter)'s implementation-skill library, but researched and written independently. See [`docs/architecture.md`](docs/architecture.md#technical-craft-is-design-spec-not-implementation) for why this is a separate tier from universal craft and technique modules.
+| Skill | What it covers | Status |
+|-------|----------------|--------|
+| [`3d-graphics-and-rendering`](plugins/gamestack/skills/3d-graphics-and-rendering) | The rendering pipeline spine: rasterization stages, PBR vs. stylized/NPR materials, the forward/deferred/forward+ lighting architecture, GI & shadow choices, culling/LOD/draw-call/overdraw performance budgets, and the post-processing chain — framed as a frozen "imaging contract" a generator must not drift per scene. | 🟢 v0.1 |
+| [`shaders-and-vfx`](plugins/gamestack/skills/shaders-and-vfx) | The shading & particle layer: the vertex/fragment/compute shader model, node-graph/procedural material authoring, the VFX toolkit (particles, trails, decals, distortion, screen-space effects) as the rendering substrate for `game-feel-and-juice`'s feedback channels, stylization techniques, and shader/overdraw performance failure modes. | 🟢 v0.1 |
+| [`animation-systems`](plugins/gamestack/skills/animation-systems) | Motion-system architecture: skeletal fundamentals (skinning, FK/IK), blend trees/state machines/additive layers, procedural & physics-driven motion (active ragdoll, foot IK, motion matching), the animation cost model (compression, bone budgets, root motion), and the system that delivers `game-feel-and-juice`'s timing principles. | 🟢 v0.1 |
+| [`procedural-geometry`](plugins/gamestack/skills/procedural-geometry) | Generating *geometry* correctly and with variety: noise as a substrate (Perlin/Simplex/fBm, domain warping), terrain (heightfield vs. voxel/SDF, marching cubes, erosion, LOD), structural generation (L-systems, shape grammars, wave function collapse), mesh topology correctness (manifold/watertight/winding validators), and vegetation/scatter — the geometry engine underneath `level-design` and `open-world-design`. | 🟢 v0.1 |
+
 **🎯 Genre lenses** — pulled for *that kind* of game
 | Skill | What it covers | Status |
 |-------|----------------|--------|
@@ -222,9 +230,12 @@ Each process skill opens by injecting `PREAMBLE.md` + `ETHOS.md`, which loads th
 - ✅ UI/UX & feedback · ✅ Difficulty & balancing · ✅ Pacing & the player journey · ✅ Art direction & readability
 - ⬜ Round 2: audio design · accessibility · playtesting & telemetry · monetization & business model · scope/production
 
+**Design brain — knowledge — 🛠️ technical craft** (the rendering/motion/geometry spine every real-time visual game needs, design-spec level — see [`docs/architecture.md`](docs/architecture.md)):
+- ✅ 3D graphics & rendering · ✅ Shaders & VFX · ✅ Animation systems · ✅ Procedural geometry
+
 **Design brain — knowledge — 🎯 genre lenses** (more genres broaden general game-dev coverage):
 - ✅ Open-world design · ✅ Combat design · ✅ RPG systems · ✅ Narrative & quest · ✅ Worldbuilding & lore · ✅ Permadeath & lethality
-- ⬜ Round 3: platformer/movement · shooter · puzzle · strategy/tactics · sim/management · survival/crafting · deckbuilder · horror
+- ⬜ Round 4: platformer/movement · shooter · puzzle · strategy/tactics · sim/management · survival/crafting · deckbuilder · horror
 
 **Design brain — knowledge — 🔧 technique modules:**
 - ✅ Procedural generation · ✅ AI-authored content coherence · ✅ Systemic / emergent design · ⬜ Multiplayer/netcode · ⬜ Save/persistence

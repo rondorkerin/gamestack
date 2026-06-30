@@ -31,6 +31,7 @@ This pipeline is **genre-aware** (see `docs/architecture.md`). After Phase 1's c
 
 - **🌐 Universal craft — always in play, every genre:** `game-design-fundamentals`, `game-feel-and-juice`, `level-design`, `onboarding-and-teaching`, `ui-ux-and-feedback`, `difficulty-and-balancing`, `pacing-and-the-player-journey`, `art-direction-and-readability`.
 - **🎯 Genre lens — pull the ones that match:** open-world RPG → `open-world-design` + `rpg-systems` + `worldbuilding-and-lore` + `narrative-and-quest-design`; action/combat → `combat-design`; high-lethality → `permadeath-and-lethality`. (More genres are on the roadmap — until a lens exists, apply the universal spine and flag the gap.)
+- **🛠️ Technical craft — pull when the game has real-time 3D, or 2D with lighting/shading:** `3d-graphics-and-rendering` (pipeline, lighting, performance budget), `shaders-and-vfx` (materials, particles, stylization), `animation-systems` (rig, blending, IK, motion matching), `procedural-geometry` (terrain, meshes, structures — pull alongside `procedural-generation` when content generation includes geometry, not just narrative content).
 - **🔧 Technique module — pull when the game uses it:** procedural / AI-authored → `procedural-generation`, `ai-authored-content-coherence`, `systemic-emergent-design`.
 
 Phase 2 below is therefore *"build this genre's core,"* not *"build a world."* The universal skills always apply; the genre lens is what changes.
@@ -56,8 +57,8 @@ Read **`PIPELINE.md`** for the full phase-by-phase process with entry/exit gates
 | Phase | Goal | Universal craft (always) | Genre lens / technique (selected) |
 |-------|------|--------------------------|-----------------------------------|
 | **1 · Concept** | Fantasy, 3–5 pillars, core loop, signature mechanics. Prove each is an "interesting decision." Then **classify the genre**. | `game-design-fundamentals` | — |
-| **2 · Build the genre's core** | The genre's primary systems & spaces; how it feels, teaches, paces, and balances. | `game-feel-and-juice`, `level-design`, `difficulty-and-balancing`, `onboarding-and-teaching`, `pacing-and-the-player-journey`, `ui-ux-and-feedback` | open-world RPG → `open-world-design`, `rpg-systems`, `combat-design`, `systemic-emergent-design` |
-| **3 · Content** | Lore bible + constraint set; generate content from handcrafted anchors + constrained fill. | `art-direction-and-readability` | `procedural-generation`, `worldbuilding-and-lore`, `narrative-and-quest-design`, `ai-authored-content-coherence` |
+| **2 · Build the genre's core** | The genre's primary systems & spaces; how it feels, teaches, paces, and balances. | `game-feel-and-juice`, `level-design`, `difficulty-and-balancing`, `onboarding-and-teaching`, `pacing-and-the-player-journey`, `ui-ux-and-feedback` | open-world RPG → `open-world-design`, `rpg-systems`, `combat-design`, `systemic-emergent-design`; real-time 3D/2D → `3d-graphics-and-rendering`, `shaders-and-vfx`, `animation-systems` |
+| **3 · Content** | Lore bible + constraint set; generate content from handcrafted anchors + constrained fill. | `art-direction-and-readability` | `procedural-generation`, `worldbuilding-and-lore`, `narrative-and-quest-design`, `ai-authored-content-coherence`; generated geometry → `procedural-geometry` |
 | **4 · Review & gate** | Run the quality bars: oatmeal, fanfic/retell, cross-instance sameness, intentionality, anti-patterns. | — | `procgen-review`, `design-review` |
 | **5 · Playtest & iterate** | Watch the benchmarks; feed failures back to the phase that owns them. | — | `procgen-review` (loop), playtest analysis |
 

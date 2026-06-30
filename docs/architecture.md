@@ -30,6 +30,7 @@ tangled into one flat list.
 | Tier | Applies when | A skill here is… |
 |------|--------------|------------------|
 | **Universal craft** | *every* game, regardless of genre or technique | the "what good looks like" that no genre escapes — feel, teaching, challenge, space, interface, rhythm |
+| **Technical craft** | *every* game with real-time 3D/2D rendering, regardless of genre | the technical-art spec layer no visual game escapes — rendering, shading, motion, generated geometry |
 | **Genre lens** | you are making *that kind* of game | the design knowledge specific to a genre family (RPG, platformer, shooter, strategy, sim, deckbuilder…) |
 | **Technique module** | you are *using* that technique | cross-genre implementation philosophy (procgen, AI-authored coherence, systemic/emergent, multiplayer/netcode) |
 
@@ -37,6 +38,12 @@ tangled into one flat list.
 
 **Universal craft** — `game-design-fundamentals`, `art-direction-and-readability`,
 and (after extraction, see below) `game-feel-and-juice`.
+
+**Technical craft** — `3d-graphics-and-rendering`, `shaders-and-vfx`, `animation-systems`,
+`procedural-geometry`. Engine-agnostic, design-spec level (no engine-specific code — see
+"Technical craft is design-spec, not implementation" below), but technical-art register
+rather than player-experience register. Distinct from genre lenses (these apply regardless
+of genre) and from `procedural-generation` (content/narrative coherence, not mesh/terrain).
 
 **Genre lens** — `open-world-design`, `rpg-systems`, `permadeath-and-lethality`,
 `narrative-and-quest-design`, `combat-design` (action-combat lens),
@@ -48,15 +55,35 @@ and (after extraction, see below) `game-feel-and-juice`.
 **Process** (tier-spanning, lives in core) — `game-design-process`, `engine-router`,
 `procgen-review`.
 
+### Technical craft is design-spec, not implementation
+
+`3d-graphics-and-rendering`, `shaders-and-vfx`, `animation-systems`, and
+`procedural-geometry` cover the same subject matter as engine-specific AI-skill libraries
+(e.g. [GodotPrompter](https://github.com/jame581/GodotPrompter), whose 51 skills include
+shaders, animation, and procgen for Godot 4.x in GDScript/C#) — but they stay at the level
+this pack has always worked at: principles, tradeoffs, citations, and machine-checkable
+"Test for:" criteria, **not raw shader/animation code.** Why a separate tier and not folded
+into `technique module`: technique modules are *philosophies for how content gets made*
+(procedural vs. hand-authored, systemic vs. scripted); technical craft is *the physics and
+math every renderer obeys regardless of how content was authored* — closer in kind to
+universal craft (true for every game) than to a technique choice. The engine-specific
+*implementation* of these principles (actual GDScript shader code, Godot's `AnimationTree`
+setup, a Unity Shader Graph node chain) belongs in the engine-hand packs (`godot` /
+`unreal` / `unity` / `threejs`), mirroring the existing design-here/implement-there split.
+If an engine pack later wants this content directly translated into code, that is a new,
+separate authoring pass — not a rewrite of these skills.
+
 ## Packaging: separate marketplace plugins
 
 The design brain ships as **layered plugins**, mirroring the existing "design brain / engine
 hands" split. Install only what your game needs.
 
 ```
-gamestack-core        always installed — the universal craft brain + the process spine
+gamestack-core        always installed — the universal + technical craft brain + process spine
   ├─ universal craft skills (fundamentals, level-design, game-feel, onboarding,
   │    ui-ux, difficulty-balancing, pacing, art-direction, audio, accessibility, …)
+  ├─ technical craft skills (3d-graphics-and-rendering, shaders-and-vfx,
+  │    animation-systems, procedural-geometry)
   ├─ game-design-process  (genre-aware orchestrator)
   ├─ engine-router
   ├─ procgen-review
@@ -118,19 +145,24 @@ The bible gains a `genre` record alongside `engine`, set during classification.
 
 ## Build order
 
-1. **Round 1 — universal spine (in progress):** level-design, game-feel-and-juice,
+1. **Round 1 — universal spine (done):** level-design, game-feel-and-juice,
    onboarding-and-teaching, ui-ux-and-feedback, difficulty-and-balancing,
    pacing-and-the-player-journey. Research prompts in `docs/research-prompts.md`.
    - Extract the game-feel/juice material out of `combat-design` into the new universal
      `game-feel-and-juice`; `combat-design` keeps the combat-specific application and links to it.
 2. **Round 2 — finish the universal spine:** audio design, accessibility, playtesting &
    telemetry, monetization & business model, scope/production & vertical slice.
-3. **Round 3+ — genre breadth:** platformer/movement, shooter, puzzle, strategy/tactics,
+3. **Round 3 — technical craft (in progress):** `3d-graphics-and-rendering`,
+   `shaders-and-vfx`, `animation-systems`, `procedural-geometry`. Same research-prompt
+   pipeline, design-spec register (see "Technical craft is design-spec, not implementation"
+   above) — topic breadth inspired by GodotPrompter's engine-specific skill library, but
+   kept engine-agnostic and citation-driven.
+4. **Round 4+ — genre breadth:** platformer/movement, shooter, puzzle, strategy/tactics,
    sim/management, survival/crafting, deckbuilder, horror, racing/rhythm/fighting,
    adventure/VN — one genre pack at a time.
-4. **Technique breadth:** multiplayer/netcode design, save/persistence, physics/sim.
-5. **Repackage** the repo into the plugin layout above once round 1 lands and the
-   core/genre/technique membership is proven by use.
+5. **Technique breadth:** multiplayer/netcode design, save/persistence, physics/sim.
+6. **Repackage** the repo into the plugin layout above once round 1 lands and the
+   core/genre/technique/technical membership is proven by use.
 
 Until the physical repackage, skills are authored into the existing `plugins/gamestack/skills/`
 tree and *tagged* with their tier in `SKILL.md`, so the later split is a move, not a rewrite.

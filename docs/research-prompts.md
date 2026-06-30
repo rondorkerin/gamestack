@@ -188,6 +188,152 @@ These topics use a **different, genre-agnostic CONTEXT** (below). Keep the same 
 
 ---
 
+# Round 3 — technical craft (engine-agnostic, design-spec level)
+
+Rounds 1–2 grew **universal craft** (player-experience disciplines: feel, teaching,
+challenge, space, interface, rhythm). Round 3 grows a sibling tier, **technical craft** —
+the rendering/motion/geometry disciplines every real-time visual game obeys, regardless of
+genre. See `docs/architecture.md` → "Technical craft is design-spec, not implementation"
+for why this is a separate tier from both universal craft and technique modules, and why it
+stays principle-level rather than engine code. Topic breadth is inspired by
+[GodotPrompter](https://github.com/jame581/GodotPrompter) (51 engine-specific implementation
+skills for Godot 4.x) — but every topic below is researched and written **engine-agnostic**,
+citation-driven, with the same "Test for:" rigor as rounds 1–2.
+
+Same **[FORMAT]** as above. New context block:
+
+## [CONTEXT-TECHNICAL] — paste this first for round-3 technical-craft topics
+
+> You are a senior technical-art / graphics-engineering researcher producing a reference
+> document for an **AI game designer and implementer** — an autonomous coding agent (Claude
+> Code, running headless) that specs and implements real-time rendering, shading, animation,
+> and procedural-geometry systems across **engines and genres**, not one. Assume:
+> - **Engine- and genre-agnostic, design/spec level.** The reader may target Godot, Unity,
+>   Unreal, or a custom/WebGL engine, in 2D or 3D, any genre. State principles in terms of the
+>   underlying graphics pipeline and math (rasterization stages, shader model, skeletal
+>   blending, noise functions), not a specific engine's API or node graph. **Do not give
+>   engine-specific code** (no GDScript, no HLSL/GLSL snippets, no Shader Graph steps) — give
+>   the technique, the data it needs, the cost model, and a pseudocode/diagram sketch only
+>   where it clarifies an algorithm.
+> - **Performance-aware by default.** Every technique has a cost (draw calls, fill rate,
+>   vertex/skin count, overdraw, memory bandwidth). State the cost model and the threshold
+>   where a technique stops paying for itself, and name the cheaper fallback.
+> - **Often AI-authored / headless / procedural.** Geometry, shaders, and motion may be
+>   generated or parameterized by an AI engine. Bias toward techniques that are parametric and
+>   composable (a generator can vary inputs safely) over techniques that require a human eye
+>   per-asset; explicitly flag where hand-authoring or a human art pass is still required.
+> - **The agent acts on your rules literally**, so every rule must be testable and every
+>   failure mode must be named.
+> - **Prove each principle with shipped exemplars** spread across engines/genres where
+>   possible (not one running example), and name the relevant real-time vs. offline/film
+>   distinction where techniques diverge (e.g. real-time PBR vs. offline path tracing).
+
+## Round-3 [TOPIC] blocks
+
+### T1 · 3d-graphics-and-rendering  *(technical craft — the rendering pipeline spine)*
+> **Topic: real-time 3D rendering fundamentals for a game engine.** Cover: (1) **the
+> rasterization pipeline** — vertex → primitive assembly → rasterize → fragment → output-merge,
+> what each stage can and can't do, and where compute/mesh shaders change the picture; (2)
+> **physically based rendering (PBR)** — the metallic/roughness and specular/glossiness
+> workflows, energy conservation, why PBR materials look "right" across lighting conditions,
+> and where stylized/NPR rendering deliberately departs from PBR; (3) **lighting & shadows** —
+> forward vs. deferred vs. forward+ rendering and their tradeoffs, real-time global
+> illumination approaches (baked lightmaps, light probes, SDFGI/voxel GI, ray-traced GI) and
+> when each is affordable, shadow mapping techniques (cascaded shadow maps, shadow acne/peter-
+> panning failure modes); (4) **performance & culling** — frustum/occlusion culling, level of
+> detail (LOD) systems and the pop-in tradeoff, draw-call batching/instancing, overdraw and
+> fill-rate budgets, the CPU-bound vs. GPU-bound diagnostic; (5) **post-processing** — the
+> tonemapping/color-grading pipeline, bloom, ambient occlusion (SSAO/HBAO), anti-aliasing
+> approaches (MSAA, TAA, FXAA and their distinct artifacts), and the order effects must run in.
+> **Procedural implication:** which rendering choices a generator can safely parameterize
+> (material parameters, LOD thresholds) vs. which require a fixed, hand-tuned pipeline
+> contract (exposure/tonemapping must stay consistent across generated scenes or content reads
+> as visually incoherent). Seed sources: Real-Time Rendering (Akenine-Möller, Haines, Hoffman);
+> GDC/SIGGRAPH talks on PBR (Disney's "principled" BRDF, Unreal's PBR rollout); GPU Gems;
+> Naughty Dog / id Software / Unreal Engine rendering deep-dives; shipped engine docs (Godot,
+> Unity URP/HDRP, Unreal) used as primary sources for tradeoffs, not as code references.
+
+### T2 · shaders-and-vfx  *(technical craft — the shading & particle layer)*
+> **Topic: shader-driven materials and visual effects.** Cover: (1) **the shader model** — what
+> a vertex shader, fragment/pixel shader, and compute shader each can read/write and why that
+> split exists; uniforms/varyings vs. textures as data channels; (2) **material authoring
+> patterns** — node-graph/shader-graph thinking as a composable, parametric system (so a
+> generator can vary material identity safely), procedural texturing (noise-based, triplanar
+> mapping, vertex-color masking) vs. baked textures and the tradeoff; (3) **the VFX toolkit** —
+> particle systems (CPU vs. GPU particles and the count/cost cliff), trail/ribbon renderers,
+> decals, distortion/refraction effects, screen-space effects (dissolve, hit-flash, outline/
+> rim-light), and how each maps to a "feedback channel" (cross-reference `game-feel-and-juice`'s
+> juice toolkit — this is its rendering substrate); (4) **stylization techniques** — toon/cel
+> shading, outline rendering approaches (inverted hull vs. post-process edge detection),
+> hand-painted-look fakes, and why stylized rendering is often *cheaper and more readable* than
+> PBR, not just an aesthetic choice (links `art-direction-and-readability`); (5) **performance &
+> failure modes** — shader compilation/variant explosion, overdraw from layered transparent
+> VFX, the "particle storm" anti-pattern that tanks frame rate and obscures readability.
+> **Procedural implication:** a parametric material/VFX "recipe" system (palette of safe
+> parameter ranges) a generator can compose from, plus a fill-rate/overdraw budget validator —
+> mirror the feedback-budget pattern from `game-feel-and-juice`. Seed sources: Inigo Quilez on
+> procedural texturing/SDFs; Naughty Dog/Riot/Blizzard shader & VFX GDC talks (notably stylized
+> rendering postmortems — e.g. Guilty Gear Xrd, Hi-Fi Rush); "The Book of Shaders" (Patricio
+> Gonzalez Vivo) for shader-model fundamentals; GPU Gems chapters on procedural materials and
+> particle systems.
+
+### T3 · animation-systems  *(technical craft — motion architecture)*
+> **Topic: character and object animation systems.** Cover: (1) **skeletal animation
+> fundamentals** — bones/joints, skinning (linear blend skinning and its candy-wrapper failure
+> mode, dual-quaternion skinning as the fix), forward vs. inverse kinematics (IK) and when each
+> is the right tool (foot placement, look-at, aim-offsets); (2) **animation blending &
+> state architecture** — blend trees / 1D and 2D blend spaces, animation state machines, additive
+> animation layers (upper/lower body splits), and the data a designer needs to expose for these
+> to compose safely; (3) **procedural & physics-driven motion** — ragdoll and active ragdoll,
+> inverse-kinematics-driven foot/hand placement on uneven terrain, procedural secondary motion
+> (cloth/hair sway, spring bones), and motion matching as a data-driven alternative to
+> hand-authored state machines; (4) **the animation pipeline & cost model** — animation
+> compression and memory cost, the bone-count/skinning-cost budget, root motion vs.
+> in-place-plus-code-driven movement and their distinct desync failure modes; (5) **readability
+> & timing** — anticipation/follow-through and the player-vs-enemy anticipation inversion
+> (cross-reference `game-feel-and-juice`'s 12-principles section — this skill owns the
+> *system* that produces that timing, not the design rule itself), animation canceling and
+> input-responsiveness tradeoffs (the "animation-locked" failure mode). **Procedural
+> implication:** how a generator composes animation states/blends safely from a finite,
+> hand-authored clip+rig library (combinatorial reuse) rather than needing unique per-asset
+> animation; where motion matching or procedural IK lets generated characters/creatures move
+> plausibly without bespoke hand-keyed clips per variant. Seed sources: Rune Skovbo Johansen on
+> procedural IK and foot placement; "Motion Matching" talks (Ubisoft La Forge, GDC); Naughty
+> Dog animation-system GDC talks (*The Last of Us*, *Uncharted* blend/IK pipelines); David Rosen
+> (Wolfire) on active ragdoll and procedural animation; *The Animator's Survival Kit* (Richard
+> Williams) for the underlying timing craft.
+
+### T4 · procedural-geometry  *(technical craft — generated meshes, terrain, and structures)*
+> **Topic: procedural mesh, terrain, and structural geometry generation** — distinct from the
+> existing `procedural-generation` skill (which covers content/narrative coherence at scale,
+> not geometry math). Cover: (1) **noise as the geometry substrate** — Perlin/Simplex/value
+> noise, fractal Brownian motion (fBm) octave-stacking, domain warping, and what each noise
+> family is/isn't good for (terrain heightfields vs. organic detail vs. caves); (2) **terrain
+> generation techniques** — heightfield/heightmap terrain and its 2.5D limitation, voxel/SDF
+> terrain for true overhangs and caves (marching cubes / dual contouring as the mesh-extraction
+> step), erosion simulation (hydraulic and thermal) for believable terrain, and the LOD/chunking
+> problem at open-world scale; (3) **structural/architectural generation** — grammar-based
+> generation (L-systems for organic forms; shape grammars / wave function collapse for
+> buildings and dungeons), constraint-based room/corridor layout, and the "looks designed, not
+> random" test (cross-reference `level-design`'s legibility principles — this skill is the
+> geometry engine underneath them); (4) **mesh generation & topology correctness** — generating
+> watertight, properly-wound, UV-mapped meshes programmatically (the common procedural-mesh
+> bugs: inverted normals, non-manifold geometry, degenerate UVs) and runtime mesh-generation
+> performance (the cost of regenerating geometry per frame vs. caching); (5) **vegetation &
+> scatter systems** — procedural placement (Poisson-disc/blue-noise distribution to avoid
+> uniform-grid "it's obviously generated" tells), density/slope/biome masking, and instancing
+> for performance at scale. **Procedural implication:** this entire topic *is* the procedural
+> implication — frame every technique in terms of the generator's actual authoring surface
+> (which parameters are exposed, what a generator can vary safely vs. what needs hand-tuned
+> constants) and the "oatmeal test" from `procgen-review` (does parameter variation alone
+> produce perceptually distinct results, or does it need hybrid hand-placed anchors). Seed
+> sources: Ken Perlin's noise papers; Sebastian Lague's procedural-generation series (terrain,
+> erosion, marching cubes) as a synthesis/teaching source; Paul Merrell on model synthesis /
+> wave function collapse; "Texturing & Modeling: A Procedural Approach" (Ebert et al.); No
+> Man's Sky / Townscaper GDC talks on procedural structure generation.
+
+---
+
 ## Notes
 
 - **Process skills don't need separate research.** The remaining process skills (concept-&-pillars planning, world-layout pass, quest quality gate, lore-coherence audit, design review, playtest analysis) are authored *from* the knowledge skills above plus the gstack workflow pattern — no external deep research required.

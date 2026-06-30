@@ -5,6 +5,23 @@ All notable changes to this skill pack are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.8.0] — 2026-06-30
+
+### Added — the technical-craft tier (rendering, shading, motion, generated geometry)
+
+- **A fourth tier alongside universal craft, genre lenses, and technique modules** (`docs/architecture.md`): **technical craft** — the rendering/motion/geometry disciplines every real-time visual game obeys, regardless of genre. Stays engine-agnostic and design-spec level (principles, citations, "Test for:" criteria — no engine code), the same register as the rest of the pack, but technical-art rather than player-experience focused. Topic breadth inspired by [GodotPrompter](https://github.com/jame581/GodotPrompter) (the 51-skill Godot 4.x implementation library already curated as this pack's `godot` engine hand), researched and written independently.
+- **Four new technical-craft knowledge skills**, each grown from a dedicated deep-research doc (`docs/research/round3-technical/T1–T4`, adversarially verified with inline ✅/⚠️/❌ tags):
+  - `3d-graphics-and-rendering` — the rasterization pipeline, PBR vs. stylized/NPR materials, forward/deferred/forward+ lighting architecture, GI and shadow techniques, culling/LOD/draw-call/overdraw performance budgets, and the post-processing chain, framed as a frozen "imaging contract" a generator must not drift per scene.
+  - `shaders-and-vfx` — the vertex/fragment/compute shader model, node-graph/procedural material authoring, the VFX toolkit (particles, trails, decals, distortion, screen-space effects) as the rendering substrate for `game-feel-and-juice`'s feedback channels, stylization techniques, and shader/overdraw performance failure modes.
+  - `animation-systems` — skeletal fundamentals (skinning, FK/IK), blend trees/state machines/additive layers, procedural & physics-driven motion (active ragdoll, foot IK, motion matching), the animation cost model, and the system architecture that delivers `game-feel-and-juice`'s timing principles.
+  - `procedural-geometry` — noise as a geometry substrate, terrain generation (heightfield vs. voxel/SDF, marching cubes, erosion, LOD/chunking), structural generation (L-systems, shape grammars, wave function collapse), mesh topology correctness, and vegetation/scatter — the geometry engine underneath `level-design` and `open-world-design`. Distinct from the existing `procedural-generation` skill (content/narrative coherence, not geometry math).
+- **Round-3 research prompts** (`docs/research-prompts.md`): a new genre-agnostic `[CONTEXT-TECHNICAL]` block plus four `[TOPIC]` blocks that produced the skills above.
+
+### Changed
+
+- `game-design-process` orchestrator now pulls the technical-craft tier when a game has real-time 3D (or 2D-with-lighting) rendering, alongside the existing universal/genre/technique selection.
+- README knowledge table gains the technical-craft tier; roadmap re-cut (genre breadth moves to round 4). `plugin.json` + `marketplace.json` bumped to 0.8.0.
+
 ## [0.7.0] — 2026-06-30
 
 ### Added — the universal-craft tier (general game dev, not just open-world RPG)
