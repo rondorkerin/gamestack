@@ -2,6 +2,10 @@
 
 **An agentic framework for building games on any platform — for [Claude](https://claude.com/claude-code). Like gstack is for software, but for games.**
 
+[![Discord](https://img.shields.io/badge/Discord-Join-5865F2?logo=discord&logoColor=white)](https://discord.gg/xRMGEcH6Xg) [![X (Twitter)](https://img.shields.io/badge/X-%40metatransformr-000000?logo=x)](https://x.com/metatransformr)
+
+Questions, feedback, or just want to follow along: [Discord](https://discord.gg/xRMGEcH6Xg) · [@metatransformr on X](https://x.com/metatransformr)
+
 ### What this actually is (read this first if you came from a link)
 
 This is a **skill pack for an AI coding agent** — cited game-design knowledge plus reusable
@@ -300,6 +304,10 @@ Each process skill opens by injecting `PREAMBLE.md` + `ETHOS.md`, which loads th
 ## Contributing
 
 Research, citations, production lessons, and **engine packs to slot in** are all welcome — see **[CONTRIBUTING.md](CONTRIBUTING.md)** for the skill template and conventions. The design brain's knowledge skills are grown from deep-research docs; reusable prompts live in **[docs/research-prompts.md](docs/research-prompts.md)**.
+
+## Community
+
+[Discord](https://discord.gg/xRMGEcH6Xg) for questions, feedback, and discussion · [@metatransformr](https://x.com/metatransformr) on X for updates.
 
 ## License
 
