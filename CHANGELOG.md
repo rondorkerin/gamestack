@@ -5,6 +5,16 @@ All notable changes to this skill pack are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.11.3] — 2026-06-30
+
+### Changed — `iteration-loop`: cheap mockups before heavyweight generation, asset packs, and a sharper request/generate split
+
+- `LOOP.md` §6 (added in 0.11.2) extends the human checkpoint to cost, not just blast radius: for heavyweight generation pipelines — 3D model gen (Meshy, Hyper3D, Hunyuan3D), tileset generators, or anything else that burns real credits/compute per call — Generate/Implement now stages a **small batch of cheap 2D mockups** first, lets the human pick a favorite or iterate, and only then spends the expensive pipeline on the chosen direction. For image-input pipelines (Meshy runs image-to-mesh, not text-to-mesh), the chosen mockup becomes the literal generation input, so this step is real art direction, not a rubber stamp.
+- The existing "one instance first" rule is made explicit for large generated batches too (icon packs, prop sets) — generate a handful of examples and get a pass before generating the rest of the set, not just for single heavyweight assets.
+- New `LOOP.md` §7, "Organize what gets approved into asset packs, and make them browsable": whichever path an asset came through (generated via §6, or externally requested via §5), approved output lands in a categorized asset pack rather than loose files, and the pack needs to be browsable — a companion "studio" web app is the ideal version, an in-game/in-engine asset explorer (an extension of the §2 preview-harness pattern) satisfies the same need at MVP. The pack doubles as the reference corpus for `procgen-review`'s variety check. "Running the loop in practice" shifts from §6→§7→§8 across this change.
+- §5 (external-request escalation) now names **animations** and **vegetation/trees** as concrete hard-to-generate categories where asking the human to source the asset is often the right call — not just an escalation of last resort. The tree-replacement incident that prompted §6 is called out as a case that arguably belonged here instead of going through generation at all.
+- `SKILL.md`'s loop summary, frontmatter description, and triggers updated to match (Meshy, Hyper3D, tileset/icon/asset-pack generation, asset studio/explorer, image-to-mesh).
+
 ## [0.11.2] — 2026-06-30
 
 ### Added — `iteration-loop`: human checkpoint before scaling a visual change

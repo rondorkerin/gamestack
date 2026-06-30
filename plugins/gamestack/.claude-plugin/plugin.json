@@ -1,6 +1,6 @@
 {
   "name": "gamestack",
-  "version": "0.11.2",
+  "version": "0.11.3",
   "description": "The engine-agnostic foundation of the gamestack framework — the design/discipline brain, organized into four tiers: universal craft (game-design fundamentals, game feel & juice, level design, onboarding, UI/UX, difficulty & balancing, pacing, art direction), technical craft (3D graphics & rendering, shaders & VFX, animation systems, procedural geometry), genre lenses (open-world, RPG, combat, narrative, worldbuilding, permadeath), and technique modules (procgen, AI-authored coherence, systemic/emergent), plus the headless concept→generate→self-review process pipeline, including the iteration-loop reference→diff→prioritize→generate→verify procedure for visual/systemic/narrative fidelity. Pairs with the curated engine packs in the gamestack marketplace (Godot, Unity, Unreal): design here, implement there.",
   "author": {
     "name": "Arcos Labs",

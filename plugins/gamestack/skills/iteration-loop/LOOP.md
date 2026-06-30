@@ -72,7 +72,7 @@ A worked example of a minimal playtest API (`boot()`, `goto()`, `fight_nearest()
 
 ## 5. External request escalation — when generation is the wrong tool
 
-The Generate/Implement step defaults to generation (asset-gen pipeline, procedural systems, AI-authored content within canon) because that's what scales. It is not always the right call — a hand-authored hero asset, a licensed/voice-acted line, a specific reference the team wants pixel-matched, or anything where generation would visibly underperform a sourced or commissioned alternative.
+The Generate/Implement step defaults to generation (asset-gen pipeline, procedural systems, AI-authored content within canon) because that's what scales. It is not always the right call — a hand-authored hero asset, a licensed/voice-acted line, a specific reference the team wants pixel-matched, hard-to-generate categories like **animations** and **vegetation/trees** (motion and organic silhouette are exactly where generation tends to visibly underperform a sourced asset pack — the tree-replacement incident that prompted §6 is arguably a case that should have routed here instead), or anything else where generation would visibly underperform a sourced or commissioned alternative. Sometimes the right move is simply asking the human to go find or source the asset themselves rather than routing it through generation at all.
 
 Don't silently force a worse generated result to keep the loop moving. Instead:
 
@@ -90,21 +90,32 @@ Generation and verification of a visual/aesthetic delta default to the *same* ag
 
 **The fix is scope control, not better self-judgment:**
 
-1. **Generate/Implement against one instance first** — one tree, one tile, one room — never the whole biome/level/system in a single pass, no matter how confident Diff was about the delta.
-2. **Batch the plan before generating** — what's about to change, how many instances it'll eventually touch, and which reference it's closing the gap for (the same one Diff named) — so the human reviewing it sees the full blast radius, not just one result in isolation.
-3. **Show the human the single-instance result** — a screenshot or in-engine preview, not a description of it — and get an explicit go/no-go before going further. Treat this like the AI-playtester escalation rule in §4: route to a human whenever the question is subjective, not just because it's slower to arrange.
-4. **Only batch-apply to the remaining instances after approval.** If the human says no, that's a new Diff (the generated result itself revealed a gap — wrong style, wrong density, wrong palette), not a failed Verify to silently retry into.
+1. **Stage expensive generation behind cheap mockups — produce a few, not one.** Heavyweight pipelines — 3D model gen (Meshy, Hyper3D, Hunyuan3D), a tileset generator, anything that burns real credits/compute per call — don't get spent on a first attempt. Generate a small batch of 2D mockup/concept-image variants first (a sketch-level image-gen pass is enough to judge direction, style, and silhouette), show all of them to the human, and let them pick a favorite or give feedback to iterate on before continuing — don't commit on the first draft. For pipelines that take an image rather than a text prompt (Meshy runs **image-to-mesh**, not text-to-mesh, here, for example), the chosen mockup isn't a throwaway preview — it becomes the literal generation input, so this step is where the asset actually gets art-directed, not just rubber-stamped. Only once the human has picked or approved a mockup does it get sent into the heavyweight pipeline. A wrong direction costs a handful of cheap images instead of one expensive model.
+2. **Generate/Implement against one instance first** — one tree, one tile, one room, one icon — never the whole biome/level/system/pack in a single pass, no matter how confident Diff was about the delta. This applies as much to a 50-icon UI pack or a tileset as it does to a biome: generate a handful of examples, not the full set.
+3. **Batch the plan before generating** — what's about to change, how many instances or pack members it'll eventually touch, and which reference it's closing the gap for (the same one Diff named) — so the human reviewing it sees the full blast radius, not just one result in isolation.
+4. **Show the human the mockup or single-instance result** — a screenshot, concept image, or in-engine preview, not a description of it — and get an explicit go/no-go before going further. Treat this like the AI-playtester escalation rule in §4: route to a human whenever the question is subjective, not just because it's slower to arrange.
+5. **Only batch-apply to the remaining instances, or commit the heavyweight generation, after approval.** If the human says no, that's a new Diff (the generated result itself revealed a gap — wrong style, wrong density, wrong palette), not a failed Verify to silently retry into.
 
-This applies to any visual/aesthetic Generate/Implement step, not just biomes — character variants, dungeon prop sets, VFX palettes, UI icon sets. The common failure mode is the same: an agent treats its own Verify pass as sufficient sign-off and fans a change out before any human eye has seen it.
+This applies to any visual/aesthetic Generate/Implement step, not just biomes — character variants, dungeon prop sets, VFX palettes, UI icon packs, 3D model generation. The common failure mode is the same: an agent treats its own Verify pass as sufficient sign-off and either fans a change out, or burns an expensive generation pipeline, before any human eye has seen it. This is part of the art process, not overhead on top of it — a human pass on direction before commitment is how art gets made even without AI in the loop.
 
 ---
 
-## 7. Running the loop in practice
+## 7. Organize what gets approved into asset packs, and make them browsable
+
+Whichever path an asset came through — generated (§6, now mockup-gated) or externally requested (§5, human-sourced) — once it's approved it lands in a **categorized asset pack**, not a loose file dropped into a level/scene folder. Organize by type and system (biome props, character variants, UI icon packs, VFX, …) so the pack stays diffable: the next loop cycle's Reference step, and `procgen-review`'s variety check (§1's table — "prior committed instances of the same type" *is* the asset pack), both pull from it directly.
+
+Make the pack **browsable**, not just present on disk. A companion "studio" web app (a real UI for paging through packs, filtering by category, comparing variants side by side) is the ideal version of this, but not a hard requirement — an in-game/in-engine **asset explorer** satisfies the same need, and is a direct extension of the preview-harness pattern from §2: instead of booting one system in isolation, it boots/lists the whole accumulated pack on demand. Minimum viable version: a structured folder/manifest per pack category plus the preview harness's existing screenshot capability, pointed at "show me everything currently in pack X."
+
+Why this matters beyond tidiness: a human reviewing one new asset in isolation (§6 step 4) can sign off on it and still end up with a pack that's incoherent as a whole — three different stylizations of "tree," or a UI icon set that drifts in weight/stroke across icons added in different sessions. A browsable pack is what lets a human, or `procgen-review`'s oatmeal-test pass, catch that drift; a pile of approved-in-isolation files can't be eyeballed for cohesion the same way.
+
+---
+
+## 8. Running the loop in practice
 
 1. Pick the system with the largest known gap (or the next one in production order).
-2. Run one cycle: Reference → Diff (name one delta) → Prioritize (confirm it's the highest-benefit one) → Generate/Implement (one instance first for visual deltas, then the human checkpoint — §6) → Verify.
+2. Run one cycle: Reference → Diff (name one delta) → Prioritize (confirm it's the highest-benefit one) → Generate/Implement (one instance first for visual deltas, then the human checkpoint — §6; route to §5 instead when generation is the wrong tool) → Verify.
 3. If the delta closed, move to the next-highest delta on the same system, or the next system.
-4. If content was generated as part of Implement, gate it through `procgen-review` (variety axis) in addition to this loop's Verify (fidelity axis) before committing.
+4. If content was generated as part of Implement, file it into its asset pack (§7) and gate it through `procgen-review` (variety axis) in addition to this loop's Verify (fidelity axis) before committing.
 5. Periodically (not every cycle) run the playtesting channels (§4) across the whole game, not just the system just touched — combination effects only show up there.
 
 This loop runs continuously during `game-design-process` Phase 3 (Content) on individual systems, and is the mechanism behind Phase 5 (Playtest & iterate) at the whole-game level.
