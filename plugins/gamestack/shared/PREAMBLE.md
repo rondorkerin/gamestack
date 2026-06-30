@@ -10,11 +10,32 @@ The bible lives in the user's game project at `./.gamestack/bible/` (cwd is the 
 project, NOT the plugin). It is gamestack's cross-session memory and the engine-handoff
 contract.
 
-- If `./.gamestack/bible/` is missing, create it with empty stub files:
-  `pillars.md world.md systems.md lore.md constraints.md decisions.md` and a `corpus/`
-  dir and an `engine` file. Say "Initialized a new design bible."
-- If it exists, read the files relevant to this skill and give a one-line state summary
-  (e.g. "Bible: 3 pillars set, world + systems drafted, 12 decisions logged").
+- If `./.gamestack/bible/sources.md` already exists, the adoption decision below was
+  already made — skip straight to reading the bible.
+- Else, if `./.gamestack/bible/` is missing, **check for an existing design source of
+  truth first**: a `CLAUDE.md` with design/tenets content, a `docs/` or `design/` tree
+  with a GDD-like file, a `lore/` or `world/` directory. Do not assume greenfield —
+  gamestack is as likely to be adopted into a project with months of existing canon as
+  a fresh one.
+  - If found, ask once: "This project already has design docs at `<paths>` — point the
+    bible at them (recommended) or make it self-contained?" Write the answer to
+    `./.gamestack/bible/sources.md` so future sessions don't re-ask.
+  - **Pointer mode** (recommended when canon exists): create `./.gamestack/bible/` with
+    a `corpus/` dir, an `engine` file, and an empty `decisions.md` — but
+    `pillars.md`/`world.md`/`systems.md`/`lore.md`/`constraints.md` are each a
+    **single-line redirect**, never a restated copy: `→ see CLAUDE.md §Design tenets`
+    or `→ see docs/GDD.md §10-12, world/` (a redirect can list more than one path).
+    Reading one of these files means following the pointer to the real source, not
+    treating the line itself as the content. `decisions.md` is the one exception — it's
+    gamestack's own log of what it decided on a given date, which by definition exists
+    nowhere else, so it always accumulates real content, in both modes.
+  - **Self-contained mode** (or no existing canon found): create the bible with empty
+    stub files: `pillars.md world.md systems.md lore.md constraints.md decisions.md`
+    and a `corpus/` dir and an `engine` file. Say "Initialized a new design bible."
+- If it exists, read the files relevant to this skill — following any pointer redirects
+  to their real source — and give a one-line state summary (e.g. "Bible: pointer mode,
+  pillars in CLAUDE.md, 12 decisions logged" or "Bible: 3 pillars set, world + systems
+  drafted, 12 decisions logged").
 - When this skill makes a design decision, append it to `./.gamestack/bible/decisions.md`
   using the Edit/Write tool (never a raw shell `>>` — escaping hazard). Format:
   a dated `### <date> — <decision>` heading, a one-line rationale, and a

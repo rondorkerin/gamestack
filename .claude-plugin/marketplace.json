@@ -7,14 +7,14 @@
   },
   "metadata": {
     "description": "An agentic framework for building games on any platform. A first-party design/production brain plus curated, engine-specific skill packs (Godot, Unity, Unreal) so one agent can take a game from concept to shipped code regardless of engine.",
-    "version": "0.11.0"
+    "version": "0.11.1"
   },
   "plugins": [
     {
       "name": "gamestack",
       "source": "./plugins/gamestack",
       "description": "First-party foundation (engine-agnostic): the design/discipline brain in four tiers — universal craft (fundamentals, game feel, level design, onboarding, UI/UX, difficulty & balancing, pacing, art direction), technical craft (3D graphics & rendering, shaders & VFX, animation systems, procedural geometry), genre lenses (open-world, RPG, combat, narrative, worldbuilding, permadeath), and technique modules (procgen, AI-authored coherence, systemic/emergent) — plus the headless generate-and-review process and the iteration-loop fidelity procedure (reference→diff→prioritize→generate→verify, human + AI playtester), with a concrete worked Godot example in docs/headless-architecture.md (input→verb→seam, test benches, deterministic headless time, a playtest API, CI). Pairs with the engine packs below: design here, implement there.",
-      "version": "0.11.0",
+      "version": "0.11.1",
       "category": "game-development",
       "keywords": ["gamedev", "game-design", "procedural-generation", "rendering", "shaders", "animation", "open-world", "combat", "systems-design", "headless", "playtesting"]
     },

@@ -22,6 +22,7 @@ The spine of the pack. This skill turns a one-line game concept into a designed,
 - "What's next / health-check the design" → read `./.gamestack/bible/`, find the earliest unfinished phase, resume there.
 - "It's designed, now build it / which engine" → hand off to `engine-router`.
 - A specific design question (combat, world, loot...) → invoke that knowledge skill directly.
+- This is an existing project with design canon already established elsewhere (a `CLAUDE.md`, a `docs/`/`design/` tree, a lore graph) → the preamble's bible-init step (`shared/PREAMBLE.md` §1) handles adoption-mode detection and pointer-file setup. Once `sources.md` is written, classify the genre from the existing canon and record it in the bible — **do not re-run Phase 1 Concept** against docs that already answer it.
 
 The design bible at `./.gamestack/bible/` (loaded by the preamble) is the persistent record of every phase's output and decisions. Read it to know what's done; append decisions to `decisions.md` as you make them.
 

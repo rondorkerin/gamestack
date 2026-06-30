@@ -21,6 +21,11 @@ Test (the spine of the whole pack — Sid Meier): for every pillar and mechanic,
 - **Skill:** `game-design-fundamentals` (flow, difficulty curves, reward schedules, interesting decisions).
 - **Exit gate:** pillars written; core loop diagrammed; each signature mechanic passes the interesting-decision test.
 
+> Adopting an existing project with canon already established elsewhere? The preamble's
+> pointer mode (`shared/PREAMBLE.md` §1) already answered this phase — don't re-derive
+> pillars from scratch. Read the existing docs via the bible's pointer files, record the
+> genre, and move to Phase 2.
+
 ---
 
 ## Phase 2 · World & systems

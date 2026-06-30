@@ -46,7 +46,11 @@ designer's eye, automated.
 
 The world bible, systems, and procgen rules do not change when you switch engines. Only
 the implementation does. Keep design decisions in the bible; route implementation to the
-engine pack via `engine-router`. Never bury design logic in engine code.
+engine pack via `engine-router`. Never bury design logic in engine code. If the project
+already has a design source of truth elsewhere (a `CLAUDE.md`, a `docs/` tree), the bible
+points at it instead of forking a second copy — see `PREAMBLE.md` §1 pointer mode. The
+bible's non-negotiable content either way is `decisions.md`: gamestack's own record of
+what it decided and why, which exists nowhere else.
 
 ## 6. Interesting decisions are the unit of value
 

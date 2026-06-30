@@ -5,6 +5,15 @@ All notable changes to this skill pack are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.11.1] — 2026-06-30
+
+### Fixed — bible-init adoption mode for existing projects
+
+- `shared/PREAMBLE.md` §1 previously had exactly one branch for "bible missing": create empty stub files. Any project that already had an established design canon elsewhere (a `CLAUDE.md`, a `docs/` tree, a lore graph) would get that canon summarized into a second, competing source of truth the first time a gamestack process skill ran — a direct contradiction of `ETHOS.md` rule 5 ("keep design decisions in the bible").
+- The preamble now checks for an existing design source of truth before stubbing the bible. If found, it asks once and records the answer in `./.gamestack/bible/sources.md`. **Pointer mode** keeps the existing bible filenames (`pillars.md`, `world.md`, `systems.md`, `lore.md`, `constraints.md` — unchanged, since all four engine overlays key off them) but each becomes a single-line redirect to the real source instead of a restated copy; a redirect can list more than one path, so it flexes to projects whose canon spans many files without forcing a merge-down. `decisions.md` is unaffected — it's gamestack's own log of what it decided, which exists nowhere else, so it always accumulates real content in both modes.
+- `game-design-process/SKILL.md`'s first-touch routing table gains the missing fifth branch: an existing project with canon elsewhere routes to adoption detection instead of re-running Phase 1 Concept. `PIPELINE.md` Phase 1 cross-references the same skip.
+- Surfaced by real dogfooding feedback: an agentic framework for AI-driven game dev disproportionately attracts users who already have months of Claude-authored canon, not greenfield projects — there was no onboarding path for that persona that didn't fork the truth.
+
 ## [0.11.0] — 2026-06-30
 
 ### Added — `plugin-update`: a self-check/update skill
