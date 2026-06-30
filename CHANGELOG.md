@@ -5,6 +5,14 @@ All notable changes to this skill pack are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.11.2] — 2026-06-30
+
+### Added — `iteration-loop`: human checkpoint before scaling a visual change
+
+- `LOOP.md` gains a new §6 ("Human checkpoint before scaling a visual change"), between the external-request escalation (§5) and the practical run-through (now §7): the agent that generates a visual/aesthetic delta is not a reliable judge of whether it actually looks good, so Generate/Implement now scopes to **one instance first**, batches the plan (what's changing, how many instances, which reference), and requires an explicit human go/no-go before batch-applying to the rest.
+- `SKILL.md`'s loop summary (steps 4–5) and frontmatter description/triggers updated to match.
+- Surfaced by a real incident: an AI-driven iteration-loop pass on a biome generated low-poly tree replacements, self-certified its own Verify step, and applied the change across every tree in the biome before a human saw it — visibly worse than what it replaced. The fix is scope control (one instance → human review → batch), not better self-judgment, since the latter isn't achievable by the same agent that produced the output.
+
 ## [0.11.1] — 2026-06-30
 
 ### Fixed — bible-init adoption mode for existing projects

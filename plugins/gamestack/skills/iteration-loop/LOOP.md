@@ -84,10 +84,25 @@ This keeps the loop from degrading into "generate something, anything" when the 
 
 ---
 
-## 6. Running the loop in practice
+## 6. Human checkpoint before scaling a visual change
+
+Generation and verification of a visual/aesthetic delta default to the *same* agent in this loop — it generates the asset, then re-checks it against the reference in Verify. That's fine for objective deltas (resolution, polycount budget, a palette hex match) but unreliable for aesthetic judgment ("does this look good," "does this fit the style") — the agent that produced the output is not a credible judge of whether it's actually good. A real incident that prompted this section: an iteration-loop pass on a biome generated low-poly tree replacements, self-certified Verify, and applied the change across every tree in the biome before a human looked at it once — the result was visibly worse than what it replaced.
+
+**The fix is scope control, not better self-judgment:**
+
+1. **Generate/Implement against one instance first** — one tree, one tile, one room — never the whole biome/level/system in a single pass, no matter how confident Diff was about the delta.
+2. **Batch the plan before generating** — what's about to change, how many instances it'll eventually touch, and which reference it's closing the gap for (the same one Diff named) — so the human reviewing it sees the full blast radius, not just one result in isolation.
+3. **Show the human the single-instance result** — a screenshot or in-engine preview, not a description of it — and get an explicit go/no-go before going further. Treat this like the AI-playtester escalation rule in §4: route to a human whenever the question is subjective, not just because it's slower to arrange.
+4. **Only batch-apply to the remaining instances after approval.** If the human says no, that's a new Diff (the generated result itself revealed a gap — wrong style, wrong density, wrong palette), not a failed Verify to silently retry into.
+
+This applies to any visual/aesthetic Generate/Implement step, not just biomes — character variants, dungeon prop sets, VFX palettes, UI icon sets. The common failure mode is the same: an agent treats its own Verify pass as sufficient sign-off and fans a change out before any human eye has seen it.
+
+---
+
+## 7. Running the loop in practice
 
 1. Pick the system with the largest known gap (or the next one in production order).
-2. Run one cycle: Reference → Diff (name one delta) → Prioritize (confirm it's the highest-benefit one) → Generate/Implement → Verify.
+2. Run one cycle: Reference → Diff (name one delta) → Prioritize (confirm it's the highest-benefit one) → Generate/Implement (one instance first for visual deltas, then the human checkpoint — §6) → Verify.
 3. If the delta closed, move to the next-highest delta on the same system, or the next system.
 4. If content was generated as part of Implement, gate it through `procgen-review` (variety axis) in addition to this loop's Verify (fidelity axis) before committing.
 5. Periodically (not every cycle) run the playtesting channels (§4) across the whole game, not just the system just touched — combination effects only show up there.
