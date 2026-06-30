@@ -171,3 +171,35 @@ The bible gains a `genre` record alongside `engine`, set during classification.
 
 Until the physical repackage, skills are authored into the existing `plugins/gamestack/skills/`
 tree and *tagged* with their tier in `SKILL.md`, so the later split is a move, not a rewrite.
+
+## Relationship to other frameworks: pair, don't merge
+
+gamestack deliberately stops at design/technical spec — no project-management layer (no epics,
+stories, sprints, retrospectives), and it hands implementation off via `engine-router` rather
+than tracking it. When a project needs that layer, **pair gamestack with a production-process
+framework rather than building one into gamestack** — the two are different kinds of tool and
+conflating them would blur gamestack's actual value (cited, "what good looks like" knowledge)
+with PM scaffolding that's a solved problem elsewhere.
+
+**[BMad Game Dev Studio](https://github.com/bmad-code-org/bmad-module-game-dev-studio)** (BMGD,
+third-party, MIT) is the first such pairing, added to `marketplace.json` 2026-06-30. BMGD is an
+agent-driven production framework (game-architect / game-designer / game-dev / solo-dev /
+tech-writer agents) covering preproduction → design → technical → production via tracked epics
+and stories, plus a `gametest` workflow group for structured **human** playtest-session design
+(`gds-playtest-plan`: objectives, observation guides, note-taking templates, post-session
+analysis), automated test scaffolding, and performance testing. It does not cover
+procedural/AI-authored content generation (no oatmeal test, no fidelity-loop, no technical-craft
+citations) — that asymmetry is exactly why the two pair instead of compete:
+
+- **gamestack → BMGD:** once a procedural/AI-authored game's design is spec'd, pull BMGD in for
+  the tracked production cycle (epics/stories/sprints) gamestack doesn't have.
+- **BMGD → gamestack:** a BMGD project that turns out to be procedural/AI-authored should pull
+  in gamestack's `procedural-generation`, `ai-authored-content-coherence`, and `iteration-loop`
+  — BMGD's own workflows don't cover sameness/fidelity gating.
+- **Concrete cross-reference:** `iteration-loop`'s human-playtester channel (`LOOP.md` §4) points
+  to BMGD's `gds-playtest-plan` for structured session design rather than reimplementing it —
+  the one place the two skill packs hand off directly today.
+
+This is the template for future framework pairings: if a tool already solves a problem
+adjacent to gamestack's scope well, cross-reference it (README + here + the concrete skill
+that hands off) rather than rebuilding it inside gamestack.

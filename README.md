@@ -126,6 +126,22 @@ Curated from the community and referenced directly in the gamestack marketplace 
 
 ---
 
+## Production & PM pack (pairs with gamestack, doesn't overlap it)
+
+[**BMad Game Dev Studio (BMGD)**](https://github.com/bmad-code-org/bmad-module-game-dev-studio) ⭐197 (third-party, MIT, by BMad Code) is a sibling framework, not a competitor — it covers what gamestack deliberately doesn't:
+
+| | gamestack | BMGD |
+|---|---|---|
+| **What it is** | Cited design/technical-craft knowledge brain | Agent-driven production process (PM layer) |
+| **Output** | Specs, constraint sets, a design bible — engine-agnostic | GDD/PRD/architecture docs, epics, stories, sprint status, retrospectives |
+| **Playtesting** | `iteration-loop`'s fidelity loop (reference→diff→verify) + an AI-playtester concept (self-play via a playtester API) | `gametest` workflow group: structured **human** playtest-session design (objectives, observation guides, note-taking, post-session analysis), automated test scaffolding, performance testing |
+| **Procedural / AI-authored content** | A first-class concern (`procedural-generation`, `ai-authored-content-coherence`, the oatmeal test, hand-anchor + constrained-fill) | Not a focus — built for traditional sprint-driven production |
+| **Stops at** | Spec/design-bible, hands off via `engine-router` | Nothing — it carries through to tracked implementation stories |
+
+Install both when you want gamestack's design depth *and* a tracked production cycle: `/plugin install bmad-game-dev-studio@gamestack`. The concrete pairing point is `iteration-loop`'s human-playtester channel, which points to BMGD's `gds-playtest-plan` for structured session design rather than reinventing it — see [`docs/architecture.md`](docs/architecture.md) for the full relationship.
+
+---
+
 ## Install
 
 ### Marketplace (recommended)

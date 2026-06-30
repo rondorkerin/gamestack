@@ -5,6 +5,19 @@ All notable changes to this skill pack are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.10.0] — 2026-06-30
+
+### Added — pair with BMad Game Dev Studio (BMGD)
+
+- **Added [BMad Game Dev Studio](https://github.com/bmad-code-org/bmad-module-game-dev-studio) to `marketplace.json`** as a complementary production/PM pack rather than absorbing its content — gamestack stays the cited design/technical-craft knowledge brain that stops at spec; BMGD is the agent-driven epic/story/sprint production cycle (game-architect / game-designer / game-dev / solo-dev / tech-writer agents) gamestack has never had.
+- **New `docs/architecture.md` section "Relationship to other frameworks: pair, don't merge"**, establishing the cross-reference pattern for future framework pairings: link to the external tool from the README, the architecture doc, and the one concrete skill that hands off — don't rebuild PM scaffolding inside gamestack.
+- **Concrete hand-off**: `iteration-loop`'s human-playtester channel (`LOOP.md` §4) now points to BMGD's `gds-playtest-plan` (structured session design: objectives, observation guides, note-taking, post-session analysis) and its `gametest` workflow group (automated/perf testing) instead of reinventing session design. `game-design-process` notes the same pairing for tracked production once a spec is ready to implement.
+- Identified gap worth naming: BMGD's `gametest` suite is human-playtest-session and automated-test focused — it has no equivalent to gamestack's AI-playtester-via-playtester-API concept or its procedural/AI-authored-content discipline (oatmeal test, fidelity loop). The pairing is asymmetric and both directions are documented.
+
+### Changed
+
+- README gains a "Production & PM pack" section (parallel to "Engine packs") with a gamestack-vs-BMGD comparison table. `plugin.json` + `marketplace.json` bumped to 0.10.0.
+
 ## [0.9.0] — 2026-06-30
 
 ### Added — `iteration-loop`: a generic, multimodal fidelity loop

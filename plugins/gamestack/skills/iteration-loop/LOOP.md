@@ -51,6 +51,8 @@ Inspection (§1's per-modality diff) checks one system in isolation. Playtesting
 
 The only source of genuine fun/feel judgment. Route observed signals to the phase that owns the fix — `game-design-process` Phase 5 has a starter signal→cause→route table; extend it per-project as new signal types show up.
 
+For the session itself — objectives, internal/external/focused session types, observation guides, note-taking templates, post-session analysis — don't build this from scratch. **[BMad Game Dev Studio](https://github.com/bmad-code-org/bmad-module-game-dev-studio)**'s `gds-playtest-plan` workflow (third-party, MIT) is a structured human-playtest-session-design tool built for exactly this; its sibling `gametest` workflows (`gds-test-design`, `gds-test-automate`, `gds-performance-test`, `gds-e2e-scaffold`) cover automated/perf testing alongside it. Pair it in (`/plugin install bmad-game-dev-studio@gamestack`) rather than reinventing session design here — see `docs/architecture.md` for the full relationship between the two packs.
+
 ### AI playtester
 
 An agent that plays or drives the game (or a single scene) and **self-verifies** without a human in the seat, through a **playtester API** — programmatic access to:

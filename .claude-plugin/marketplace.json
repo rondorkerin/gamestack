@@ -7,14 +7,14 @@
   },
   "metadata": {
     "description": "An agentic framework for building games on any platform. A first-party design/production brain plus curated, engine-specific skill packs (Godot, Unity, Unreal) so one agent can take a game from concept to shipped code regardless of engine.",
-    "version": "0.9.0"
+    "version": "0.10.0"
   },
   "plugins": [
     {
       "name": "gamestack",
       "source": "./plugins/gamestack",
       "description": "First-party foundation (engine-agnostic): the design/discipline brain in four tiers — universal craft (fundamentals, game feel, level design, onboarding, UI/UX, difficulty & balancing, pacing, art direction), technical craft (3D graphics & rendering, shaders & VFX, animation systems, procedural geometry), genre lenses (open-world, RPG, combat, narrative, worldbuilding, permadeath), and technique modules (procgen, AI-authored coherence, systemic/emergent) — plus the headless generate-and-review process and the iteration-loop fidelity procedure (reference→diff→prioritize→generate→verify, human + AI playtester). Pairs with the engine packs below: design here, implement there.",
-      "version": "0.9.0",
+      "version": "0.10.0",
       "category": "game-development",
       "keywords": ["gamedev", "game-design", "procedural-generation", "rendering", "shaders", "animation", "open-world", "combat", "systems-design", "headless", "playtesting"]
     },
@@ -38,6 +38,13 @@
       "description": "Unity AI-assisted debugging skills (third-party, MIT, by jahro-console): structured logging, runtime commands, variable watching via the Jahro console. NOTE: scoped to debugging, not general Unity authoring — a fuller Unity pack is on the gamestack roadmap.",
       "category": "game-development",
       "keywords": ["unity", "csharp", "debugging", "engine"]
+    },
+    {
+      "name": "bmad-game-dev-studio",
+      "source": { "source": "github", "repo": "bmad-code-org/bmad-module-game-dev-studio", "ref": "main" },
+      "description": "Production/PM pack (third-party, MIT, by BMad Code — BMGD): agents (game-architect, game-designer, game-dev, solo-dev, tech-writer) and an epic/story/sprint production cycle across preproduction, design, technical, and production, plus a gametest suite (structured human playtest-session design, test automation, performance testing). Complements gamestack rather than overlapping it: gamestack is the cited design/technical-craft knowledge brain and stops at spec; BMGD is the project-management layer (epics, stories, sprints, retrospectives) that gamestack doesn't have. Pair them — see docs/architecture.md.",
+      "category": "game-development",
+      "keywords": ["bmad", "production", "project-management", "sprints", "playtesting", "unity", "unreal", "godot"]
     }
   ]
 }

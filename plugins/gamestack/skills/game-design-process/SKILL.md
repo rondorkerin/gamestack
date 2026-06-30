@@ -48,7 +48,7 @@ Phase 2 below is therefore *"build this genre's core,"* not *"build a world."* T
 2. **Every element must earn its place.** Each system answers "what interesting decision does this create?"; each generated location answers "who made this and what happened here?" If neither, cut it.
 3. **Hand-author a static backbone; proceduralize the connective tissue.** Finite legendary loot, named landmarks, the mythic spine, key quests = hand-authored anchors. Everything between = constrained generation.
 4. **Gate generated content against hard quality bars** before it's committed. This is non-negotiable for procgen — see `procgen-review`, and `${CLAUDE_PLUGIN_ROOT}/shared/GATE.md` for the headless generate→review→repair loop.
-5. **Stop at the spec, then hand off.** This pipeline produces world bibles, system specs, content, and review verdicts. Implementation is a separate, engine-specific step — when the spec is ready, pass it to `engine-router`, which routes the build to the matching engine pack (Godot/Unreal/Unity).
+5. **Stop at the spec, then hand off.** This pipeline produces world bibles, system specs, content, and review verdicts. Implementation is a separate, engine-specific step — when the spec is ready, pass it to `engine-router`, which routes the build to the matching engine pack (Godot/Unreal/Unity). For a tracked production cycle (epics, stories, sprints) once implementation starts, this pack has none — pair with a production-process framework like [BMad Game Dev Studio](https://github.com/bmad-code-org/bmad-module-game-dev-studio) instead (see `docs/architecture.md` § Relationship to other frameworks).
 
 ## The pipeline
 
