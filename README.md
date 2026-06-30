@@ -197,7 +197,7 @@ Confirm with `/plugin`. Asking Claude a design question (e.g. *"walk me through 
 /plugin marketplace update gamestack
 ```
 
-Or ask Claude to check for you — `/gamestack:plugin-update` runs the same check, applies the update if one exists, and shows what's new from the changelog. Auto-update on every session start is a per-user toggle Claude Code controls, not something this repo can turn on for you: enable it via `/plugin` → **Marketplaces** → `gamestack` → **Enable auto-update**.
+Or ask Claude to check for you — `/gamestack:gamestack-upgrade` runs the same check, applies the update if one exists, and shows what's new from the changelog. Auto-update on every session start is a per-user toggle Claude Code controls, not something this repo can turn on for you: enable it via `/plugin` → **Marketplaces** → `gamestack` → **Enable auto-update**.
 
 ### Manual (single skill, no plugin)
 

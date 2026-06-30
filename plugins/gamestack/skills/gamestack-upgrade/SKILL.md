@@ -1,9 +1,9 @@
 ---
-name: plugin-update
-description: Check whether the installed gamestack plugin is behind the marketplace's latest version and update it in place. Use when asked to "update gamestack", "check for gamestack updates", "is gamestack up to date", "auto update the plugin", or "what's new in gamestack". Pure plugin-maintenance utility — no design bible, no engine detection, nothing game-specific.
+name: gamestack-upgrade
+description: Check whether the installed gamestack plugin is behind the marketplace's latest version and update it in place. Use when asked to "upgrade gamestack", "update gamestack", "check for gamestack updates", "is gamestack up to date", "auto update the plugin", "gamestack upgrade", or "what's new in gamestack". Pure plugin-maintenance utility — no design bible, no engine detection, nothing game-specific.
 ---
 
-# Plugin Update
+# Gamestack Upgrade
 
 Claude Code's plugin auto-update is a **client-side opt-in**: each user (or org admin) toggles it per marketplace via `/plugin` → Marketplaces → Enable auto-update, and third-party marketplaces like `gamestack` default to **off**. This repo can't flip that switch for anyone. What it *can* ship is a skill that does the check on demand, using the same `claude plugin` CLI surface auto-update uses internally — invoking this skill is the manual equivalent of a successful auto-update pass.
 

@@ -5,6 +5,13 @@ All notable changes to this skill pack are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.11.4] — 2026-06-30
+
+### Changed — renamed `plugin-update` to `gamestack-upgrade`
+
+- The self-check/update skill added in 0.11.0 is renamed `plugin-update` → `gamestack-upgrade` (`/gamestack:gamestack-upgrade`), so the command name matches what people actually ask for ("upgrade gamestack"). Behavior is unchanged — same `UPDATE.md` procedure (locate the install, refresh the marketplace, run `claude plugin update`, surface the changelog diff, remind to `/reload-plugins`).
+- `README.md`'s install section updated to the new command name.
+
 ## [0.11.3] — 2026-06-30
 
 ### Changed — `iteration-loop`: cheap mockups before heavyweight generation, asset packs, and a sharper request/generate split
