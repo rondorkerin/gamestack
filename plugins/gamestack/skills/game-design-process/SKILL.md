@@ -25,6 +25,16 @@ The spine of the pack. This skill turns a one-line game concept into a designed,
 
 The design bible at `./.gamestack/bible/` (loaded by the preamble) is the persistent record of every phase's output and decisions. Read it to know what's done; append decisions to `decisions.md` as you make them.
 
+## Classify the genre, then pull the right lens
+
+This pipeline is **genre-aware** (see `docs/architecture.md`). After Phase 1's concept, name the game's **genre family** (open-world RPG, platformer, shooter, puzzle, strategy, sim, deckbuilder, roguelike…) and record it in the bible (`genre`). That selection decides which skills you pull:
+
+- **🌐 Universal craft — always in play, every genre:** `game-design-fundamentals`, `game-feel-and-juice`, `level-design`, `onboarding-and-teaching`, `ui-ux-and-feedback`, `difficulty-and-balancing`, `pacing-and-the-player-journey`, `art-direction-and-readability`.
+- **🎯 Genre lens — pull the ones that match:** open-world RPG → `open-world-design` + `rpg-systems` + `worldbuilding-and-lore` + `narrative-and-quest-design`; action/combat → `combat-design`; high-lethality → `permadeath-and-lethality`. (More genres are on the roadmap — until a lens exists, apply the universal spine and flag the gap.)
+- **🔧 Technique module — pull when the game uses it:** procedural / AI-authored → `procedural-generation`, `ai-authored-content-coherence`, `systemic-emergent-design`.
+
+Phase 2 below is therefore *"build this genre's core,"* not *"build a world."* The universal skills always apply; the genre lens is what changes.
+
 ## When to use this
 
 - Kicking off a new game's design, or unsure what the next design move is
@@ -43,15 +53,15 @@ The design bible at `./.gamestack/bible/` (loaded by the preamble) is the persis
 
 Read **`PIPELINE.md`** for the full phase-by-phase process with entry/exit gates. In brief:
 
-| Phase | Goal | Skills to pull |
-|-------|------|----------------|
-| **1 · Concept** | Fantasy, 3–5 pillars, core loop, signature mechanics. Prove each is an "interesting decision." | `game-design-fundamentals` |
-| **2 · World & systems** | World structure & navigation; progression, economy, combat; the systemic ruleset. | `open-world-design`, `rpg-systems`, `combat-design`, `systemic-emergent-design` |
-| **3 · Content** | Lore bible + constraint set; generate world/quests/lore from handcrafted anchors + constrained fill. | `procedural-generation`, `worldbuilding-and-lore`, `narrative-and-quest-design`, `ai-authored-content-coherence` |
-| **4 · Review & gate** | Run the quality bars: oatmeal, fanfic/retell, cross-instance sameness, intentionality, anti-patterns. | `procgen-review`, `design-review` |
-| **5 · Playtest & iterate** | Watch the benchmarks; feed failures back to the phase that owns them. | `procgen-review` (loop), playtest analysis |
+| Phase | Goal | Universal craft (always) | Genre lens / technique (selected) |
+|-------|------|--------------------------|-----------------------------------|
+| **1 · Concept** | Fantasy, 3–5 pillars, core loop, signature mechanics. Prove each is an "interesting decision." Then **classify the genre**. | `game-design-fundamentals` | — |
+| **2 · Build the genre's core** | The genre's primary systems & spaces; how it feels, teaches, paces, and balances. | `game-feel-and-juice`, `level-design`, `difficulty-and-balancing`, `onboarding-and-teaching`, `pacing-and-the-player-journey`, `ui-ux-and-feedback` | open-world RPG → `open-world-design`, `rpg-systems`, `combat-design`, `systemic-emergent-design` |
+| **3 · Content** | Lore bible + constraint set; generate content from handcrafted anchors + constrained fill. | `art-direction-and-readability` | `procedural-generation`, `worldbuilding-and-lore`, `narrative-and-quest-design`, `ai-authored-content-coherence` |
+| **4 · Review & gate** | Run the quality bars: oatmeal, fanfic/retell, cross-instance sameness, intentionality, anti-patterns. | — | `procgen-review`, `design-review` |
+| **5 · Playtest & iterate** | Watch the benchmarks; feed failures back to the phase that owns them. | — | `procgen-review` (loop), playtest analysis |
 
-> Skills marked above that don't exist yet are on the roadmap — use the matching section of `open-world-design` / `procedural-generation` / `procgen-review` in the meantime, and the principles in `PIPELINE.md`.
+> Skills marked above that don't exist yet (e.g. some genre lenses, `design-review`, playtest analysis) are on the roadmap — use the matching section of an existing skill / `PIPELINE.md` in the meantime, and apply the universal spine regardless of genre.
 
 ## The one rule for headless loops
 

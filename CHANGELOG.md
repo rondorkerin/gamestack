@@ -5,6 +5,26 @@ All notable changes to this skill pack are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.7.0] — 2026-06-30
+
+### Added — the universal-craft tier (general game dev, not just open-world RPG)
+
+- **Re-architected the design brain into three tiers** (`docs/architecture.md`): **universal craft** (every game), **genre lenses** (that kind of game), **technique modules** (that technique). Diagnosis: the pack was a deep brain for *one* game (a procgen open-world RPG) — only 2 of 11 knowledge skills were genuinely universal, and the whole universal-craft layer (feel, teaching, UX, balancing, pacing, level design) was missing. Decision (with the user): ship as **layered marketplace plugins** — `gamestack-core` (universal + process spine, always installed) · genre packs (`gamestack-rpg`, `gamestack-action`, …) · technique packs (`gamestack-procgen`, …) · the existing engine hands. Core never hard-depends on a genre pack; genre packs depend on core, never sideways. The physical repo split is deferred and made safe by tier-tagging each `SKILL.md`.
+- **Six new universal-craft knowledge skills**, each grown from a dedicated deep-research doc (`docs/research/round1-universal/U1–U6`, ~2,700 lines, adversarially verified with inline ✅/⚠️/❌ tags and ~118 machine-checkable "Test for:" criteria):
+  - `game-feel-and-juice` — Swink's three building blocks (fix feel before you juice it), input latency & forgiveness (coyote time, buffering — Celeste's 7 systems), the juice toolkit + the **inverted-U feedback ceiling** (Kao 2020, N=3,018), the 12 animation principles (with the enemy/player anticipation inversion), camera & UI feel, and a per-action feedback budget for generators. **Extracted** as the universal foundation out of `combat-design`.
+  - `level-design` — guiding the player (leading lines, landmarks, light, affordances), structure & gating (lock-and-key, interconnection), teaching through space (the antepiece), arena design, in-level pacing, the greybox/metrics process, and a beats-before-geometry level grammar. (Sources: Valve Cabal, Boss Keys, GDC Level Design Workshop, The Level Design Book, LaunchPad PCG.)
+  - `onboarding-and-teaching` — teach one mechanic at a time (introduce→test→combine→twist), show-don't-tell over pop-ups, progressive disclosure / loops & arcs, the FTUE & retention funnel, and a dependency-ordered teaching ramp for a generated verb set. (SMB 1-1, Portal, Daniel Cook, kishōtenketsu, Hodent.)
+  - `ui-ux-and-feedback` — the diegetic/non-diegetic/spatial/meta framework, information hierarchy & cognitive load (tiered HUD), game-state feedback, menu & navigation flow, and generating a HUD/UX spec from a mechanic set. (Fagerholt & Lorentzon, Dead Space, Hodent, Norman.)
+  - `difficulty-and-balancing` — the most machine-checkable discipline: eliminating dominant strategies (payoff-matrix dominance checks, σ-thresholds), cost-curve/power-budget balance, difficulty curves & DDA/hidden directors (the transparency test), per-axis accessibility assists (Celeste), and simulation/self-play tuning. (Sirlin, Rosewater, L4D AI Director, RE4.)
+  - `pacing-and-the-player-journey` — the **fractal interest curve** (encounter→level→session→playthrough at once), challenge/rest rhythm, novelty cadence, the nested engagement loops + a testable retention-ethics line, and a spec-level **pacing director** (generalizing the L4D 4-phase cycle + Warframe spawn manager). (Schell, Jenova Chen, Valve, L4D.)
+- **Round-2+ research prompts** (`docs/research-prompts.md`): a new genre-agnostic `[CONTEXT-UNIVERSAL]` block (replacing the Valenfeld-anchored one) plus the six universal `[TOPIC]` blocks that produced the skills above.
+
+### Changed
+
+- `combat-design` re-pointed as the **combat application** of `game-feel-and-juice`: its old Sub-domain 1 (general juice theory) is condensed to a combat-specific slice (the feedback budget applied to hits; distinct signatures for hit/crit/block/parry/kill; hit-stop as the load-bearing primitive) that cites *up* to the new universal skill, with no duplicated theory. SKILL/GUIDE/CHECKLIST and the central law updated.
+- `game-design-process` is now **genre-aware**: a new "classify the genre, then pull the right lens" step; Phase 2 becomes *"build the genre's core"* (universal spine always in play, genre lens selected) instead of *"build a world."*
+- README knowledge table reorganized into the three tiers with the six new universal skills; roadmap re-cut into universal (round 2: audio, accessibility, playtesting, monetization, scope) / genre (round 3) / technique tracks. `plugin.json` + `marketplace.json` bumped to 0.7.0 with tiered descriptions.
+
 ## [0.6.0] — 2026-06-28
 
 ### Added

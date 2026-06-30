@@ -18,6 +18,7 @@ How to make combat that **feels** powerful and **reads** fairly — especially i
 ## Scope
 
 This skill owns **moment-to-moment combat and its feel**. Adjacent concerns live in sibling skills, cross-linked from the guide:
+- General game feel — input/latency, forgiveness windows, the full juice toolkit, the 12 animation principles, camera & UI feel → `game-feel-and-juice` (the universal foundation; **this skill applies it to hits, impacts, and telegraphing**)
 - General reward/flow/difficulty theory and the "interesting decision" test → `game-design-fundamentals`
 - The single-save consequence model & meta-progression → `permadeath-and-lethality`
 - Loot/itemization that feeds builds, damage tiers as economy → `rpg-systems`
@@ -28,12 +29,12 @@ This skill owns **moment-to-moment combat and its feel**. Adjacent concerns live
 
 ## How the pieces fit
 
-- **`GUIDE.md`** — the cited *why*, in four sub-domains: game feel/juice (the inverted-U dose curve), readability/telegraphing (fairness as a contract), enemy & encounter design (silhouettes, roles, readable chaos), and Souls-like lethality (commitment, death-as-teacher, comeback, checkpoints). Each rule carries an exemplar, a source, a **test-for** criterion, the named failure mode, and the **procedural/headless implication**.
+- **`GUIDE.md`** — the cited *why*, in four sub-domains: combat juice (the inverted-U dose curve, **applied to hits** — general feel theory lives in `game-feel-and-juice`), readability/telegraphing (fairness as a contract), enemy & encounter design (silhouettes, roles, readable chaos), and Souls-like lethality (commitment, death-as-teacher, comeback, checkpoints). Each rule carries an exemplar, a source, a **test-for** criterion, the named failure mode, and the **procedural/headless implication**.
 - **`CHECKLIST.md`** — Do/Don't + machine-checkable **Test-for** criteria, grouped by sub-domain. Written to be enforced as automated validators in a generation loop, not just read.
 
 ## The one idea to anchor on
 
-> **In a lethal game, telegraphing is fairness, not decoration — and juice has a ceiling.** Every attack that can kill must be preceded by a readable, consistent wind-up whose salience scales with its damage ("relative damage must match perceived danger"). And feedback follows an inverted-U: the largest study on the subject (Kao 2020, N=3,018) found *Extreme* juice hurts experience, motivation, *and* raw performance as much as *None* does. Tune to the **Medium–High band**; never maximize.
+> **In a lethal game, telegraphing is fairness, not decoration.** Every attack that can kill must be preceded by a readable, consistent wind-up whose salience scales with its damage ("relative damage must match perceived danger"). The general feel foundation this rests on — the inverted-U juice ceiling (Kao 2020), input response, and the animation-principle inversion (anticipation warns on enemies, lags on the player) — lives in `game-feel-and-juice`; this skill applies it to the specific case of hits and the fairness contract.
 
 > **Why this matters doubly for a generator:** a human team feels an un-telegraphed kill or a juice-overloaded screen as "off." An autonomous generator does not. Hand-author the cue vocabulary, the damage→telegraph curve, the feedback table, and the stamina/checkpoint numbers as **inviolable contracts**, then let generation recombine vetted parts inside them — and run headless validators (telegraph checker, juice linter, fairness ghost-runner) before any content is committed.
 

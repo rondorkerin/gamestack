@@ -4,21 +4,23 @@ Actionable **Do / Don't** plus **Test-for** criteria for combat and game feel. R
 
 ---
 
-## Game feel & juice
+## Combat juice (applied game feel)
+
+> General feel — input/latency, forgiveness, the full juice toolkit, animation principles, camera/UI — lives in **`game-feel-and-juice`**. These items are the **combat-specific** slice only.
 
 **Do**
-- [ ] Keep total feedback in the **Medium–High band** (Kao 2020) — a measurable budget per event (particle systems, peak shake, hit-stop/sec).
-- [ ] Give every outcome a **distinct, non-colliding signature** (hit, crit, block, parry, kill, whiff, take-damage).
-- [ ] Build each impactful hit from a **bounded bundle**: hit-stop (~0.05s+), shake (amplitude + decay), ≥1 sound layer, hit-reaction — scaled to magnitude.
-- [ ] Reserve **maximal effects** (slow-mo, full screen flourish) for rare tagged events (boss kills, legendary loot), capped per session.
+- [ ] Apply the **Medium–High feedback budget** to *hits* — a measurable budget per hit event (particle systems, peak shake, hit-stop/sec).
+- [ ] Give every combat **outcome** a distinct, non-colliding signature (hit, crit, block, parry, kill, whiff, take-damage).
+- [ ] Build each impactful hit from a **bounded bundle**: hit-stop (~0.05s+), shake (amplitude + decay), ≥1 sound layer, hit-reaction — scaled to magnitude, from the per-event table.
+- [ ] Reserve **maximal effects** (slow-mo finisher) for rare tagged events (boss kills, legendary loot), capped per session.
 
 **Don't**
-- [ ] Don't maximize juice — *Extreme* hurts experience, motivation, *and* performance as much as *None*.
-- [ ] Don't make everything flash the same (undifferentiated feedback).
+- [ ] Don't maximize combat juice — *Extreme* hurts experience, motivation, *and* performance as much as *None* (Kao 2020).
+- [ ] Don't make every outcome flash the same (can't tell a parry from a block).
 - [ ] Don't let hit-stop stack across rapid hits (stutter / laggy feel); don't ship hits with no stop or reaction (floaty feel).
 - [ ] Don't spend peak effects on routine hits (spectacle inflation).
 
-**Test for** — Does any scene exceed the High ceiling on summed feedback or drop FPS under peak juice? Can each combat outcome be told apart by feel alone?
+**Test for** — Does any combat scene exceed the High ceiling on summed feedback or drop FPS under peak juice? Can each combat outcome be told apart by feel alone?
 
 ---
 

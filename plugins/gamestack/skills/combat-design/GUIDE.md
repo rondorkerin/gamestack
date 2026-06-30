@@ -10,39 +10,32 @@ The moment-to-moment discipline of combat: how feedback, telegraphing, enemy des
 
 ---
 
-# Sub-domain 1 — Game Feel / "Juice"
+# Sub-domain 1 — Combat Juice (applied game feel)
 
-> "Juice" = constant, bountiful feedback for minimal input — the term comes from Gabler/Gray/Kucic/Shodhan's "How to Prototype a Game in Under 7 Days" (2005) and was popularized by Jonasson & Purho's "Juice It or Lose It" (GDC Europe 2012). Steve Swink's *Game Feel* (2009) is the foundational text. But more is not better.
+> **The general theory lives in `game-feel-and-juice`** — Swink's three building blocks, input latency & forgiveness, the full juice toolkit, the inverted-U feedback ceiling (Kao 2020, N=3,018), the 12 animation principles, and camera/UI feel. Read it first. This sub-domain only covers what is **specific to combat**: applying the feedback budget to *hits*, and giving combat *outcomes* distinct signatures. Don't re-derive the ceiling here.
 
-## 1.1 Tune total feedback to a Medium–High band — never maximize
+## 1.1 Apply the inverted-U feedback budget to hits — never maximize
 
-**The dose-response curve is an inverted U.** Dominic Kao, "The Effects of Juiciness in an Action RPG" (*Entertainment Computing* 34, 2020, N=3,018 — the largest study to date) found that **both *None* and *Extreme* juiciness significantly decreased play time, player experience, intrinsic motivation, *and* performance** relative to *Medium* and *High*. An agent that maximizes screen shake and particles measurably hurts the game on every axis, including raw player skill.
+Combat is where juice overload bites hardest: an agent that maximizes shake and particles on every swing produces the "Extreme" condition Kao found *worse* than none. Author a **combat feedback table** keyed by (hit tier × outcome) inside the Medium–High band, and reserve the maximal tier (slow-mo finisher — *Kid Icarus: Uprising*, *Devil May Cry*) for tagged rare events (boss kills, finite-legendary-loot acquisition), capped per session.
 
-- **Test for:** a measurable feedback budget per event (simultaneous particle systems, peak shake amplitude, cumulative hit-stop per second). Flag any scene exceeding the "High" ceiling.
-- **Failure mode — Juice overload:** sensory noise that obscures game state, tanks FPS, and lowers motivation (the "Extreme" condition).
+- **Test for:** a measurable budget per hit event (particle systems, peak shake, cumulative hit-stop/sec); flag any combat scene over the High ceiling; maximal-tier effects fire only on tagged rare events.
+- **Failure modes — Juice overload** (sensory noise tanks readability + FPS) and **spectacle inflation** (peak effects on routine hits leave nothing for climaxes).
 
-## 1.2 Make feedback legible and tied to outcomes — not just loud
+## 1.2 Give every combat outcome a distinct, non-colliding signature
 
-Kao et al. (CHI 2024, pre-registered, N=1,699) found juice motivates mainly through **curiosity and competence**, and that amplification can *backfire* when it impairs the player's sense of agency. Loud is worthless if the player can't read *what happened*. Every distinct outcome needs a distinct, non-colliding signature.
+Loud is worthless if the player can't read *what happened* (Kao CHI 2024: amplification backfires when it impairs agency). The combat-specific requirement is that the outcomes the player must distinguish — **hit, crit, block, parry, kill, whiff, take-damage** — each read differently.
 
-- **Test for:** hit, crit, block, parry, kill, whiff, and take-damage each have a *distinct* feedback signature that doesn't collide with the others.
-- **Failure mode — Undifferentiated feedback:** everything flashes the same, so the player can't tell success from failure.
+- **Test for:** hit, crit, block, parry, kill, whiff, and take-damage each have a distinct feedback signature that doesn't collide.
+- **Failure mode — Undifferentiated feedback:** everything flashes the same; the player can't tell success from failure (or a parry from a block).
 
-## 1.3 Build impact from layered, time-bounded primitives
+## 1.3 Scale the hit bundle with magnitude; hit-stop is the load-bearing primitive
 
-Impact is assembled, not single-sourced: animation (anticipation / hit-frame / follow-through) + camera shake + VFX + hit-reaction/knockback + layered sound + **hit-stop**. Hit-stop of ~0.05s+ solidifies a hit by exploiting the brain's ~100ms event-perception window (*Dark Souls II* is the cautionary "weak feel" case for under-using it). Too much, stacked across rapid hits, makes fast combat feel mechanical and unresponsive.
+A combat impact is an assembled, time-bounded bundle: anticipation/hit-frame/follow-through + shake + VFX + hit-reaction/knockback + layered sound + **hit-stop**. Hit-stop (~0.05 s+, scaled to damage) is the single highest-impact combat primitive (*Dark Souls II* is the cautionary weak-feel case); cap cumulative hit-stop so rapid combos don't feel laggy. (Mechanics of all these primitives → `game-feel-and-juice` §C.)
 
-- **Test for:** each impactful hit fires a *bounded* bundle (hit-stop duration, shake amplitude + decay, ≥1 sound layer, hit-reaction) with explicit caps; the bundle scales with hit magnitude.
-- **Failure mode — Floaty combat** (no hit-stop/reaction → hits don't register) **OR Stutter combat** (hit-stop stacks → controls feel laggy).
+- **Test for:** each impactful hit fires a *bounded* bundle with explicit caps, scaled to magnitude; hit-stop durations come from the per-event table, not live computation.
+- **Failure modes — Floaty combat** (no hit-stop/reaction) **or Stutter combat** (hit-stop stacks across rapid hits).
 
-## 1.4 Scale juice with event importance — reserve the biggest effects for rare moments
-
-Slow-mo finishers (*Kid Icarus: Uprising*, *Devil May Cry*) work because they're rare. Build a rarity-weighted effect ladder; the "maximal" tier fires only on tagged rare events (boss kills, finite-legendary-loot acquisition) and is capped per session.
-
-- **Test for:** a rarity ladder; maximal-tier effects fire only on tagged rare events, capped per session.
-- **Failure mode — Spectacle inflation:** peak effects on routine hits leave nothing for climaxes and habituate the player.
-
-**→ Procedural / headless implication.** Juice lives in a **hand-authored, version-controlled feedback table** keyed by (event type × magnitude) with hard min/max guardrails set to Kao's Medium–High band. The generator *selects and composes* from this table — it must not invent new intensities or per-encounter feedback semantics. Ship a **juice-budget linter** that rejects any scene whose summed feedback exceeds the ceiling, and run headless telemetry (play time, death-to-quit, FPS under peak juice) as proxies for Kao's measures.
+**→ Procedural / headless implication.** The **combat feedback table** is the combat-specific slice of the game-wide feedback table (`game-feel-and-juice`): same Medium–High guardrails, keyed by combat hit tier × outcome. The generator selects and composes from it — never invents combat feedback intensities. The juice-budget linter and FPS-under-peak-juice telemetry are shared with the general skill; here they run over combat scenes specifically.
 
 ---
 

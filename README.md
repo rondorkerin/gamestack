@@ -67,21 +67,39 @@ We don't reinvent engine work others do well — we **slot it in** and add the d
 | [`procgen-review`](plugins/gamestack/skills/procgen-review) | The self-review pass for generated content. Runs the oatmeal test, the fanfic/retell test, a cross-instance sameness scan, and the intentionality + anti-pattern gates. Built to run in a headless generation loop. | 🟢 v0.1 |
 
 ### Knowledge
+
+Knowledge skills are organized into three **tiers** (see [`docs/architecture.md`](docs/architecture.md)): **universal craft** (every game needs them → headed for `gamestack-core`), **genre lenses** (pulled for *that kind* of game), and **technique modules** (pulled when *using* that technique). Today they all live in the one `gamestack` plugin and are tagged with their tier in `SKILL.md`; the split into separate marketplace packs is a later, mechanical move.
+
+**🌐 Universal craft** — applies to every genre
 | Skill | What it covers | Status |
 |-------|----------------|--------|
 | [`game-design-fundamentals`](plugins/gamestack/skills/game-design-fundamentals) | The spine the rest of the pack builds on: interesting decisions (Meier), flow & difficulty curves, motivation (Self-Determination Theory), feedback & agency, and choice architecture — with machine-checkable tests for a generation loop. | 🟢 v0.1 |
+| [`game-feel-and-juice`](plugins/gamestack/skills/game-feel-and-juice) | The moment-to-moment feel of *any* action: Swink's three building blocks (fix feel before you juice it), input latency & forgiveness (coyote time, buffering), the juice toolkit + the inverted-U ceiling (Kao), the 12 animation principles, camera & UI feel — as a per-action feedback budget a generator can't exceed. (Extracted as the universal foundation under `combat-design`.) | 🟢 v0.1 |
+| [`level-design`](plugins/gamestack/skills/level-design) | The craft of shaping space & encounters: guiding the player (leading lines, landmarks, light, affordances), structure & gating (lock-and-key, interconnection), teaching through space, arena design, in-level pacing, the greybox/metrics process — and a level-design *grammar* for generators. | 🟢 v0.1 |
+| [`onboarding-and-teaching`](plugins/gamestack/skills/onboarding-and-teaching) | Tutorialization & the first-time experience: teach one mechanic at a time (introduce→test→combine→twist), show-don't-tell over pop-ups, progressive disclosure, the FTUE/retention funnel — and a dependency-ordered teaching ramp for a generated verb set. | 🟢 v0.1 |
+| [`ui-ux-and-feedback`](plugins/gamestack/skills/ui-ux-and-feedback) | Game UI/UX at the design level: the diegetic/non-diegetic/spatial/meta framework, information hierarchy & cognitive load, game-state feedback, menu & navigation flow — and generating a HUD/UX spec from a mechanic set. | 🟢 v0.1 |
+| [`difficulty-and-balancing`](plugins/gamestack/skills/difficulty-and-balancing) | The most machine-checkable discipline: eliminating dominant strategies (payoff-matrix dominance checks), cost-curve/power-budget balance, difficulty curves & DDA/hidden directors, per-axis accessibility assists, and metrics/simulation-driven tuning. | 🟢 v0.1 |
+| [`pacing-and-the-player-journey`](plugins/gamestack/skills/pacing-and-the-player-journey) | Macro pacing as a complement to game feel: the fractal interest curve (encounter→level→session→playthrough), challenge/rest rhythm, novelty cadence, the nested engagement loops + retention-ethics line, and a spec-level **pacing director** for generated content. | 🟢 v0.1 |
+| [`art-direction-and-readability`](plugins/gamestack/skills/art-direction-and-readability) | Design-level visual communication: readability as an engineerable objective, silhouette-first validation, value/contrast eye-direction, reserved signal colors, fidelity-fights-readability, the named style bible, and per-asset read contracts for generators. | 🟢 v0.1 |
+
+**🎯 Genre lenses** — pulled for *that kind* of game
+| Skill | What it covers | Status |
+|-------|----------------|--------|
 | [`open-world-design`](plugins/gamestack/skills/open-world-design) | World structure (the triangle rule, gravity, interconnection, biomes, verticality), diegetic navigation, signal color, exploration pull, and spatial pacing. | 🟢 v0.2 |
-| [`procedural-generation`](plugins/gamestack/skills/procedural-generation) | Beating the "10,000 bowls of oatmeal" problem: perceptual uniqueness, the handcrafted-anchor + constrained-fill hybrid, voice-consistent corpora, multiplicative systems, intentionality. | 🟢 v0.1 |
-| [`combat-design`](plugins/gamestack/skills/combat-design) | Combat & game feel: juice tuned to the Medium–High band (the inverted-U), hit-stop & the impact bundle, telegraphing as fairness, danger-cue vocabularies, enemy silhouettes & role-based rosters, readable multi-enemy chaos (aggression tokens), and the Souls-like commitment/stamina/checkpoint loop. | 🟢 v0.1 |
+| [`combat-design`](plugins/gamestack/skills/combat-design) | Combat application of game feel: telegraphing as fairness, danger-cue vocabularies, enemy silhouettes & role-based rosters, readable multi-enemy chaos (aggression tokens), and the Souls-like commitment/stamina/checkpoint loop. (General feel → `game-feel-and-juice`.) | 🟢 v0.2 |
 | [`rpg-systems`](plugins/gamestack/skills/rpg-systems) | The RPG number-systems triad: progression (price advancement, zone level-bands not world-scaling), economy (faucets/sinks, desirable sinks, anti-hoarding under scarcity, currency-as-material), and loot (rarity baseline, build-defining affixes over stat-sticks, procedural breadth vs. hand-authored identity, the finite-legendary manifest). | 🟢 v0.1 |
-| [`systemic-emergent-design`](plugins/gamestack/skills/systemic-emergent-design) | Authoring affordances not solutions: the immersive-sim substrate (universal rules, intention & perceivable consequence), emergence from few deep interacting systems, multiplicative vs. additive design (the chemistry engine), the "good GM" analogy, and making procgen cohere instead of becoming oatmeal. | 🟢 v0.1 |
 | [`narrative-and-quest-design`](plugins/gamestack/skills/narrative-and-quest-design) | Quests, reactivity, and factions: the facts-database reactivity substrate (Witcher 3), planner-over-world-state procedural quests, blurring flavor vs. consequence, the no-fetch-quest doctrine, radiant-as-supplement, and faction allegiance dilemmas. | 🟡 v0.1 ⚠️ |
 | [`worldbuilding-and-lore`](plugins/gamestack/skills/worldbuilding-and-lore) | The world bible and lore *delivery*: the iceberg principle (build the whole, ship ~10% as frozen typed canon), environmental & item-description storytelling (Jenkins's four modes), an enumerable "alien but coherent" identity that resists generation drift, deep history as faction-proxy pantheons, and ludonarrative harmony (every mechanic answers a lore question). | 🟢 v0.1 |
 | [`permadeath-and-lethality`](plugins/gamestack/skills/permadeath-and-lethality) | High-lethality / permadeath / single-save: the fairness & readability backbone (death is always the player's fault), mitigations that cut failure cost without removing stakes (short runs, opt-in stacking assist, deterministic anti-save-scum), meta-progression & diegetic death (Hades), and the flagged-novel problem of single-save permadeath in a long-form open world. | 🟢 v0.1 |
-| [`art-direction-and-readability`](plugins/gamestack/skills/art-direction-and-readability) | Design-level visual communication: readability as an engineerable objective, silhouette-first validation, value/contrast eye-direction, reserved signal colors, fidelity-fights-readability, the named style bible, and per-asset read contracts for generators. | 🟢 v0.1 |
-| [`ai-authored-content-coherence`](plugins/gamestack/skills/ai-authored-content-coherence) | The crux skill: keeping AI-authored content coherent at scale — the oatmeal problem, single voice via curated corpus, generate-then-rationalize causation, recurring thematic domains, a machine-readable never-violate lore bible, and the self-review pass. | 🟡 v0.1 ⚠️ |
 
-> ⚠️ These skills were built from a deep-research pass whose adversarial-verification phase was cut short by a session limit. `art-direction-and-readability` is verification-confirmed at its core (TF2 primary sources); `narrative-and-quest-design` and `ai-authored-content-coherence` carry a mix of verified and **sourced-but-unverified** rules, tagged inline (✅/⚠️/❌). Re-run a clean verification pass before treating the ⚠️ rules as settled.
+**🔧 Technique modules** — pulled when *using* that technique
+| Skill | What it covers | Status |
+|-------|----------------|--------|
+| [`procedural-generation`](plugins/gamestack/skills/procedural-generation) | Beating the "10,000 bowls of oatmeal" problem: perceptual uniqueness, the handcrafted-anchor + constrained-fill hybrid, voice-consistent corpora, multiplicative systems, intentionality. | 🟢 v0.1 |
+| [`ai-authored-content-coherence`](plugins/gamestack/skills/ai-authored-content-coherence) | The crux skill: keeping AI-authored content coherent at scale — the oatmeal problem, single voice via curated corpus, generate-then-rationalize causation, recurring thematic domains, a machine-readable never-violate lore bible, and the self-review pass. | 🟡 v0.1 ⚠️ |
+| [`systemic-emergent-design`](plugins/gamestack/skills/systemic-emergent-design) | Authoring affordances not solutions: the immersive-sim substrate (universal rules, intention & perceivable consequence), emergence from few deep interacting systems, multiplicative vs. additive design (the chemistry engine), the "good GM" analogy, and making procgen cohere instead of becoming oatmeal. | 🟢 v0.1 |
+
+> ⚠️ Some earlier skills were built from a deep-research pass whose adversarial-verification phase was cut short by a session limit. `art-direction-and-readability` is verification-confirmed at its core (TF2 primary sources); `narrative-and-quest-design` and `ai-authored-content-coherence` carry a mix of verified and **sourced-but-unverified** rules, tagged inline (✅/⚠️/❌). Re-run a clean verification pass before treating the ⚠️ rules as settled.
 
 ---
 
@@ -199,12 +217,19 @@ Each process skill opens by injecting `PREAMBLE.md` + `ETHOS.md`, which loads th
 **Engine coverage** (curate strong community packs, or build first-party):
 - ✅ Godot · ✅ Unreal · 🟡 Unity (debug-only — needs a general authoring pack) · ⬜ Three.js / web
 
-**Design brain — knowledge:**
-- ✅ Game-design fundamentals · ✅ Open-world design · ✅ Procedural generation · ✅ Combat & game feel
-- ✅ RPG systems (progression, economy, loot/itemization)
-- ✅ Systemic / emergent design (immersive sim, multiplicative systems)
-- ✅ Permadeath & lethality · ✅ Worldbuilding & lore · ✅ Narrative & quest design
-- ✅ Art direction & readability · ✅ AI-authored content coherence · ⬜ Pacing & game feel
+**Design brain — knowledge — 🌐 universal craft** (the spine every genre needs):
+- ✅ Game-design fundamentals · ✅ Game feel & juice · ✅ Level design · ✅ Onboarding & teaching
+- ✅ UI/UX & feedback · ✅ Difficulty & balancing · ✅ Pacing & the player journey · ✅ Art direction & readability
+- ⬜ Round 2: audio design · accessibility · playtesting & telemetry · monetization & business model · scope/production
+
+**Design brain — knowledge — 🎯 genre lenses** (more genres broaden general game-dev coverage):
+- ✅ Open-world design · ✅ Combat design · ✅ RPG systems · ✅ Narrative & quest · ✅ Worldbuilding & lore · ✅ Permadeath & lethality
+- ⬜ Round 3: platformer/movement · shooter · puzzle · strategy/tactics · sim/management · survival/crafting · deckbuilder · horror
+
+**Design brain — knowledge — 🔧 technique modules:**
+- ✅ Procedural generation · ✅ AI-authored content coherence · ✅ Systemic / emergent design · ⬜ Multiplayer/netcode · ⬜ Save/persistence
+
+> Architecture & packaging (core / genre / technique multi-pack split, genre-aware orchestrator): see [`docs/architecture.md`](docs/architecture.md). Research prompts for the open rounds: [`docs/research-prompts.md`](docs/research-prompts.md).
 
 **Design brain — process:**
 - ✅ Game-design process (orchestrator) · ✅ Engine router · ✅ Procgen review
