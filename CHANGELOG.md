@@ -5,6 +5,15 @@ All notable changes to this skill pack are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.11.0] — 2026-06-30
+
+### Added — `plugin-update`: a self-check/update skill
+
+- New utility skill `plugin-update` (`/gamestack:plugin-update`): locates the installed `gamestack@gamestack` plugin, refreshes the marketplace catalog, runs `claude plugin update` against the correct install scope, and surfaces the relevant `CHANGELOG.md` entries when it updates.
+- Prompted by the fact that Claude Code's plugin auto-update is a client-side, per-user toggle that defaults to **off** for third-party marketplaces — there's no field in `marketplace.json`/`plugin.json` a marketplace author can set to turn it on for installers. This skill is the manual equivalent of a successful auto-update pass, runnable on demand instead of requiring every user to find the `/plugin` → Marketplaces → Enable auto-update toggle.
+- Deliberately skips the shared `PREAMBLE.md`/`ETHOS.md` auto-load that every other process skill uses: it's pure plugin-maintenance tooling, not a design-bible operation, so loading the design ethos and engine-detection steps would be pure overhead.
+- README's Install section now points to it alongside the existing `/plugin marketplace update gamestack` instructions, and explains the auto-update toggle is the user's call, not this repo's.
+
 ## [0.10.1] — 2026-06-30
 
 ### Added — `docs/headless-architecture.md`: a concrete worked example
